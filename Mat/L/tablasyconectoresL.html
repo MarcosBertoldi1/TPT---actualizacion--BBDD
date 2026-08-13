@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas de Verdad - Lógica | ET29</title>
+    
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/materias.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    
+    <meta name="description" content="Cómo se conforman las tablas de verdad y su estructura.">
+    <script src="../../js/main.js" defer></script>
+    <style>
+        .separador-seccion {
+            border: 0;
+            border-top: 2px dashed #ccc;
+            margin: 2rem 0;
+        }
+        .titulo-conectores {
+            margin-bottom: 0.2rem;
+            font-size: 1.5rem;
+        }
+        .subtitulo-conectores {
+            margin-bottom: 1rem;
+            color: #555;
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
+        .margen-top {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            
+            <a href="../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                    <span class="tagline">Hacer simple lo que parece difícil.</span>
+                    <span class="brand-block">Plataforma Colaborativa • Validado por Docentes • Estudiantes para Estudiantes</span>
+                </div>
+            </a>
+
+            <div class="controles-accesibilidad">
+                <button class="btn-accesibilidad" aria-label="Aumentar tamaño de texto" title="Aumentar letra">A+</button>
+                <button class="btn-accesibilidad" aria-label="Cambiar contraste" title="Modo oscuro">🌓</button>
+            </div>
+            
+        </div>
+        
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+            <ul>
+                <li><a href="../../index.html" class="activo" aria-current="page">Inicio</a></li>
+                <li><a href="../../index.html#materias">Materias</a></li>
+                <li><a href="../../sobre.html">Sobre el Proyecto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido-principal" class="contenedor-pagina">
+        
+        <nav class="migas-de-pan" aria-label="Migas de pan">
+            <ol>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../mat-L.html">Lógica Computacional</a></li>
+                <li aria-current="page">Tablas de Verdad</li>
+            </ol>
+        </nav>
+
+        <div class="cabecera-materia">
+            <div class="titulo-materia-icono">
+                <span class="icono-grande" aria-hidden="true">📊</span>
+                <div>
+                    <h1>Tablas de Verdad y sus Conectores Lógicos</h1>
+                    <p>Cómo se conforman las tablas de verdad y su estructura.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="seccion-recursos">
+            <h2 class="sr-only">Recursos disponibles para el tema Tablas de Verdad</h2>
+            <p class="instruccion-recurso">Elegí un recurso para ver su contenido.</p>
+            
+            <!-- PRIMERA PARTE: Introducción a tablas y jerarquía -->
+            <ul class="lista-recursos">
+                <li>
+                    <a href="Tablas/tablas_de_verdad.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>¿Qué son las tablas de verdad?</h3>
+                            <p>Concepto, utilidad y cómo representan todos los escenarios posibles de una proposición.</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Tablas/conectores_logicos.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Introducción a conectores lógicos + Jerarquía</h3>
+                            <p>Orden de precedencia y pasos para resolver operaciones cuando se combinan múltiples conectivos.</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+            </ul>
+
+            <hr class="separador-seccion" aria-hidden="true">
+
+            <!-- SEGUNDA PARTE: Conectores Primarios -->
+            <h3 class="titulo-conectores">Conectores lógicos</h3>
+            <h4 class="subtitulo-conectores">Primarios</h4>
+
+            <ul class="lista-recursos">
+                <li>
+                    <a href="Tablas/negacion.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Negación</h3>
+                            <p>Operador lógico NOT.</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Tablas/conjuncion.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Conjunción</h3>
+                            <p>Operador lógico AND.</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Tablas/disyuncion_inclusiva.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Disyunción (inclusiva)</h3>
+                            <p>Operador lógico OR.</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- TERCERA PARTE: Conectores Secundarios -->
+            <h4 class="subtitulo-conectores margen-top">Secundarios</h4>
+
+            <ul class="lista-recursos">
+                <li>
+                    <a href="Tablas/disyuncion_exclusiva.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Disyunción exclusiva</h3>
+                            <p>Operador lógico XOR.</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Tablas/condicional.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Condicional</h3>
+                            <p>Implicación lógica (si... entonces...).</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="Tablas/bicondicional.html" class="tarjeta-recurso">
+                        <div class="recurso-icono">
+                            <span aria-hidden="true">▶️</span>
+                        </div>
+                        <div class="recurso-texto">
+                            <h3>Bicondicional</h3>
+                            <p>Doble implicación (si y solo si).</p>
+                        </div>
+                        <div class="recurso-flecha" aria-hidden="true">›</div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <aside class="banner-proximamente">
+            <span class="icono-banner" aria-hidden="true">🔒</span>
+            <p><strong>Próximamente podrás registrarte</strong> para guardar favoritos, subir material y ser parte de la comunidad.</p>
+        </aside>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
+    </footer>
+
+    <script src="../../js/header.js"></script>
+
+</body>
+</html>

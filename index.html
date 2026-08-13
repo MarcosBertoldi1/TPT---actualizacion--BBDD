@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Tecnología para Todos - ET29</title>
+ <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/header.css">
+ <meta name="description" content="Plataforma de aprendizaje técnico interactivo de la ET29. De estudiantes para estudiantes.">
+ <script src="js/main.js" defer></script>
+</head>
+<body>
+
+ <!--<a href="#contenido-principal" class="saltar-contenido">Saltar al contenido principal</a>-->
+
+ <header class="encabezado-principal">
+ <div class="contenedor-header">
+ 
+<a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+ <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+ 
+<div class="logo-texto-lineal">
+ <h1>Tecnología para todos</h1>
+ <!--<span class="tagline">Hacer simple lo que parece difícil.</span>
+ <span class="brand-block">Plataforma Colaborativa • Validado por Docentes • Estudiantes para Estudiantes</span>-->
+ </div>
+ </a>
+
+ <div class="controles-accesibilidad">
+ <button class="btn-accesibilidad" aria-label="Aumentar tamaño de texto" title="Aumentar letra">A+</button>
+ <button class="btn-accesibilidad" aria-label="Cambiar contraste" title="Modo oscuro">🌓</button>
+ </div>
+ 
+</div>
+ 
+<nav class="navegacion-principal" aria-label="Navegación principal">
+ <ul>
+ <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
+ <li><a href="index.html#materias">Materias</a></li>
+ <li><a href="sobre.html">Sobre el Proyecto</a></li>
+ </ul>
+ </nav>
+ </header>
+
+ <main id="contenido-principal">
+ 
+<!-- <section class="hero">
+ <div class="hero-imagen">
+ <img src="img/logoTPT4.png" alt="Comunidad de aprendizaje" class="img-hero">
+ </div>
+
+ <div class="hero-texto">
+ <!-- <h1>Tecnología para todos</h1>
+ <p>Plataforma colaborativa de aprendizaje técnico visual desarrollada por estudiantes, para estudiantes y validada por docentes para reducir barreras de comprensión en la educación técnica.</p>
+ <a href="#materias" class="btn btn-primario">Explorar materias</a>
+ </div>
+ </section> -->
+
+ <section id="materias" class="seccion-materias">
+ <div class="cabecera-materias">
+ <h2>Materias disponibles</h2>
+ 
+<div class="atajos-anios" aria-label="Atajos rápidos por año">
+ <a href="#anio-4" class="pildora-atajo">4º Año</a>
+ <a href="#anio-5" class="pildora-atajo">5º Año</a>
+ <a href="#anio-6" class="pildora-atajo">6º Año</a>
+ </div>
+ </div>
+ 
+<div id="anio-4" class="contenedor-anio">
+ <h2 class="titulo-anio">4º Año - Computación</h2>
+ <div class="grilla-materias">
+ 
+<article class="tarjeta-materia activa">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🖥️</span>
+ <h3>Organización de las Computadoras</h3>
+ </div>
+ <p>Arquitectura básica y funcionamiento interno.</p>
+ <a href="Mat/mat-OC.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+ </article>
+
+ <article class="tarjeta-materia activa">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">💡</span>
+ <h3>Lógica Computacional</h3>
+ </div>
+ <p>Sistemas numéricos, álgebra de Boole y compuertas lógicas.</p>
+ <a href="Mat/mat-L.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Base de Datos</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Lab. de Algoritmos y Estructuras</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+ </div>
+ </div>
+
+ <div id="anio-5" class="contenedor-anio">
+ <h2 class="titulo-anio">5º Año - Computación</h2>
+ <div class="grilla-materias">
+ 
+<article class="tarjeta-materia activa">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🌐</span>
+ <h3>Redes</h3>
+ </div>
+ <p>Fundamentos de conectividad y protocolos.</p>
+ <a href="Mat/mat-R.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Admin. y Gestión de Base de Datos</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Laboratorio de POO</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Análisis de Sistemas</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+ </div>
+ </div>
+
+ <div id="anio-6" class="contenedor-anio">
+ <h2 class="titulo-anio">6º Año - Computación</h2>
+ <div class="grilla-materias">
+ 
+<article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Programación sobre Redes</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Admin. y Gestión de Redes</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+
+ <article class="tarjeta-materia bloqueada">
+ <div class="tarjeta-cabecera">
+ <span class="icono" aria-hidden="true">🔒</span>
+ <h3>Desarrollo de Sistemas</h3>
+ </div>
+ <p>Próximamente</p>
+ </article>
+ </div>
+ </div>
+
+ </section>
+ </main>
+
+ <footer class="pie-pagina">
+ <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+ <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
+ </footer>
+
+ <script src="js/header.js"></script>
+ 
+</body>
+</html>

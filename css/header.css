@@ -1,0 +1,247 @@
+/* ==========================================================================
+   ESTILOS BASE: OPTIMIZADO PARA MÓVILES (Pantallas chicas)
+   ========================================================================== */
+
+.encabezado-principal {
+    background-color: var(--color-fondo-header, #eaf3fc);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Contenedor en móvil: distribución simple a los lados */
+.contenedor-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 1rem; /* Padding compacto en celulares */
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Transición para el scroll */
+}
+
+.logo-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+}
+
+.logo-img-banner {
+    height: 50px; /* Logo chico en celular */
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: height 0.3s ease;
+}
+
+.logo-texto-lineal {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-texto-lineal h1 {
+    font-size: 2 rem; /* Título legible pero compacto */
+    font-weight: 700;
+    color: var(--color-texto-header, #0b3469);
+    margin: 0;
+    line-height: 1.1;
+    transition: font-size 0.3s ease;
+}
+
+/* EN MÓVILES OCULTAMOS LOS TEXTOS LARGOS: No hay espacio físico */
+.logo-texto-lineal .tagline,
+.logo-texto-lineal .brand-block {
+    display: none; 
+}
+
+/* Botones de accesibilidad en móvil */
+.controles-accesibilidad {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.btn-accesibilidad {
+    background: var(--color-gris-claro, #f0f0f0);
+    border: 1px solid var(--color-borde, #ccc);
+    border-radius: 6px;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-texto, #333);
+}
+
+/* Menú de navegación en móvil (Scroll horizontal si no entran los links) */
+.navegacion-principal {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 1rem;
+    overflow-x: auto; 
+    white-space: nowrap;
+}
+
+.navegacion-principal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navegacion-principal a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.8rem 0; /* Relleno original en móvil */
+    display: inline-block;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease; /* ¡Fundamental para que se achique suavemente! */
+}
+
+.navegacion-principal a:hover,
+.navegacion-principal a.activo {
+    color: var(--color-texto-header, #0b3469);
+    border-bottom: 3px solid var(--color-texto-header, #0b3469);
+}
+
+.logo-texto-lineal h1,
+.logo-texto-lineal .tagline,
+.logo-texto-lineal .brand-block {
+    /* Estas tres líneas evitan los saltos de renglón al animar */
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    padding-bottom: 6px;
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN DE ANIMACIONES (Hardware Acceleration)
+   ========================================================================== */
+.contenedor-header,
+.logo-img-banner,
+.logo-texto-lineal h1,
+.logo-texto-lineal .tagline,
+.logo-texto-lineal .brand-block,
+.navegacion-principal a {
+    /* Le avisa al navegador qué propiedades van a animarse para que se prepare */
+    will-change: padding, height, font-size, opacity, max-height;
+    
+    /* Fuerza a la GPU a renderizar el elemento */
+    transform: translateZ(0);
+}
+
+/* ==========================================================================
+   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
+   ========================================================================== */
+.encabezado-compacto .contenedor-header {
+    padding: 0.4rem 1rem;
+}
+.encabezado-compacto .logo-img-banner {
+    height: 40px;
+}
+.encabezado-compacto .logo-texto-lineal h1 {
+    font-size: 1.1rem;
+}
+
+/* NUEVO: Reduce el espacio entre botones en móviles al hacer scroll */
+.encabezado-compacto .controles-accesibilidad {
+    gap: 0.25rem; 
+}
+
+/* NUEVO: Achica los botones de accesibilidad (letra y relleno) en móviles */
+.encabezado-compacto .btn-accesibilidad {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 4px; /* Un poquito menos redondeado para mantener la proporción */
+}
+
+
+/* ==========================================================================
+   MEDIA QUERY: PANTALLAS GRANDES (Tablets y Computadoras >= 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+    
+    /* Ajustamos el contenedor para que tenga menos relleno (padding) arriba y abajo */
+    .contenedor-header {
+        position: relative;
+        justify-content: center; 
+        padding: 1rem 2rem 1.2rem; /* Antes era 1.8rem, ahora es más finito */
+    }
+
+    /* Achicamos un poco el logo base */
+    .logo-img-banner {
+        height: 85px; /* Antes era 120px */
+    }
+
+    /* Achicamos la tipografía principal */
+    .logo-texto-lineal h1 {
+        font-size: 2.2 rem; /* Antes era 3rem */
+    }
+
+    .logo-texto-lineal .tagline {
+        font-size: 1.2rem; /* Antes era 1.5rem */
+    }
+
+    .logo-texto-lineal .brand-block {
+        font-size: 0.95rem; /* Antes era 1.1rem */
+    }
+
+    /* Subimos un poquito los botones para que queden centrados con la nueva altura */
+    .controles-accesibilidad {
+        top: 1rem; 
+    }
+    .btn-accesibilidad {
+        padding: 0.4rem 0.6rem;
+        font-size: 1rem;
+    }
+
+    .navegacion-principal {
+        padding: 0 4rem;
+    }
+
+    .navegacion-principal a {
+        font-size: 1.05rem;
+        padding: 1rem 0;
+    }
+
+    .contenedor-header {
+        /* Agregá estas dos líneas a tu .contenedor-header */
+        max-width: 1200px; /* O el ancho que estés usando en tu contenedor-ancho principal */
+        margin: 0 auto;    /* Centra el contenedor si la pantalla es más grande que 1200px */
+    }
+
+    .navegacion-principal a {
+        padding: 0.6rem 0; /* Hacemos que la franja blanca de los links sea más angosta */
+    }
+
+
+/* ==========================================================================
+   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
+   ========================================================================== */
+.encabezado-compacto .contenedor-header {
+    padding: 0.4rem 1rem;
+}
+.encabezado-compacto .logo-img-banner {
+    height: 40px;
+}
+.encabezado-compacto .logo-texto-lineal h1 {
+    font-size: 1.1rem;
+}
+
+/* NUEVO: Reduce el espacio entre botones en móviles al hacer scroll */
+.encabezado-compacto .controles-accesibilidad {
+    gap: 0.25rem; 
+}
+
+/* NUEVO: Achica los botones de accesibilidad (letra y relleno) en móviles */
+.encabezado-compacto .btn-accesibilidad {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 4px; /* Un poquito menos redondeado para mantener la proporción */
+}
