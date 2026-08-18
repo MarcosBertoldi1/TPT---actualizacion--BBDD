@@ -6,7 +6,7 @@ import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-
 
 // Configuración de Firebase 
 const firebaseConfig = {
-  apiKey: "AIzaSyB5XqLifX-qKZSgTdyRCAvUfEg6_rEwFc",
+  apiKey: "AIzaSyB5XqLifX-qKZSGsTdyRCAvUfEg6_rEwFc",
   authDomain: "tpt-2026.firebaseapp.com",
   projectId: "tpt-2026",
   storageBucket: "tpt-2026.firebasestorage.app",
