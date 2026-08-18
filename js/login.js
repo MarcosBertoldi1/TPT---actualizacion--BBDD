@@ -26,7 +26,7 @@ async function verificarRolYRedirigir(user) {
         // CORREO NO PERMITIDO (Ej: @gmail.com)
         await signOut(auth); // Cerramos la sesión inmediatamente por seguridad
         localStorage.removeItem('rolUsuario'); // Borramos cualquier rol guardado
-        mensajeError.textContent = 'Acceso denegado. Debes usar tu correo institucional (@tecnica29de6.edu.ar o @alu.tecnica29de6.edu.ar).';
+        mensajeError.textContent = 'Acceso denegado. Debes usar tu correo institucional';
     }
 }
 
