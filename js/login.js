@@ -11,8 +11,8 @@ async function verificarRolYRedirigir(user) {
 
     // 👑 1. LISTA VIP DE ADMINISTRADORES (Cambiá estos correos por los reales)
     const correosAdmin = [
-        'tu.correo@tecnica29de6.edu.ar', 
-        'director@tecnica29de6.edu.ar'
+        'marcos.bertoldi.945@alutecnica29de6.edu.ar', 
+        'agustin.meza.779@alutecnica29de6.edu.ar'
     ];
 
     if (correosAdmin.includes(email)) {
