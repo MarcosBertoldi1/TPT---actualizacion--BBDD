@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesion - Tecnología para Todos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                </div>
+            </a>
+        </div>
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html#materias">Materias</a></li>
+                <li><a href="sobre.html">Sobre el Proyecto</a></li>
+                <li><a href="login.html" class="activo">Inicio de Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido-principal" style="max-width: 400px; margin: 40px auto; padding: 20px;">
+        <h2>Inicio de Sesion</h2>
+        <p>Ingresá con tu correo institucional.</p>
+        
+        <form id="form-login" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            <div>
+                <label for="email" style="display:block; margin-bottom: 5px;">Correo electrónico:</label>
+                <input type="email" id="email" required placeholder="profesor@et29.edu.ar" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+
+            <div>
+                <label for="password" style="display:block; margin-bottom: 5px;">Contraseña:</label>
+                <input type="password" id="password" required placeholder="••••••••" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+            </div>
+
+            <button type="submit" class="btn btn-primario" style="padding: 12px; cursor: pointer;">Iniciar Sesión</button>
+        </form>
+
+        <div id="mensaje-error" style="color: red; margin-top: 15px; font-weight: bold;"></div>
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Tecnología para Todos</strong>.ET29 DE 6.</p>
+    </footer>
+
+    <!-- Script que conectará el formulario con Firebase -->
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>
