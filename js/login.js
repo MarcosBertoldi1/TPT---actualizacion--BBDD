@@ -8,9 +8,8 @@ if (formLogin) {
     formLogin.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
         mensajeError.textContent = '';
 
         try {
