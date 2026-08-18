@@ -9,8 +9,19 @@ const mensajeError = document.getElementById('mensaje-error');
 // --- FUNCIÓN PARA VERIFICAR EL ROL SEGÚN EL DOMINIO ---
 async function verificarRolYRedirigir(user) {
     const email = user.email.toLowerCase(); // Pasamos todo a minúscula por las dudas
+    
+    const correosAdmin = [
+        'marcos.bertoldi.945@alu.tecnica29de6.edu.ar', 
+        'agustin.meza.779@alu.tecnica29de6.edu.ar'
+    ];
 
-    if (email.endsWith('@tecnica29de6.edu.ar')) {
+    if (correosAdmin.includes(email)) {
+        // ES ADMINISTRADOR
+        localStorage.setItem('rolUsuario', 'admin'); 
+        alert(`¡Bienvenido/a Administrador/a!`);
+        window.location.href = 'index.html';
+
+    else if (email.endsWith('@tecnica29de6.edu.ar')) {
         // ES PROFESOR
         localStorage.setItem('rolUsuario', 'profesor'); // Guardamos el rol en la PC
         alert(`¡Bienvenido/a Profesor/a!`);
