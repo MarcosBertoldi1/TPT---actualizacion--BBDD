@@ -32,7 +32,7 @@
         <h2>Inicio de Sesión</h2>
         <p>Ingresá con tu correo institucional.</p>
         
-        <form id="form-login" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+      <form id="form-login" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
             <div>
                 <label for="email" style="display:block; margin-bottom: 5px;">Correo electrónico:</label>
                 <input type="email" id="email" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
@@ -44,6 +44,14 @@
             </div>
 
             <button type="submit" class="btn btn-primario" style="padding: 12px; cursor: pointer;">Iniciar Sesión</button>
+            
+            <!-- 👇 Agregamos un separador y el botón de Google 👇 -->
+            <div style="text-align: center; margin: 10px 0;"></div>/div>
+            
+            <button type="button" id="btn-google" style="padding: 12px; cursor: pointer; background-color: #fff; color: #757575; border: 1px solid #ccc; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold;">
+                <!-- Ícono de Google usando un emoji o SVG (acá uso un texto simple para probar) -->
+                🌐 Iniciar sesión con Google
+            </button>
         </form>
 
         <div id="mensaje-error" style="color: red; margin-top: 15px; font-weight: bold;"></div>
