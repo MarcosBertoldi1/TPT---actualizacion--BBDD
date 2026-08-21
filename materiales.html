@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materiales Didácticos - Tecnología para Todos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            <a href="index.html" class="logo-banner">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                </div>
+            </a>
+        </div>
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="materiales.html" class="activo">Materiales</a></li>
+                <li><a href="sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login"><a href="login.html">Iniciar Sesión</a></li>
+                <li id="item-logout" style="display: none;"><a href="#" id="btn-cerrar-sesion">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 900px; margin: 40px auto; padding: 20px;">
+        <h2>Materiales Didácticos</h2>
+        <p>Compartí recursos y aprendé de los aportes de tus compañeros.</p>
+
+        <!-- PANEL DE SUBIDA (Visible para TODOS) -->
+        <section id="seccion-subida" style="background: #f4f6f8; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #ddd;">
+            <h3>Aportar Nuevo Material</h3>
+            <form id="form-subir-material" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                <div>
+                    <label for="titulo" style="display:block; font-weight: bold; margin-bottom: 5px;">Título del material:</label>
+                    <input type="text" id="titulo" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                </div>
+
+                <div>
+                    <label for="materia" style="display:block; font-weight: bold; margin-bottom: 5px;">Materia / Taller:</label>
+                    <select id="materia" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                        <option value="">-- Seleccionar Materia --</option>
+                        <option value="Informatica">Organización de las Computadoras</option>
+                        <option value="Electromecanica">Logica Computacional</option>
+                        <option value="Taller">Laboratorio de Algoritmos y Estructuras</option>
+                        <option value="General">Administración de Base de Datos
+                        <option value="General">Redes</option>
+                        <option value="General">Admistracion y gestion de BBDD</option>
+                        <option value="General">Laboratorio de POO</option>
+                        <option value="General">Analisis de Sistemas</option>
+                        <option value="General">Programacion Sobre Redes</option>
+                        <option value="General">Administración y Gestión de Redes</option>
+                        <option value="General">Desarrollo de Sistemas</option>
+
+
+                    </select>
+                </div>
+
+                <div>
+                    <label for="tipo-recurso" style="display:block; font-weight: bold; margin-bottom: 5px;">Tipo de Recurso:</label>
+                    <select id="tipo-recurso" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                        <option value="youtube">Enlace de YouTube</option>
+                    </select>
+                </div>
+
+                <!-- Campo para Link de YouTube -->
+                <div id="campo-youtube" style="display: block;">
+                    <label for="input-youtube" style="display:block; font-weight: bold; margin-bottom: 5px;">URL del Video de YouTube:</label>
+                    <input type="url" id="input-youtube" placeholder="https://www.youtube.com/watch?v=..." required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                </div>
+
+                <div>
+                    <label for="descripcion" style="display:block; font-weight: bold; margin-bottom: 5px;">Descripción breve (opcional):</label>
+                    <textarea id="descripcion" rows="3" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+                </div>
+
+                <button type="submit" id="btn-guardar" style="padding: 10px 20px; background-color: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    Enviar para Revisión
+                </button>
+                <div id="mensaje-estado" style="margin-top: 10px; font-weight: bold;"></div>
+            </form>
+        </section>
+
+        <!-- PANEL DE MODERACIÓN (Oculto, solo visible para Profesores y Admins a través de JS) -->
+        <section id="panel-moderacion" style="display: none; background: #fff3cd; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #ffe69c;">
+            <h3 style="color: #856404;">⚠️ Panel de Moderación (Materiales Pendientes)</h3>
+            <div id="contenedor-pendientes" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                <p>Cargando pendientes...</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LISTADO DE MATERIALES APROBADOS -->
+        <section id="seccion-listado">
+            <h3>Materiales Aprobados</h3>
+            <div id="contenedor-materiales" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                <p>Cargando materiales...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+        <p><strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+    </footer>
+
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/js-materiales.js"></script>
+</body>
+</html>
