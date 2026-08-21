@@ -186,6 +186,31 @@
  </footer>
 
  <script src="js/header.js"></script>
- 
+ <script type="module">
+    import { auth } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const enlaceAuth = document.getElementById('enlace-auth');
+
+    if (enlaceAuth) {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Si está logueado, cambiamos el texto y la función del botón
+                enlaceAuth.textContent = 'Cerrar Sesión';
+                enlaceAuth.href = '#';
+                enlaceAuth.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    signOut(auth).then(() => {
+                        window.location.reload(); // Recarga la página al salir
+                    });
+                });
+            } else {
+                // Si no está logueado, lo dejamos normal
+                enlaceAuth.textContent = 'Iniciar Sesion';
+                enlaceAuth.href = 'login.html';
+            }
+        });
+    }
+</script>
 </body>
 </html>
