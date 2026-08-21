@@ -130,11 +130,31 @@ async function cargarPendientes() {
                 const div = document.createElement('div');
                 div.style = 'border: 1px solid #ffe8a1; padding: 10px; background: #fff; border-radius: 5px;';
                 div.innerHTML = `
-                    <strong>${data.titulo}</strong> (${data.materia})<br>
-                    <a href="${data.url}" target="_blank">Revisar Link</a><br>
-                    <small>Subido por: ${data.subidoPor}</small><br>
-                    <button class="btn-aprobar" data-id="${documento.id}" style="margin-top:5px; background: green; color: white; border: none; padding: 5px; cursor:pointer;">Aprobar ✅</button>
-                    <button class="btn-rechazar" data-id="${documento.id}" style="margin-top:5px; background: red; color: white; border: none; padding: 5px; cursor:pointer;">Rechazar ❌</button>
+                    <h4 style="margin: 0 0 5px 0; color: #0056b3;">${data.titulo}</h4>
+                    <span style="background: #e9ecef; padding: 3px 8px; border-radius: 10px; font-size: 0.8em;">${data.materia}</span>
+                    <p style="margin: 10px 0;">${data.descripcion}</p>
+                    <a href="${data.url}" target="_blank" style="display: inline-block; background: #ff0000; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-weight: bold;">▶ Ver en YouTube</a>
+                    <p style="font-size: 0.8em; color: #666; margin-top: 10px;">Aportado por: ${data.subidoPor}</p>
+                    
+                    <!-- NUEVO: SECCIÓN DE FEEDBACK EDUCATIVO -->
+                    <div class="contenedor-feedback">
+                        <div class="titulo-feedback">📊 Feedback: ¿Te sirvió este material?</div>
+                        
+                        <div class="botones-feedback">
+                            <!-- Por ahora les ponemos un 'alert' para que veas que funcionan -->
+                            <button class="btn-fb verde" onclick="alert('¡Excelente! Guardando estadística de aprendizaje...')">🚀 Entendí todo</button>
+                            <button class="btn-fb amarillo" onclick="alert('¡Anotado! Guardando respuesta...')">👍 Me ayudó algo</button>
+                            <!-- Este botón rojo abre la caja de dudas específica de este video -->
+                            <button class="btn-fb rojo" onclick="document.getElementById('dudas-${documento.id}').style.display='block'">🔴 Sigo dudando</button>
+                        </div>
+
+                        <!-- Caja de dudas oculta -->
+                        <div id="dudas-${documento.id}" class="caja-dudas">
+                            <label style="font-size: 0.85rem; font-weight: bold;">¿Qué concepto no te quedó claro? Dejalo acá:</label>
+                            <textarea rows="2" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
+                            <button class="btn-enviar-duda" onclick="alert('¡Duda enviada al panel de profesores!'); document.getElementById('dudas-${documento.id}').style.display='none';">Enviar duda</button>
+                        </div>
+                    </div>
                 `;
                 contenedorPendientes.appendChild(div);
             }
