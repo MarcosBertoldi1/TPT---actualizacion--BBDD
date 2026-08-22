@@ -95,22 +95,23 @@
                     <p>El hardware proporciona los recursos físicos, el sistema operativo los administra y actúa como intermediario, y el software utiliza esos recursos para que el usuario pueda realizar distintas tareas.</p>
                 </div>
             </div>
-                <!-- SECCIÓN DE FEEDBACK EDUCATIVO -->
+<!-- SECCIÓN DE FEEDBACK EDUCATIVO -->
 <div class="contenedor-feedback" style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; text-align: center;">
     <div style="font-size: 1rem; font-weight: bold; margin-bottom: 15px;">📊 Feedback: ¿Te sirvió este material?</div>
     
     <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-        <button style="background: #d4edda; color: #155724; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="alert('¡Excelente! Guardando estadística...')">🚀 Entendí todo</button>
-        <button style="background: #fff3cd; color: #856404; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="alert('¡Anotado! Guardando respuesta...')">👍 Me ayudó algo</button>
+        <button style="background: #d4edda; color: #155724; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Entendí todo')">🚀 Entendí todo</button>
+        <button style="background: #fff3cd; color: #856404; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Me ayudó algo')">👍 Me ayudó algo</button>
         <button style="background: #f8d7da; color: #721c24; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="document.getElementById('caja-dudas-hsso').style.display='block'">🔴 Sigo dudando</button>
     </div>
 
     <!-- Caja de dudas oculta -->
     <div id="caja-dudas-hsso" style="display: none; margin-top: 15px; text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px;">
         <label style="font-size: 0.9rem; font-weight: bold;">¿Qué concepto no te quedó claro? Dejalo acá:</label>
-        <textarea rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 8px; resize: vertical;" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
-        <button style="background: #0056b3; color: white; padding: 8px 15px; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: bold;" onclick="alert('¡Duda enviada al panel de profesores!'); document.getElementById('caja-dudas-hsso').style.display='none';">Enviar duda</button>
+        <textarea id="texto-duda" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 8px; resize: vertical;" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
+        <button style="background: #0056b3; color: white; padding: 8px 15px; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: bold;" onclick="enviarDudaProfe()">Enviar duda</button>
     </div>
+</div>
                 <div class="tarjeta-info">
                     <h3>Material complementario</h3>
                     <div class="material-descarga">
@@ -135,5 +136,44 @@
 
     <script src="../../../js/header.js"></script>
 
+<script type="module">
+    import { db } from '../../../js/firebase-config.js';
+    import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // Función para los botones verde y amarillo
+    window.guardarFeedbackRapido = async function(respuesta) {
+        try {
+            await addDoc(collection(db, "feedback_estadisticas"), {
+                video: "Hardware, Software y SO",
+                respuesta: respuesta,
+                fecha: serverTimestamp()
+            });
+            alert("¡Gracias! Tu respuesta estadística se guardó.");
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+    // Función para el botón azul de enviar texto
+    window.enviarDudaProfe = async function() {
+        const texto = document.getElementById('texto-duda').value;
+        if (!texto.trim()) return alert("Por favor, escribí algo antes de enviar.");
+
+        try {
+            await addDoc(collection(db, "dudas_alumnos"), {
+                video: "Hardware, Software y SO",
+                duda: texto,
+                estado: "pendiente",
+                fecha: serverTimestamp()
+            });
+            alert("¡Duda enviada correctamente al panel!");
+            document.getElementById('caja-dudas-hsso').style.display = 'none';
+            document.getElementById('texto-duda').value = '';
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+</script>
+    
 </body>
 </html>
