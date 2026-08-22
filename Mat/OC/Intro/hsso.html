@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hardware, Software y Sistema Operativo - ET29</title>
 
-    <!-- Rutas absolutas con los 3 guiones exactos de tu repo: TPT---actualizacion--BBDD -->
-    <link rel="stylesheet" href="/TPT---actualizacion--BBDD/css/style.css">
-    <link rel="stylesheet" href="/TPT---actualizacion--BBDD/css/header.css">
-    <script src="/TPT---actualizacion--BBDD/js/js-materiales.js" defer></script>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/header.css">
     
     <meta name="description" content="Video explicativo sobre como el hardware proporciona los recursos físicos, el sistema operativo los administra y actúa como intermediario, y el software utiliza esos recursos para que el usuario pueda realizar distintas tareas.">
 </head>
@@ -16,8 +14,8 @@
 
     <header class="encabezado-principal">
         <div class="contenedor-header">
-            <a href="/TPT---actualizacion--BBDD/index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
-                <img src="/TPT---actualizacion--BBDD/img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+            <a href="../../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="../../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
                     <h1>Tecnología para todos</h1>
                     <span class="tagline">Hacer simple lo que parece difícil.</span>
@@ -33,9 +31,9 @@
         
         <nav class="navegacion-principal" aria-label="Navegación principal">
             <ul>
-                <li><a href="/TPT---actualizacion--BBDD/index.html" class="activo" aria-current="page">Inicio</a></li>
-                <li><a href="/TPT---actualizacion--BBDD/index.html#materias">Materias</a></li>
-                <li><a href="/TPT---actualizacion--BBDD/sobre.html">Sobre el Proyecto</a></li>
+                <li><a href="../../../index.html" class="activo" aria-current="page">Inicio</a></li>
+                <li><a href="../../../index.html#materias">Materias</a></li>
+                <li><a href="../../../sobre.html">Sobre el Proyecto</a></li>
             </ul>
         </nav>
     </header>
@@ -44,9 +42,9 @@
         
         <nav class="migas-de-pan" aria-label="Migas de pan">
             <ol>
-                <li><a href="/TPT---actualizacion--BBDD/index.html">Inicio</a></li>
-                <li><a href="/TPT---actualizacion--BBDD/Mat/mat-OC.html">Organización de Computadoras</a></li>
-                <li><a href="/TPT---actualizacion--BBDD/Mat/OC/introOC.html">Introducción</a></li>
+                <li><a href="../../../index.html">Inicio</a></li>
+                <li><a href="../../../Mat/mat-OC.html">Organización de Computadoras</a></li>
+                <li><a href="../introOC.html">Introducción</a></li>
                 <li aria-current="page">Hardware, Software y Sistema Operativo</li>
             </ol>
         </nav>
@@ -127,10 +125,10 @@
         <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
     </footer>
 
-    <script src="/TPT---actualizacion--BBDD/js/header.js"></script>
+    <script src="../../../js/header.js"></script>
 
     <script type="module">
-        import { db } from '/TPT---actualizacion--BBDD/js/firebase-config.js';
+        import { db } from '../../../js/firebase-config.js';
         import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         window.guardarFeedbackRapido = async function(respuesta) {
