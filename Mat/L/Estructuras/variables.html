@@ -87,13 +87,31 @@
                     <p>Aprenderemos cómo utilizar letras (como p, q, r) para representar proposiciones de forma simbólica, facilitando el análisis y la resolución de problemas lógicos.</p>
                 </div>
                 
+<div class="contenedor-feedback" style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; text-align: center;">
+                    <div style="font-size: 1rem; font-weight: bold; margin-bottom: 15px;">📊 Feedback: ¿Te sirvió este material?</div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button style="background: #d4edda; color: #155724; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Entendí todo')">🚀 Entendí todo</button>
+                        <button style="background: #fff3cd; color: #856404; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Me ayudó algo')">👍 Me ayudó algo</button>
+                        <button style="background: #f8d7da; color: #721c24; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="document.getElementById('caja-dudas-general').style.display='block'">🔴 Sigo dudando</button>
+                    </div>
+
+                    <!-- Caja de dudas oculta -->
+                    <div id="caja-dudas-general" style="display: none; margin-top: 15px; text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px;">
+                        <label style="font-size: 0.9rem; font-weight: bold;">¿Qué concepto no te quedó claro? Dejalo acá:</label>
+                        <textarea id="texto-duda" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 8px; resize: vertical;" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
+                        <button style="background: #0056b3; color: white; padding: 8px 15px; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: bold;" onclick="enviarDudaProfe()">Enviar duda</button>
+                    </div>
+                </div>
+
+
                 <div class="tarjeta-info">
                     <h3>Material complementario</h3>
                     <div class="material-descarga">
                         <span class="icono-pdf" aria-hidden="true">📄</span>
                         <div class="info-pdf">
                             <strong>Resumen del video</strong>
-                            <span>PDF • 1.10 MB</span>
+                            <span>PDF • 1.2 MB</span>
                         </div>
                         <a href="#" class="btn btn-primario btn-chico">Descargar</a>
                     </div>
@@ -109,7 +127,7 @@
         <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
     </footer>
 
-    <script src="../../../js/header.js"></script>
-
+<script src="../../../js/header.js"></script>
+    <script type="module" src="../../../js/js-materiales.js"></script>
 </body>
 </html>
