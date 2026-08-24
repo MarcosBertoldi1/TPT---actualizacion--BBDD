@@ -139,7 +139,7 @@
 
     <!-- SCRIPT DE AUTENTICACIÓN Y ROLES -->
     <script type="module">
-        import { auth } from './js/firebase-config.js'; // Ajustá la ruta según dónde esté este archivo html
+        import { auth } from './firebase-config.js';
         import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const formLogin = document.getElementById('form-login');
