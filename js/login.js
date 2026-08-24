@@ -9,7 +9,7 @@ const mensajeError = document.getElementById('mensaje-error');
 async function verificarRolYRedirigir(user) {
     const email = user.email.toLowerCase(); 
 
-    // 👑 1. LISTA VIP DE ADMINISTRADORES (Cambiá estos correos por los reales)
+
     const correosAdmin = [
         'marcos.bertoldi.945@alutecnica29de6.edu.ar', 
         'agustin.meza.779@alutecnica29de6.edu.ar'
@@ -27,17 +27,12 @@ async function verificarRolYRedirigir(user) {
         alert(`¡Bienvenido/a Profesor/a!`);
         window.location.href = 'index.html';
 
-    } else if (email.endsWith('@alu.tecnica29de6.edu.ar')) {
+    } else {
         // ES ALUMNO
         localStorage.setItem('rolUsuario', 'alumno'); 
         alert(`¡Bienvenido/a Alumno/a!`);
         window.location.href = 'index.html';
 
-    } else {
-        // CORREO NO PERMITIDO
-        await signOut(auth); 
-        localStorage.removeItem('rolUsuario'); 
-        mensajeError.textContent = 'Acceso denegado. Debes usar tu correo institucional';
     }
 }
 
