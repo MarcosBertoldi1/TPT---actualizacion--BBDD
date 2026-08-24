@@ -9,13 +9,10 @@
     <link rel="stylesheet" href="css/header.css">
     
     <style>
-        /* Estilos rápidos para que los formularios se vean ordenados */
         .contenedor-formularios {
             display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         .caja-form {
             background: #f8f9fa;
@@ -61,6 +58,8 @@
         .btn-registrar { background: #28a745; color: white; }
         .mensaje-error { color: #dc3545; font-weight: bold; margin-top: 10px; text-align: center; font-size: 0.9rem; min-height: 20px;}
         .divisor { text-align: center; margin: 20px 0; color: #777; font-size: 0.9rem; }
+        .texto-cambio { text-align: center; margin-top: 20px; font-size: 0.95rem; }
+        .btn-enlace { background: none; border: none; color: #0056b3; font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; font-size: 0.95rem; }
     </style>
 </head>
 <body>
@@ -86,14 +85,14 @@
     <main id="contenido-principal" class="contenedor-pagina">
         
         <div style="text-align: center; margin-top: 20px;">
-            <h1>¡Bienvenido a la plataforma!</h1>
-            <p>Ingresá con tu cuenta o registrate para acceder a todos los materiales.</p>
+            <h1 id="titulo-vista">Iniciar Sesión</h1>
+            <p id="subtitulo-vista">Ingresá con tu cuenta para acceder a los materiales.</p>
         </div>
 
         <div class="contenedor-formularios">
             
             <!-- CAJA 1: INICIAR SESIÓN -->
-            <div class="caja-form">
+            <div id="caja-login" class="caja-form">
                 <h2>Iniciar Sesión</h2>
                 <form id="form-login">
                     <div class="grupo-input">
@@ -110,10 +109,14 @@
 
                 <div class="divisor">O ingresá rápidamente con</div>
                 <button id="btn-google" class="btn-full btn-google-style">G Iniciar sesión con Google</button>
+
+                <div class="texto-cambio">
+                    ¿No tenés cuenta? <button id="btn-ir-registro" class="btn-enlace">Crear cuenta</button>
+                </div>
             </div>
 
-            <!-- CAJA 2: CREAR CUENTA NUEVA -->
-            <div class="caja-form">
+            <!-- CAJA 2: CREAR CUENTA NUEVA (Oculta por defecto) -->
+            <div id="caja-registro" class="caja-form" style="display: none;">
                 <h2>Crear Cuenta Nueva</h2>
                 <form id="form-registro">
                     <div class="grupo-input">
@@ -127,6 +130,10 @@
                     <button type="submit" class="btn-full btn-registrar">Registrarme</button>
                     <div id="mensaje-error-registro" class="mensaje-error"></div>
                 </form>
+
+                <div class="texto-cambio">
+                    ¿Ya tenés cuenta? <button id="btn-ir-login" class="btn-enlace">Iniciar sesión</button>
+                </div>
             </div>
 
         </div>
@@ -137,10 +144,34 @@
         <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
     </footer>
 
-    <!-- SCRIPT DE AUTENTICACIÓN Y ROLES -->
+    <!-- SCRIPT DE AUTENTICACIÓN, ROLES Y CAMBIO DE VISTA -->
     <script type="module">
-        import { auth } from './js/firebase-config.js'; // Ajustá la ruta según dónde esté este archivo html
+        import { auth } from './firebase-config.js';
         import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        // Elementos de la interfaz para cambiar de formulario
+        const cajaLogin = document.getElementById('caja-login');
+        const cajaRegistro = document.getElementById('caja-registro');
+        const btnIrRegistro = document.getElementById('btn-ir-registro');
+        const btnIrLogin = document.getElementById('btn-ir-login');
+        const tituloVista = document.getElementById('titulo-vista');
+        const subtituloVista = document.getElementById('subtitulo-vista');
+
+        // Evento: Cambiar a la vista de Registro
+        btnIrRegistro.addEventListener('click', () => {
+            cajaLogin.style.display = 'none';
+            cajaRegistro.style.display = 'block';
+            tituloVista.textContent = 'Crear Cuenta';
+            subtituloVista.textContent = 'Registrate para acceder a la plataforma.';
+        });
+
+        // Evento: Cambiar a la vista de Login
+        btnIrLogin.addEventListener('click', () => {
+            cajaRegistro.style.display = 'none';
+            cajaLogin.style.display = 'block';
+            tituloVista.textContent = 'Iniciar Sesión';
+            subtituloVista.textContent = 'Ingresá con tu cuenta para acceder a los materiales.';
+        });
 
         const formLogin = document.getElementById('form-login');
         const btnGoogle = document.getElementById('btn-google');
@@ -175,7 +206,7 @@
             }
         }
 
-        // --- INICIO DE SESIÓN CON CORREO Y CONTRASEÑA ---
+        // --- INICIO DE SESIÓN ---
         if (formLogin) {
             formLogin.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -191,7 +222,7 @@
                     if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
                         mensajeError.textContent = 'Correo o contraseña incorrectos.';
                     } else if (error.code === 'auth/user-not-found') {
-                        mensajeError.textContent = 'No existe un usuario con este correo.';
+                        mensajeError.textContent = 'No existe un usuario registrado con este correo.';
                     } else {
                         mensajeError.textContent = 'Error al intentar ingresar.';
                     }
@@ -199,7 +230,7 @@
             });
         }
 
-        // --- INICIO DE SESIÓN / REGISTRO CON GOOGLE ---
+        // --- GOOGLE AUTH ---
         if (btnGoogle) {
             btnGoogle.addEventListener('click', async () => {
                 const provider = new GoogleAuthProvider();
@@ -217,7 +248,7 @@
             });
         }
 
-        // --- REGISTRO DE CUENTA NUEVA ---
+        // --- CREAR CUENTA ---
         if (formRegistro) {
             formRegistro.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -226,7 +257,6 @@
                 mensajeErrorRegistro.textContent = '';
 
                 try {
-                    // Firebase crea la cuenta y automáticamente inicia la sesión
                     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                     await verificarRolYRedirigir(userCredential.user);
                 } catch (error) {
