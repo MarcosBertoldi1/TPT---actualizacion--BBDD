@@ -15,15 +15,34 @@ let rolActual = localStorage.getItem('rolUsuario') || 'alumno';
 onAuthStateChanged(auth, (user) => {
     if (user) {
         usuarioActual = user;
-        cargarMateriales(); // Cargamos los aprobados
+        document.body.style.display = 'block'; // Aseguramos que se vea la web
         
-        // Si es profe o admin, mostramos el panel de moderación
-        if (rolActual === 'profesor' || rolActual === 'admin') {
+        if (contenedorMateriales) {
+            cargarMateriales(); 
+        }
+        
+        if ((rolActual === 'profesor' || rolActual === 'admin') && panelModeracion) {
             panelModeracion.style.display = 'block';
             cargarPendientes();
         }
     } else {
-        window.location.href = 'login.html'; // Si no está logueado, lo echamos al login
+        // En lugar de ocultar el body (que rompe el cartel), vaciamos el contenido de la página
+        document.body.innerHTML = ''; 
+        document.body.style.backgroundColor = '#f4f6f9'; // Le damos un fondo neutro
+        
+        Swal.fire({
+            icon: 'warning',
+            title: 'Acceso Restringido',
+            text: 'Debes iniciar sesión para poder ver los videos y materiales.',
+            confirmButtonText: 'Ir al Login',
+            confirmButtonColor: '#0056b3',
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Ajusta los ../ según necesites para volver a la raíz
+                window.location.href = '../../../../login.html'; 
+            }
+        });
     }
 });
 
@@ -70,6 +89,8 @@ if (formSubir) {
 
 // 3. Cargar materiales APROBADOS para que todos los vean
 async function cargarMateriales() {
+    if (!contenedorMateriales) return;
+    
     contenedorMateriales.innerHTML = '<p>Cargando...</p>';
     try {
         const q = query(collection(db, "materiales"), orderBy("fecha", "desc"));
@@ -98,26 +119,7 @@ async function cargarMateriales() {
                     <span style="background: #e9ecef; padding: 3px 8px; border-radius: 10px; font-size: 0.8em;">${data.materia}</span>
                     <p style="margin: 10px 0;">${data.descripcion}</p>
                     <a href="${data.url}" target="_blank" style="display: inline-block; background: #ff0000; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-weight: bold;">▶ Ver en YouTube</a>
-                    <p style="font-size: 0.8em; color: #666; margin-top: 10px;">Aportado por: ${data.subidoPor}</p>
-                    
-                    <!-- NUEVO: SECCIÓN DE FEEDBACK EDUCATIVO -->
-                    <div class="contenedor-feedback">
-                        <div class="titulo-feedback">📊 Feedback: ¿Te sirvió este material?</div>
-                        
-                        <div class="botones-feedback">
-                            <button class="btn-fb verde" onclick="alert('¡Excelente! Guardando estadística de aprendizaje...')">🚀 Entendí todo</button>
-                            <button class="btn-fb amarillo" onclick="alert('¡Anotado! Guardando respuesta...')">👍 Me ayudó algo</button>
-                            <!-- Botón rojo que abre la caja de dudas específica -->
-                            <button class="btn-fb rojo" onclick="document.getElementById('dudas-${documento.id}').style.display='block'">🔴 Sigo dudando</button>
-                        </div>
-
-                        <!-- Caja de dudas oculta -->
-                        <div id="dudas-${documento.id}" class="caja-dudas">
-                            <label style="font-size: 0.85rem; font-weight: bold;">¿Qué concepto no te quedó claro? Dejalo acá:</label>
-                            <textarea rows="2" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
-                            <button class="btn-enviar-duda" onclick="alert('¡Duda enviada al panel de profesores!'); document.getElementById('dudas-${documento.id}').style.display='none';">Enviar duda</button>
-                        </div>
-                    </div>
+                    <p style="font-size: 0.8em; color: #666; margin-top: 10px; margin-bottom: 0;">Aportado por: ${data.subidoPor}</p>
                 `;
                 contenedorMateriales.appendChild(div);
             }
@@ -134,6 +136,8 @@ async function cargarMateriales() {
 
 // 4. Cargar materiales PENDIENTES (Solo Profes/Admins)
 async function cargarPendientes() {
+    if (!contenedorPendientes) return;
+    
     contenedorPendientes.innerHTML = '<p>Buscando pendientes...</p>';
     try {
         const q = query(collection(db, "materiales"), orderBy("fecha", "desc"));
