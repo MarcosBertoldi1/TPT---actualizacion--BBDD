@@ -10,10 +10,11 @@
 </head>
 <body>
 
-    <header class="encabezado-principal">
+<header class="encabezado-principal">
         <div class="contenedor-header">
-            <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
-                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+            <!-- Ajustamos la ruta para que vuelva al index y cargue bien el logo -->
+            <a href="../../../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="../../../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
                     <h1>Tecnología para todos</h1>
                 </div>
@@ -27,12 +28,14 @@
         
         <nav class="navegacion-principal" aria-label="Navegación principal">
             <ul>
-                <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
-                <li><a href="materiales.html">Materiales</a></li>
-                <li><a href="sobre.html">Sobre el Proyecto</a></li>
-                <li><a href="login.html" id="enlace-auth">Iniciar Sesión</a></li>
+                <li><a href="../../../../index.html">Inicio</a></li>
+                <li><a href="../../../../materiales.html">Materiales</a></li>
+                <li><a href="../../../../sobre.html">Sobre el Proyecto</a></li>
+                <!-- ESTE ES EL BOTÓN QUE TE FALTABA EN LAS SUBPÁGINAS -->
+                <li><a href="../../../../login.html" id="enlace-auth">Iniciar Sesión</a></li>
             </ul>
         </nav>
+    </header>
     </header>
 
     <main id="contenido-principal">

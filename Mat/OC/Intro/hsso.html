@@ -86,24 +86,6 @@
                     <p>El hardware proporciona los recursos físicos, el sistema operativo los administra y actúa como intermediario, y el software utiliza esos recursos para que el usuario pueda realizar distintas tareas.</p>
                 </div>
 
-                <!-- SECCIÓN DE FEEDBACK EDUCATIVO -->
-                <div class="contenedor-feedback" style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; text-align: center;">
-                    <div style="font-size: 1rem; font-weight: bold; margin-bottom: 15px;">📊 Feedback: ¿Te sirvió este material?</div>
-                    
-                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <button style="background: #d4edda; color: #155724; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Entendí todo')">🚀 Entendí todo</button>
-                        <button style="background: #fff3cd; color: #856404; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Me ayudó algo')">👍 Me ayudó algo</button>
-                        <button style="background: #f8d7da; color: #721c24; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="document.getElementById('caja-dudas-hsso').style.display='block'">🔴 Sigo dudando</button>
-                    </div>
-
-                    <!-- Caja de dudas oculta -->
-                    <div id="caja-dudas-hsso" style="display: none; margin-top: 15px; text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px;">
-                        <label style="font-size: 0.9rem; font-weight: bold;">¿Qué concepto no te quedó claro? Dejalo acá:</label>
-                        <textarea id="texto-duda" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 8px; resize: vertical;" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
-                        <button style="background: #0056b3; color: white; padding: 8px 15px; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: bold;" onclick="enviarDudaProfe()">Enviar duda</button>
-                    </div>
-                </div>
-
                 <div class="tarjeta-info">
                     <h3>Material complementario</h3>
                     <div class="material-descarga">
@@ -118,6 +100,138 @@
 
             </aside>
         </section>
+<!-- SECCIÓN DE COMENTARIOS PROPIA (FIREBASE FIRESTORE & AUTH) -->
+    <section class="seccion-comentarios" style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
+        <h2>Dudas y Comentarios</h2>
+        <p>Dejá tu duda acá abajo. ¡Nos ayudamos entre todos!</p>
+
+        <!-- Mensaje para usuarios no logueados -->
+        <div id="aviso-login" style="margin: 20px 0; padding: 15px; background: #fff3cd; color: #856404; border-radius: 6px; border: 1px solid #ffeeba; display: none;">
+            Para dejar un comentario, tenés que <strong>iniciar sesión</strong> primero.
+        </div>
+
+        <!-- Formulario para publicar -->
+        <form id="form-comentario" style="display: none; margin-top: 20px; margin-bottom: 30px; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+            <div style="margin-bottom: 12px;">
+                <label for="texto-comentario" style="display: block; font-weight: bold; margin-bottom: 5px;">Tu Comentario o Consulta:</label>
+                <textarea id="texto-comentario" placeholder="Escribí tu consulta sobre HSSO aquí..." rows="4" required style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; resize: vertical;"></textarea>
+            </div>
+            <button type="submit" id="btn-enviar-comentario" style="padding: 10px 20px; font-weight: bold; cursor: pointer; background: #0056b3; color: white; border: none; border-radius: 4px;">Publicar Comentario</button>
+        </form>
+
+        <!-- Lista de comentarios -->
+        <div id="contenedor-comentarios">
+            <p style="color: #666; font-style: italic;">Cargando comentarios...</p>
+        </div>
+    </section>
+
+    <!-- SCRIPT ESPECÍFICO PARA LOS COMENTARIOS DE ESTA PÁGINA -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp, limit } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB5XqLifX-qKZSGsTdyRCAvUfEg6_rEwFc",
+        authDomain: "tpt-2026.firebaseapp.com",
+        projectId: "tpt-2026",
+        storageBucket: "tpt-2026.firebasestorage.app",
+        messagingSenderId: "118270392527",
+        appId: "1:118270392527:web:722ae06e66cfad8ae29fba",
+        measurementId: "G-02RFXMNWVN"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app); 
+
+      // ¡NUEVO ID PARA LA PÁGINA DE HSSO!
+      const ID_PAGINA = "hsso"; // Identificador único para esta página
+      
+      const formComentario = document.getElementById('form-comentario');
+      const avisoLogin = document.getElementById('aviso-login');
+      const contenedorComentarios = document.getElementById('contenedor-comentarios');
+
+      let usuarioLogueado = null;
+
+      // Verificar Auth
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          usuarioLogueado = user;
+          formComentario.style.display = "block";
+          avisoLogin.style.display = "none";
+        } else {
+          usuarioLogueado = null;
+          formComentario.style.display = "none";
+          avisoLogin.style.display = "block";
+        }
+      });
+
+      // Guardar comentario
+      formComentario.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!usuarioLogueado) return;
+
+        const texto = document.getElementById('texto-comentario').value.trim();
+        const btnEnviar = document.getElementById('btn-enviar-comentario');
+        if (!texto) return;
+
+        btnEnviar.disabled = true;
+        btnEnviar.textContent = "Publicando...";
+
+        const nombreMostrar = usuarioLogueado.displayName || usuarioLogueado.email.split('@')[0];
+
+        try {
+          await addDoc(collection(db, "comentarios_leyes"), { // Se mantiene la misma colección maestra
+            paginaId: ID_PAGINA,
+            autor: nombreMostrar,
+            uid: usuarioLogueado.uid,
+            comentario: texto,
+            fecha: serverTimestamp()
+          });
+          formComentario.reset();
+        } catch (error) {
+          console.error("Error al publicar:", error);
+          alert("Hubo un error al publicar.");
+        } finally {
+          btnEnviar.disabled = false;
+          btnEnviar.textContent = "Publicar Comentario";
+        }
+      });
+
+      // Escuchar comentarios con limit(20) para mantenerte en el plan gratuito
+      const q = query(
+        collection(db, "comentarios_leyes"),
+        where("paginaId", "==", ID_PAGINA),
+        orderBy("fecha", "desc"),
+        limit(20) 
+      );
+
+      onSnapshot(q, (snapshot) => {
+        contenedorComentarios.innerHTML = "";
+        
+        if (snapshot.empty) {
+          contenedorComentarios.innerHTML = "<p style='color: #666;'>Aún no hay comentarios. ¡Sé el primero en preguntar!</p>";
+          return;
+        }
+
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const div = document.createElement('div');
+          div.style.cssText = "background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #e0e0e0; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);";
+          const fechaFormateada = data.fecha ? new Date(data.fecha.seconds * 1000).toLocaleString('es-AR') : 'Recién publicado';
+          
+          div.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <strong style="color: #0056b3; font-size: 1.05em;">${data.autor}</strong>
+              <small style="color: #888; font-size: 0.85em;">${fechaFormateada}</small>
+            </div>
+            <p style="margin: 0; color: #333; line-height: 1.4;">${data.comentario}</p>
+          `;
+          contenedorComentarios.appendChild(div);
+        });
+      });
+    </script>
 
     </main>
 
