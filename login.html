@@ -139,7 +139,6 @@
 
     <!-- SCRIPT DE AUTENTICACIÓN -->
     <script type="module">
-        // Se corrigió la ruta agregando la carpeta /js/
         import { auth } from './js/firebase-config.js';
         import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
@@ -177,18 +176,19 @@
             if (correosAdmin.includes(email)) {
                 localStorage.setItem('rolUsuario', 'admin'); 
                 alert(`¡Bienvenido/a Administrador/a!`);
-                window.location.href = 'index.html';
-
             } else if (email.endsWith('@tecnica29de6.edu.ar')) {
                 localStorage.setItem('rolUsuario', 'profesor'); 
                 alert(`¡Bienvenido/a Profesor/a!`);
-                window.location.href = 'index.html';
-
             } else {
                 localStorage.setItem('rolUsuario', 'alumno'); 
                 alert(`¡Bienvenido/a Alumno/a!`);
-                window.location.href = 'index.html';
             }
+
+            // Redirección compatible con GitHub Pages y Localhost
+            const esGitHub = window.location.hostname.includes('github.io');
+            window.location.href = esGitHub 
+                ? '/TPT---actualizacion--BBDD/index.html' 
+                : './index.html';
         }
 
         if (formLogin) {
