@@ -38,12 +38,11 @@ onAuthStateChanged(auth, (user) => {
             allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
-                // Detecta automáticamente la raíz del repositorio en GitHub Pages o Localhost
                 const esGitHub = window.location.hostname.includes('github.io');
-                const repoNombre = window.location.pathname.split('/')[1];
                 
+                // Fuerza la ruta exacta con el nombre de tu repositorio
                 window.location.href = esGitHub 
-                    ? `/${repoNombre}/login.html` 
+                    ? '/TPT---actualizacion--BBDD/login.html' 
                     : '/login.html';
             }
         });
