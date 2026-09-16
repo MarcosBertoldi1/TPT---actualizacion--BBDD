@@ -15,7 +15,7 @@ let rolActual = localStorage.getItem('rolUsuario') || 'alumno';
 onAuthStateChanged(auth, (user) => {
     if (user) {
         usuarioActual = user;
-        document.body.style.display = 'block'; // Aseguramos que se vea la web
+        document.body.style.display = 'block';
         
         if (contenedorMateriales) {
             cargarMateriales(); 
@@ -26,9 +26,8 @@ onAuthStateChanged(auth, (user) => {
             cargarPendientes();
         }
     } else {
-        // En lugar de ocultar el body (que rompe el cartel), vaciamos el contenido de la página
         document.body.innerHTML = ''; 
-        document.body.style.backgroundColor = '#f4f6f9'; // Le damos un fondo neutro
+        document.body.style.backgroundColor = '#f4f6f9'; 
         
         Swal.fire({
             icon: 'warning',
@@ -39,8 +38,12 @@ onAuthStateChanged(auth, (user) => {
             allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
-                // Ajusta los ../ según necesites para volver a la raíz
-                window.location.href = '../../../../login.html'; 
+                const esGitHub = window.location.hostname.includes('github.io');
+                
+                // Fuerza la ruta exacta con el nombre de tu repositorio
+                window.location.href = esGitHub 
+                    ? '/TPT---actualizacion--BBDD/login.html' 
+                    : '/login.html';
             }
         });
     }
@@ -59,7 +62,6 @@ if (formSubir) {
         const descripcion = document.getElementById('descripcion').value;
 
         try {
-            // Guardamos directo en Firestore Database
             await addDoc(collection(db, "materiales"), {
                 titulo: titulo,
                 materia: materia,
@@ -68,14 +70,13 @@ if (formSubir) {
                 descripcion: descripcion,
                 subidoPor: usuarioActual.email,
                 fecha: serverTimestamp(),
-                estado: 'pendiente' // <--- Clave para la moderación
+                estado: 'pendiente'
             });
 
             formSubir.reset();
             mensajeEstado.textContent = '¡Material enviado! Esperando aprobación del profesor.';
             mensajeEstado.style.color = 'green';
             
-            // Recargamos las listas por las dudas
             if (rolActual === 'profesor' || rolActual === 'admin') {
                 cargarPendientes();
             }
@@ -104,7 +105,6 @@ async function cargarMateriales() {
             if (data.estado === 'aprobado') {
                 hayAprobados = true;
                 
-                // Extraer el ID del video de YouTube para la miniatura
                 let videoId = '';
                 if(data.url.includes('v=')) {
                     videoId = data.url.split('v=')[1].split('&')[0];
@@ -167,7 +167,6 @@ async function cargarPendientes() {
             contenedorPendientes.innerHTML = '<p>No hay materiales pendientes de revisión.</p>';
         }
 
-        // Agregar eventos a los botones de aprobar/rechazar
         document.querySelectorAll('.btn-aprobar').forEach(btn => {
             btn.addEventListener('click', async (e) => {
                 const id = e.target.getAttribute('data-id');
