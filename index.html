@@ -4,17 +4,289 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecnología para Todos - ET29</title>
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/materias.css">
+    
     <meta name="description" content="Plataforma de aprendizaje técnico interactivo de la ET29. De estudiantes para estudiantes.">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- ENCABEZADO UNIFICADO Y FIJO --- */
+        .encabezado-principal {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Banner del Logo */
+        .contenedor-header {
+            background-color: #eaf2ff;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Barra de Navegación */
+        .navegacion-principal {
+            background-color: #ffffff;
+            overflow: visible !important;
+        }
+
+        .navegacion-principal ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0.6rem 2rem;
+            margin: 0;
+            gap: 1.8rem;
+            position: relative;
+        }
+
+        /* Estilo base para los enlaces normales */
+        .navegacion-principal a.link-nav {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .navegacion-principal a.link-nav:hover {
+            color: #0d6efd;
+        }
+
+        /* Empuja 'Sobre el Proyecto' e 'Iniciar Sesión' al extremo derecho */
+        .navegacion-principal li.push-derecha {
+            margin-left: auto;
+        }
+
+        /* --- BOTÓN DE ESPECIALIDAD --- */
+        .item-desplegable {
+            position: relative;
+        }
+
+        .btn-desplegable-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: transparent; 
+            color: #2c3e50; 
+            border: none;
+            border-radius: 8px; 
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .btn-desplegable-nav:hover,
+        .btn-desplegable-nav.activo {
+            background-color: #f0f4ff;
+            color: #0d6efd;
+        }
+
+        .btn-desplegable-nav .icono-btn {
+            font-size: 1.1rem;
+        }
+
+        .btn-desplegable-nav .flecha-desplegable {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+            margin-left: 0.2rem;
+        }
+
+        .desplegable-especialidad.abierto .flecha-desplegable {
+            transform: rotate(180deg);
+        }
+
+        /* --- MENÚ DESPLEGABLE (HORIZONTAL) --- */
+        .menu-desplegable {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            display: flex;
+            flex-direction: row; 
+            gap: 1rem; 
+            min-width: max-content; 
+            
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+            padding: 1.2rem;
+            z-index: 2000;
+            
+            /* Animación */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+        }
+
+        .desplegable-especialidad.abierto .menu-desplegable {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* --- FICHAS PLANAS Y ALARGADAS --- */
+        .opcion-desplegable {
+            display: flex;
+            flex-direction: row; /* Ícono a la izquierda, texto a la derecha */
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            min-width: 220px; /* Fichas más largas/anchas */
+            
+            /* Estilo "Plano" */
+            background-color: #f8fafc;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #475569;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .opcion-desplegable:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-3px);
+        }
+
+        /* Contenedor del ícono */
+        .contenedor-icono-opcion {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+            flex-shrink: 0; /* Evita que el ícono se achique si el texto es largo */
+        }
+
+        .opcion-desplegable:hover .contenedor-icono-opcion {
+            transform: scale(1.05);
+        }
+
+        /* --- COLORES PERSONALIZADOS PARA CADA ESPECIALIDAD --- */
+        
+        /* 1. Computación (Azul sobre Celeste) */
+        .opcion-comp .contenedor-icono-opcion {
+            background-color: #e0f2fe; 
+            color: #0284c7; 
+        }
+        .opcion-comp:hover, .opcion-comp.activa { color: #0284c7; }
+
+        /* 2. Electricidad (Amarillo sobre Amarillo Claro) */
+        .opcion-elec .contenedor-icono-opcion {
+            background-color: #fef3c7; 
+            color: #d97706; 
+        }
+        .opcion-elec:hover, .opcion-elec.activa { color: #d97706; }
+
+        /* 3. Mecánica (Rojo sobre Rojo Claro) */
+        .opcion-mec .contenedor-icono-opcion {
+            background-color: #fee2e2; 
+            color: #dc2626; 
+        }
+        .opcion-mec:hover, .opcion-mec.activa { color: #dc2626; }
+
+
+        /* --- Ajustes del cuerpo de materias --- */
+        .seccion-materias {
+            padding: 2rem;
+        }
+
+        .titulo-seccion {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .atajos-anios {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .pildora-atajo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .pildora-atajo:hover {
+            border-color: #0d6efd;
+            background-color: #f8faff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tarjeta-materia.activa {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .tarjeta-materia.activa:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            border-color: #0d6efd;
+        }
+            
+        @media (max-width: 768px) {
+            .navegacion-principal ul {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+            }
+            .navegacion-principal li.push-derecha {
+                margin-left: 0;
+            }
+            .atajos-anios {
+                grid-template-columns: 1fr;
+            }
+            .menu-desplegable {
+                flex-direction: column; /* En celular vuelve a ser vertical */
+                min-width: 100%;
+            }
+            .opcion-desplegable {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header class="encabezado-principal">
+    <header class="encabezado-principal">
         <div class="contenedor-header">
-            <!-- Ajustamos la ruta para que vuelva al index y cargue bien el logo -->
-            <a href="../../../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
-                <img src="../../../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+            <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
                     <h1>Tecnología para todos</h1>
                 </div>
@@ -28,20 +300,60 @@
         
         <nav class="navegacion-principal" aria-label="Navegación principal">
             <ul>
-                <li><a href="../../../../index.html">Inicio</a></li>
-                <li><a href="../../../../materiales.html">Materiales</a></li>
-                <li><a href="../../../../sobre.html">Sobre el Proyecto</a></li>
-                <!-- ESTE ES EL BOTÓN QUE TE FALTABA EN LAS SUBPÁGINAS -->
-                <li><a href="../../../../login.html" id="enlace-auth">Iniciar Sesión</a></li>
+                <li><a href="index.html" class="link-nav">Inicio</a></li>
+                <li><a href="materiales.html" class="link-nav">Materiales</a></li>
+                
+                <li class="item-desplegable">
+                    <div class="desplegable-especialidad" id="dropdownEspecialidad">
+                        <button class="btn-desplegable-nav" id="btnEspecialidad" aria-expanded="false" type="button">
+                            <span class="icono-btn">🎓</span>
+                            <span>Especialidad</span>
+                            <span class="flecha-desplegable">▼</span>
+                        </button>
+                        
+                        <div class="menu-desplegable" id="menuEspecialidad">
+                            
+                            <a href="#computacion" class="opcion-desplegable opcion-comp activa">
+                                <div class="contenedor-icono-opcion">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
+                                    </svg>
+                                </div>
+                                <span class="texto-opcion">Computación</span>
+                            </a>
+
+                            <a href="#electricidad" class="opcion-desplegable opcion-elec">
+                                <div class="contenedor-icono-opcion">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M7 21h4v-7h4l-5-11h-4v7H2l5 11z"/>
+                                    </svg>
+                                </div>
+                                <span class="texto-opcion">Electricidad</span>
+                            </a>
+
+                            <a href="#mecanica" class="opcion-desplegable opcion-mec">
+                                <div class="contenedor-icono-opcion">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                                    </svg>
+                                </div>
+                                <span class="texto-opcion">Mecánica</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </li>
+
+                <li class="push-derecha"><a href="sobre.html" class="link-nav">Sobre el Proyecto</a></li>
+                <li><a href="login.html" id="enlace-auth" class="link-nav">Iniciar Sesión</a></li>
             </ul>
         </nav>
-    </header>
     </header>
 
     <main id="contenido-principal">
         <section id="materias" class="seccion-materias">
             <div class="cabecera-materias">
-                <h2>Materias disponibles</h2>
+                <h2 class="titulo-seccion">Materias disponibles</h2>
                 
                 <div class="atajos-anios" aria-label="Atajos rápidos por año">
                     <a href="#anio-4" class="pildora-atajo">4º Año</a>
@@ -165,6 +477,37 @@
     </footer>
 
     <script src="js/header.js"></script>
+    
+    <script>
+        const desplegable = document.getElementById('dropdownEspecialidad');
+        const btnEspecialidad = document.getElementById('btnEspecialidad');
+        const opciones = document.querySelectorAll('.opcion-desplegable');
+
+        btnEspecialidad.addEventListener('click', (e) => {
+            e.stopPropagation();
+            desplegable.classList.toggle('abierto');
+            btnEspecialidad.classList.toggle('activo');
+            btnEspecialidad.setAttribute('aria-expanded', desplegable.classList.contains('abierto'));
+        });
+
+        opciones.forEach(opcion => {
+            opcion.addEventListener('click', (e) => {
+                opciones.forEach(o => o.classList.remove('activa'));
+                opcion.classList.add('activa');
+                
+                desplegable.classList.remove('abierto');
+                btnEspecialidad.classList.remove('activo');
+                btnEspecialidad.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            desplegable.classList.remove('abierto');
+            btnEspecialidad.classList.remove('activo');
+            btnEspecialidad.setAttribute('aria-expanded', 'false');
+        });
+    </script>
+
     <script type="module">
         import { auth } from './js/firebase-config.js';
         import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -193,4 +536,3 @@
     </script>
 </body>
 </html>
-
