@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redes - ET29</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/materias.css">
+    <link rel="stylesheet" href="../css/header.css">
+    
+    <meta name="description" content="Aprende sobre el apasionante mundo de las redes de información.">
+    <script src="js/main.js" defer></script>
+
+            <style>
+        /* --- DESBORDAMIENTO Y Z-INDEX --- */
+        .encabezado-principal,
+        .contenedor-header,
+        .navegacion-principal,
+        .nav-contenedor-interno {
+            overflow: visible !important;
+        }
+
+        .encabezado-principal {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu-usuario-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- BOTÓN USUARIO ORIGINAL CON LÍNEA INFERIOR --- */
+        .btn-avatar-nav {
+            position: relative;
+        }
+
+        /* Línea azul en el borde inferior */
+        .btn-avatar-nav::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #0d6efd;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-avatar-nav:hover::after,
+        .btn-avatar-nav.activo::after {
+            opacity: 1;
+        }
+
+        /* --- DESPLEGABLE --- */
+        .dropdown-perfil {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+            width: 270px;
+            padding: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+            z-index: 2000;
+        }
+
+        .dropdown-perfil.abierto,
+        .menu-usuario-wrapper.abierto .dropdown-perfil {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* --- ESCALADO DE FUENTE --- */
+        html { transition: font-size 0.2s ease; }
+        html.fuente-grande { font-size: 112.5%; }
+        html.fuente-muy-grande { font-size: 125%; }
+        
+        /* --- MODO OSCURO --- */
+        body.modo-oscuro { background-color: #0f172a; color: #f8fafc; }
+        body.modo-oscuro .encabezado-principal,
+        body.modo-oscuro .contenedor-header,
+        body.modo-oscuro .navegacion-principal { background-color: #1e293b !important; }
+        body.modo-oscuro .logo-texto-lineal h1,
+        body.modo-oscuro .info-perfil h4,
+        body.modo-oscuro .titulo-seccion { color: #ffffff !important; }
+        body.modo-oscuro .dropdown-perfil,
+        body.modo-oscuro .tarjeta-materia { background-color: #1e293b; border-color: #334155; color: #cbd5e1; }
+        body.modo-oscuro .item-perfil-centro { color: #cbd5e1; }
+        body.modo-oscuro .item-perfil-centro:hover { background-color: #334155; }
+        body.modo-oscuro .divisor-perfil { border-color: #334155; }
+        body.modo-oscuro .btn-avatar-nav::after { background-color: #38bdf8; }
+    </style>
+</head>
+<body>
+
+  <div id="header-container"></div>
+
+    <main id="contenido-principal" class="contenedor-pagina">
+        
+        <nav class="migas-de-pan" aria-label="Migas de pan">
+            <ol>
+                <li><a href="../index.html">Inicio</a></li>
+                <li aria-current="page">Redes</li>
+            </ol>
+        </nav>
+
+        <div class="cabecera-materia">
+            <div class="titulo-materia-icono">
+                <span class="icono-grande" aria-hidden="true">🖥️</span>
+                <div>
+                    <h1>Redes</h1>
+                    <p>Seleccioná un tema para comenzar a aprender.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="seccion-temas">
+            <div class="grilla-materias"> 
+                
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">📖</span>
+                        <h3>Introducción</h3>
+                    </div>
+                    <p>Componentes y definición de una red de información</p>
+                    <a href="../Mat/R/introR.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">📖</span>
+                        <h3>Modelo TCP/IP - OSI</h3>
+                    </div>
+                    <p>Conceptos de encapsulación, PDU y comunicación en las redes</p>
+                    <a href="#" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">⚙️</span>
+                        <h3>Capa de Acceso a la Red: Capa Física y de Enlace de datos del modelo OSI</h3>
+                    </div>
+                    <p>Protolos IEEE 802.3 y 802.11 - Medios de transmisión de datos.</p>
+                    <a href="#" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">💾</span>
+                        <h3>Capa de Internet: Capa de Red del modelo OSI</h3>
+                    </div>
+                    <p>Protocolo IP - Direccionamiento IPv4 - Subneting .</p>
+                    <a href="#" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">🔌</span>
+                        <h3>Capa de Transporte: Capa de Transporte del modelo OSI</h3>
+                    </div>
+                    <p>Protocolos TCP-UDP. Puertos. Conceptos de socket</p>
+                    <a href="#" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">🔄</span>
+                        <h3>Capa de Aplicación: Capa de Sesión, Presentación y Aplicación del modelo OSI</h3>
+                    </div>
+                    <p>Protocolos HTTP-HTTPS-DNS-DHCP.</p>
+                    <a href="#" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+            </div>
+        </section>
+
+        <aside class="banner-comunidad">
+            <span class="icono-banner" aria-hidden="true">👥</span>
+            <p><strong>Este proyecto lo construimos entre todos.</strong><br> Más adelante podrás registrarte y subir tus propios materiales.</p>
+        </aside>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
+    </footer>
+
+    <script src="../js/header.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica Computacional - ET29</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/materias.css">
+    <link rel="stylesheet" href="../css/header.css">
+    
+    <meta name="description" content="Aprende sobre proposiciones, valores de verdad y operadores lógicos.">
+    <script src="js/main.js" defer></script>
+    
+    <style>
+        /* --- DESBORDAMIENTO Y Z-INDEX --- */
+        .encabezado-principal,
+        .contenedor-header,
+        .navegacion-principal,
+        .nav-contenedor-interno {
+            overflow: visible !important;
+        }
+
+        .encabezado-principal {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu-usuario-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* --- BOTÓN USUARIO ORIGINAL CON LÍNEA INFERIOR --- */
+        .btn-avatar-nav {
+            position: relative;
+        }
+
+        /* Línea azul en el borde inferior */
+        .btn-avatar-nav::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #0d6efd;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-avatar-nav:hover::after,
+        .btn-avatar-nav.activo::after {
+            opacity: 1;
+        }
+
+        /* --- DESPLEGABLE --- */
+        .dropdown-perfil {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+            width: 270px;
+            padding: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+            z-index: 2000;
+        }
+
+        .dropdown-perfil.abierto,
+        .menu-usuario-wrapper.abierto .dropdown-perfil {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* --- ESCALADO DE FUENTE --- */
+        html { transition: font-size 0.2s ease; }
+        html.fuente-grande { font-size: 112.5%; }
+        html.fuente-muy-grande { font-size: 125%; }
+        
+        /* --- MODO OSCURO --- */
+        body.modo-oscuro { background-color: #0f172a; color: #f8fafc; }
+        body.modo-oscuro .encabezado-principal,
+        body.modo-oscuro .contenedor-header,
+        body.modo-oscuro .navegacion-principal { background-color: #1e293b !important; }
+        body.modo-oscuro .logo-texto-lineal h1,
+        body.modo-oscuro .info-perfil h4,
+        body.modo-oscuro .titulo-seccion { color: #ffffff !important; }
+        body.modo-oscuro .dropdown-perfil,
+        body.modo-oscuro .tarjeta-materia { background-color: #1e293b; border-color: #334155; color: #cbd5e1; }
+        body.modo-oscuro .item-perfil-centro { color: #cbd5e1; }
+        body.modo-oscuro .item-perfil-centro:hover { background-color: #334155; }
+        body.modo-oscuro .divisor-perfil { border-color: #334155; }
+        body.modo-oscuro .btn-avatar-nav::after { background-color: #38bdf8; }
+    </style>
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <main id="contenido-principal" class="contenedor-pagina">
+        <nav class="migas-de-pan" aria-label="Migas de pan">
+            <ol>
+                <li><a href="../index.html">Inicio</a></li>
+                <li aria-current="page">Lógica Computacional</li>
+            </ol>
+        </nav>
+
+        <div class="cabecera-materia">
+            <div class="titulo-materia-icono">
+                <span class="icono-grande" aria-hidden="true">💡</span>
+                <div>
+                    <h1>Lógica Computacional</h1>
+                    <p>Seleccioná un tema para comenzar a aprender.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="seccion-temas">
+            <h2>Módulo 1: Lógica Proposicional</h2>
+            <br>
+            
+            <div class="grilla-materias"> 
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">🧠</span>
+                        <h3>Introducción</h3>
+                    </div>
+                    <p>Conceptos fundamentales.</p>
+                    <a href="L/introL.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">🔗</span>
+                        <h3>Estructuras Lógicas: Variables y Conectivos</h3>
+                    </div>
+                    <p>Proposiciones simples, compuestas y su estructura.</p>
+                    <a href="L/estructurasL.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">📊</span>
+                        <h3>Tablas de Verdad y sus Conectores Lógicos</h3>
+                    </div>
+                    <p>Cómo se conforman las tablas de verdad y su estructura.</p>
+                    <a href="L/tablasyconectoresL.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">⚖️</span>
+                        <h3>Leyes Lógicas y Equivalencias</h3>
+                    </div>
+                    <p>Simplificación de proposiciones mediante reglas de equivalencia.</p>
+                    <a href="L/leyesL.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+            </div>
+            
+            <div class="grilla-materias">
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">⚙️</span>
+                        <h3>Álgebra de Boole</h3>
+                    </div>
+                    <p>Postulados, teoremas y funciones booleanas.</p>
+                    <a href="L/algebra-boole.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">🔲</span>
+                        <h3>Mapas de Karnaugh (M.K)</h3>
+                    </div>
+                    <p>Simplificación de funciones por adyacencia y minitérminos.</p>
+                    <a href="L/karnaugh.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+
+                <article class="tarjeta-materia activa">
+                    <div class="tarjeta-cabecera">
+                        <span class="icono" aria-hidden="true">📝</span>
+                        <h3>Ejercicios Prácticos</h3>
+                    </div>
+                    <p>Realización y comprensión de ejercicios.</p>
+                    <a href="L/ejerciciosL.html" class="btn btn-secundario btn-bloque">Ver temas</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 1. ABRIR Y CERRAR EL MENÚ DE USUARIO
+        const btnMenuUsuario = document.getElementById('btnMenuUsuario');
+        const wrapperUsuario = document.getElementById('wrapper-usuario');
+        const dropdownUsuario = document.getElementById('dropdownUsuario');
+
+        if (btnMenuUsuario && dropdownUsuario) {
+            btnMenuUsuario.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdownUsuario.classList.toggle('abierto');
+                btnMenuUsuario.classList.toggle('activo');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (wrapperUsuario && !wrapperUsuario.contains(e.target)) {
+                    dropdownUsuario.classList.remove('abierto');
+                    btnMenuUsuario.classList.remove('activo');
+                }
+            });
+
+            dropdownUsuario.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // 2. TEMA OSCURO PERSISTENTE
+        const toggleTema = document.getElementById('toggleTemaMenu');
+        if (localStorage.getItem('temaOscuro') === 'true') {
+            document.body.classList.add('modo-oscuro');
+            if (toggleTema) toggleTema.checked = true;
+        }
+
+        if (toggleTema) {
+            toggleTema.addEventListener('change', () => {
+                if (toggleTema.checked) {
+                    document.body.classList.add('modo-oscuro');
+                    localStorage.setItem('temaOscuro', 'true');
+                } else {
+                    document.body.classList.remove('modo-oscuro');
+                    localStorage.setItem('temaOscuro', 'false');
+                }
+            });
+        }
+
+        // 3. TAMAÑO DE FUENTE PERSISTENTE
+        const btnLetra = document.getElementById('btnAumentarLetra');
+        let nivelFuente = parseInt(localStorage.getItem('nivelFuente') || '0', 10);
+
+        function aplicarTamano() {
+            document.documentElement.classList.remove('fuente-grande', 'fuente-muy-grande');
+            if (nivelFuente === 1) document.documentElement.classList.add('fuente-grande');
+            if (nivelFuente === 2) document.documentElement.classList.add('fuente-muy-grande');
+            localStorage.setItem('nivelFuente', nivelFuente);
+        }
+        
+        aplicarTamano();
+
+        if (btnLetra) {
+            btnLetra.addEventListener('click', () => {
+                nivelFuente = (nivelFuente + 1) % 3;
+                aplicarTamano();
+            });
+        }
+    </script>
+
+    <script src="/js/header.js"></script> 
+<!-- Ajustá la ruta si tu archivo header.js está en otra carpeta -->
+</body>
+</html>

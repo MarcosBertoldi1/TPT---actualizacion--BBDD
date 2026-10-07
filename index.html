@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología para Todos - ET29</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/materias.css">
+    
+    <meta name="description" content="Plataforma de aprendizaje técnico interactivo de la ET29. De estudiantes para estudiantes.">
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* --- MODO OSCURO GLOBAL --- */
+        body.modo-oscuro {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+        }
+        body.modo-oscuro .contenedor-header { background-color: #1e293b !important; }
+        body.modo-oscuro .navegacion-principal { background-color: #0f172a !important; }
+        body.modo-oscuro .navegacion-principal a.link-nav { color: #cbd5e1 !important; }
+        body.modo-oscuro .navegacion-principal a.link-nav:hover { color: #38bdf8 !important; }
+        body.modo-oscuro .menu-desplegable, 
+        body.modo-oscuro .dropdown-perfil { background-color: #1e293b !important; border-color: #334155 !important; }
+        body.modo-oscuro .info-perfil h4 { color: #f8fafc !important; }
+        body.modo-oscuro .info-perfil p,
+        body.modo-oscuro .item-perfil-centro { color: #cbd5e1 !important; }
+        body.modo-oscuro .item-perfil-centro:hover { background-color: #334155 !important; }
+        body.modo-oscuro .divisor-perfil { border-color: #334155 !important; }
+        body.modo-oscuro .opcion-desplegable { background-color: #0f172a !important; color: #cbd5e1 !important; }
+        body.modo-oscuro .opcion-desplegable:hover { background-color: #334155 !important; }
+        body.modo-oscuro .pildora-atajo { background-color: #1e293b !important; border-color: #334155 !important; color: #38bdf8 !important; }
+        body.modo-oscuro .pildora-atajo:hover { background-color: #334155 !important; }
+
+        /* --- TAMAÑO DE LETRA AUMENTADO --- */
+        body.fuente-grande {
+            font-size: 1.15rem !important;
+        }
+        body.fuente-grande .link-nav,
+        body.fuente-grande .btn-desplegable-nav,
+        body.fuente-grande .pildora-atajo {
+            font-size: 1.15rem !important;
+        }
+
+        /* --- ENCABEZADO UNIFICADO Y FIJO --- */
+        .encabezado-principal { position: sticky; top: 0; z-index: 1000; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+        .contenedor-header { background-color: #eaf2ff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; transition: background-color 0.3s ease; }
+        .navegacion-principal { background-color: #ffffff; overflow: visible !important; transition: background-color 0.3s ease; }
+        .navegacion-principal ul { display: flex; align-items: center; list-style: none; padding: 0.6rem 2rem; margin: 0; gap: 1.8rem; position: relative; }
+        .navegacion-principal a.link-nav { text-decoration: none; color: #2c3e50; font-weight: 600; font-size: 1rem; padding: 0.5rem 0; transition: color 0.2s ease; }
+        .navegacion-principal a.link-nav:hover { color: #0d6efd; }
+        .navegacion-principal li.push-derecha { margin-left: auto; }
+
+        /* --- BOTÓN DE ESPECIALIDAD --- */
+        .item-desplegable { position: relative; }
+        .btn-desplegable-nav { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background-color: transparent; color: #2c3e50; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+        .btn-desplegable-nav:hover, .btn-desplegable-nav.activo { background-color: #f0f4ff; color: #0d6efd; }
+        .btn-desplegable-nav .icono-btn { font-size: 1.1rem; }
+        .btn-desplegable-nav .flecha-desplegable { font-size: 0.7rem; transition: transform 0.3s ease; margin-left: 0.2rem; }
+        .desplegable-especialidad.abierto .flecha-desplegable { transform: rotate(180deg); }
+
+        /* --- MENÚ DESPLEGABLE (ESPECIALIDAD) --- */
+        .menu-desplegable { position: absolute; top: calc(100% + 10px); left: 0; display: flex; flex-direction: row; gap: 1rem; min-width: max-content; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1); padding: 1.2rem; z-index: 2000; opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.98); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; }
+        .desplegable-especialidad.abierto .menu-desplegable { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .opcion-desplegable { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 1rem; padding: 1rem 1.5rem; min-width: 220px; background-color: #f8fafc; border: none; border-radius: 12px; text-decoration: none; color: #475569; font-weight: 700; font-size: 1rem; transition: all 0.2s ease; }
+        .opcion-desplegable:hover { background-color: #f1f5f9; transform: translateY(-3px); }
+        .contenedor-icono-opcion { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; transition: transform 0.2s ease; flex-shrink: 0; }
+        .opcion-desplegable:hover .contenedor-icono-opcion { transform: scale(1.05); }
+        .opcion-comp .contenedor-icono-opcion { background-color: #e0f2fe; color: #0284c7; }
+        .opcion-comp:hover, .opcion-comp.activa { color: #0284c7; }
+        .opcion-elec .contenedor-icono-opcion { background-color: #fef3c7; color: #d97706; }
+        .opcion-elec:hover, .opcion-elec.activa { color: #d97706; }
+        .opcion-mec .contenedor-icono-opcion { background-color: #fee2e2; color: #dc2626; }
+        .opcion-mec:hover, .opcion-mec.activa { color: #dc2626; }
+
+        /* --- MENÚ DE USUARIO CON ICONO DE MAT-L --- */
+        .menu-usuario-wrapper { position: relative; margin-left: 1rem; display: flex; align-items: center; }
+        .btn-avatar-nav { width: 42px; height: 42px; border-radius: 50%; background-color: #0d6efd; color: #ffffff; border: 2px solid transparent; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.25s ease; box-shadow: 0 2px 8px rgba(13, 110, 253, 0.25); }
+        .btn-avatar-nav:hover, .btn-avatar-nav.activo { background-color: #0b5ed7; transform: scale(1.05); border-color: #93c5fd; box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4); }
+        .btn-avatar-nav svg { transition: transform 0.2s ease; }
+        .btn-avatar-nav:hover svg { transform: scale(1.1); }
+
+        .dropdown-perfil { position: absolute; top: calc(100% + 15px); right: 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 16px 32px rgba(0,0,0,0.12); width: 270px; padding: 1.2rem; opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.98); transition: all 0.25s ease; z-index: 2000; }
+        .dropdown-perfil.abierto { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .cabecera-perfil { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+        .avatar-grande { width: 48px; height: 48px; border-radius: 50%; background-color: #0d6efd; color: #ffffff; display: flex; justify-content: center; align-items: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3); }
+        .info-perfil h4 { margin: 0; font-size: 1.05rem; color: #1e293b; font-weight: 700; }
+        .info-perfil p { margin: 0; font-size: 0.85rem; color: #64748b; }
+        .divisor-perfil { border: 0; border-top: 1px solid #e2e8f0; margin: 0.8rem 0; }
+        .seccion-acciones { display: flex; flex-direction: column; gap: 0.4rem; }
+        .item-perfil-centro { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; padding: 0.6rem 0.8rem; font-size: 0.95rem; color: #475569; font-weight: 600; cursor: pointer; border-radius: 10px; transition: all 0.2s ease; font-family: inherit; }
+        .item-perfil-centro:hover { background-color: #f1f5f9; color: #0d6efd; }
+        .badge-azul { background: #e0f2fe; color: #0284c7; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
+        .btn-salir { color: #dc2626; font-weight: 700; margin-top: 0.2rem; }
+        .btn-salir:hover { background-color: #fee2e2; color: #b91c1c; }
+
+        /* Switch tema oscuro */
+        .switch { position: relative; display: inline-block; width: 38px; height: 22px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+        input:checked + .slider { background-color: #0d6efd; }
+        input:checked + .slider:before { transform: translateX(16px); }
+
+        /* --- CUERPO MATERIAS --- */
+        .seccion-materias { padding: 2rem; }
+        .titulo-seccion { font-size: 1.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 1rem; }
+        .atajos-anios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1rem; margin-bottom: 2.5rem; }
+        .pildora-atajo { display: flex; align-items: center; justify-content: center; padding: 1rem 1.5rem; border-radius: 30px; background-color: #ffffff; border: 1px solid #e0e0e0; color: #0056b3; text-decoration: none; font-weight: 700; font-size: 1.15rem; transition: all 0.2s ease; }
+        .pildora-atajo:hover { border-color: #0d6efd; background-color: #f8faff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+        .tarjeta-materia.activa { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+        .tarjeta-materia.activa:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); border-color: #0d6efd; }
+            
+        @media (max-width: 768px) {
+            .navegacion-principal ul { flex-wrap: wrap; gap: 0.8rem; }
+            .navegacion-principal li.push-derecha { margin-left: 0; }
+            .atajos-anios { grid-template-columns: 1fr; }
+            .menu-desplegable { flex-direction: column; min-width: 100%; }
+            .opcion-desplegable { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                </div>
+            </a>
+        </div>
+        
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html" class="link-nav">Inicio</a></li>
+                <li><a href="materiales.html" class="link-nav">Materiales</a></li>
+                
+                <li class="item-desplegable">
+                    <div class="desplegable-especialidad" id="dropdownEspecialidad">
+                        <button class="btn-desplegable-nav" id="btnEspecialidad" aria-expanded="false" type="button">
+                            <span class="icono-btn">🎓</span>
+                            <span>Especialidad</span>
+                            <span class="flecha-desplegable">▼</span>
+                        </button>
+                        
+                        <div class="menu-desplegable" id="menuEspecialidad">
+                            <a href="#computacion" class="opcion-desplegable opcion-comp activa">
+                                <div class="contenedor-icono-opcion">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
+                                    </svg>
+                                </div>
+                                <span class="texto-opcion">Computación</span>
+                            </a>
+                            <a href="#electricidad" class="opcion-desplegable opcion-elec">
+                                <div class="contenedor-icono-opcion">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M7 21h4v-7h4l-5-11h-4v7H2l5 11z"/>
+                                    </svg>
+                                </div>
+                                <span class="texto-opcion">Electricidad</span>
+                            </a>
+                            <a href="#mecanica" class="opcion-desplegable opcion-mec">
+                                <div class="contenedor-icono-opcion">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                                    </svg>
+                                </div>
+                                <span class="texto-opcion">Mecánica</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="push-derecha"><a href="sobre.html" class="link-nav">Sobre el Proyecto</a></li>
+                
+                <!-- MENÚ DE USUARIO CON ICONO DE MAT-L -->
+                <div class="menu-usuario-wrapper">
+                    <button class="btn-avatar-nav" id="btnMenuUsuario" aria-label="Menú de usuario" type="button">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="dropdown-perfil" id="dropdownUsuario">
+                        <div class="cabecera-perfil">
+                            <div class="avatar-grande">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="info-perfil">
+                                <h4>Marcos Bertoldi</h4>
+                                <p>Alumno</p>
+                            </div>
+                        </div>
+                        <hr class="divisor-perfil">
+                        <div class="seccion-acciones">
+                            <button class="item-perfil-centro" id="btnAumentarLetra" type="button">
+                                Tamaño de letra <span class="badge-azul">A+</span>
+                            </button>
+                            <div class="item-perfil-centro">
+                                Tema oscuro
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleTemaMenu">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="divisor-perfil">
+                        <button class="item-perfil-centro btn-salir" id="enlace-auth" type="button">Cerrar sesión 🚪</button>
+                    </div>
+                </div>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido-principal">
+        <section id="materias" class="seccion-materias">
+            <div class="cabecera-materias">
+                <h2 class="titulo-seccion">Materias disponibles</h2>
+                
+                <div class="atajos-anios" aria-label="Atajos rápidos por año">
+                    <a href="#anio-4" class="pildora-atajo">4º Año</a>
+                    <a href="#anio-5" class="pildora-atajo">5º Año</a>
+                    <a href="#anio-6" class="pildora-atajo">6º Año</a>
+                </div>
+            </div>
+            
+            <div id="anio-4" class="contenedor-anio">
+                <h2 class="titulo-anio">4º Año - Computación</h2>
+                <div class="grilla-materias">
+                    <article class="tarjeta-materia activa">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🖥️</span>
+                            <h3>Organización de las Computadoras</h3>
+                        </div>
+                        <p>Arquitectura básica y funcionamiento interno.</p>
+                        <a href="Mat/mat-OC.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+                    </article>
+
+                    <article class="tarjeta-materia activa">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">💡</span>
+                            <h3>Lógica Computacional</h3>
+                        </div>
+                        <p>Sistemas numéricos, álgebra de Boole y compuertas lógicas.</p>
+                        <a href="Mat/mat-L.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+                    </article>
+
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Base de Datos</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Lab. de Algoritmos y Estructuras</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+                </div>
+            </div>
+
+            <div id="anio-5" class="contenedor-anio">
+                <h2 class="titulo-anio">5º Año - Computación</h2>
+                <div class="grilla-materias">
+                    <article class="tarjeta-materia activa">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🌐</span>
+                            <h3>Redes</h3>
+                        </div>
+                        <p>Fundamentos de conectividad y protocolos.</p>
+                        <a href="Mat/mat-R.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+                    </article>
+
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Admin. y Gestión de Base de Datos</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+
+                    <article class="tarjeta-materia activa">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">💻</span>
+                            <h3>Laboratorio de POO</h3>
+                        </div>
+                        <p>Programación Orientada a Objetos, clases y métodos.</p>
+                        <a href="Mat/mat-POO.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
+                    </article>
+
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Análisis de Sistemas</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+                </div>
+            </div>
+
+            <div id="anio-6" class="contenedor-anio">
+                <h2 class="titulo-anio">6º Año - Computación</h2>
+                <div class="grilla-materias">
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Programación sobre Redes</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Admin. y Gestión de Redes</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+
+                    <article class="tarjeta-materia bloqueada">
+                        <div class="tarjeta-cabecera">
+                            <span class="icono" aria-hidden="true">🔒</span>
+                            <h3>Desarrollo de Sistemas</h3>
+                        </div>
+                        <p>Próximamente</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    
+    <script>
+        // --- ELEMENTOS DE LOS MENÚS ---
+        const desplegableEspecialidad = document.getElementById('dropdownEspecialidad');
+        const btnEspecialidad = document.getElementById('btnEspecialidad');
+        const opcionesEspecialidad = document.querySelectorAll('.opcion-desplegable');
+
+        const btnUsuario = document.getElementById('btnMenuUsuario');
+        const menuUsuario = document.getElementById('dropdownUsuario');
+
+        // --- CONTROLES DENTRO DEL PERFIL ---
+        const btnAumentarLetra = document.getElementById('btnAumentarLetra');
+        const toggleTemaMenu = document.getElementById('toggleTemaMenu');
+
+        // Función para cerrar todo
+        function cerrarTodosLosMenus() {
+            if (desplegableEspecialidad) desplegableEspecialidad.classList.remove('abierto');
+            if (btnEspecialidad) {
+                btnEspecialidad.classList.remove('activo');
+                btnEspecialidad.setAttribute('aria-expanded', 'false');
+            }
+            if (menuUsuario) menuUsuario.classList.remove('abierto');
+            if (btnUsuario) btnUsuario.classList.remove('activo');
+        }
+
+        // --- ESPECIALIDAD DROPDOWN ---
+        if (btnEspecialidad && desplegableEspecialidad) {
+            btnEspecialidad.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const estaAbierto = desplegableEspecialidad.classList.contains('abierto');
+                cerrarTodosLosMenus();
+                
+                if (!estaAbierto) {
+                    desplegableEspecialidad.classList.add('abierto');
+                    btnEspecialidad.classList.add('activo');
+                    btnEspecialidad.setAttribute('aria-expanded', 'true');
+                }
+            });
+        }
+
+        opcionesEspecialidad.forEach(opcion => {
+            opcion.addEventListener('click', () => {
+                opcionesEspecialidad.forEach(o => o.classList.remove('activa'));
+                opcion.classList.add('activa');
+                cerrarTodosLosMenus();
+            });
+        });
+
+        // --- USUARIO DROPDOWN ---
+        if (btnUsuario && menuUsuario) {
+            btnUsuario.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const estaAbierto = menuUsuario.classList.contains('abierto');
+                cerrarTodosLosMenus();
+
+                if (!estaAbierto) {
+                    menuUsuario.classList.add('abierto');
+                    btnUsuario.classList.add('activo');
+                }
+            });
+        }
+
+        // Click fuera para cerrar los desplegables
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#dropdownEspecialidad') && 
+                !e.target.closest('#dropdownUsuario') && 
+                e.target !== btnEspecialidad && 
+                e.target !== btnUsuario) {
+                cerrarTodosLosMenus();
+            }
+        });
+
+        // --- TAMAÑO DE LETRA ---
+        if (btnAumentarLetra) {
+            btnAumentarLetra.addEventListener('click', () => {
+                document.body.classList.toggle('fuente-grande');
+            });
+        }
+
+        // --- TEMA OSCURO ---
+        if (toggleTemaMenu) {
+            toggleTemaMenu.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    document.body.classList.add('modo-oscuro');
+                } else {
+                    document.body.classList.remove('modo-oscuro');
+                }
+            });
+        }
+    </script>
+
+    <script type="module">
+        import { auth } from './js/firebase-config.js';
+        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const enlaceAuth = document.getElementById('enlace-auth');
+
+        if (enlaceAuth) {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    enlaceAuth.textContent = 'Cerrar Sesión 🚪';
+                    enlaceAuth.onclick = (e) => {
+                        e.preventDefault();
+                        signOut(auth).then(() => {
+                            localStorage.removeItem('rolUsuario');
+                            window.location.reload();
+                        });
+                    };
+                } else {
+                    enlaceAuth.textContent = 'Iniciar Sesión';
+                    enlaceAuth.onclick = (e) => {
+                        e.preventDefault();
+                        window.location.href = 'login.html';
+                    };
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware, Software y Sistema Operativo - ET29</title>
+
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/header.css">
+    <link rel="stylesheet" href="../../../css/materias.css">
+    
+    <meta name="description" content="Video explicativo sobre como el hardware proporciona los recursos físicos, el sistema operativo los administra y actúa como intermediario, y el software utiliza esos recursos para que el usuario pueda realizar distintas tareas.">
+</head>
+<body>
+
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            <a href="../../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="../../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                    <span class="tagline">Hacer simple lo que parece difícil.</span>
+                    <span class="brand-block">Plataforma Colaborativa • Validado por Docentes • Estudiantes para Estudiantes</span>
+                </div>
+            </a>
+
+            <div class="controles-accesibilidad">
+                <button class="btn-accesibilidad" aria-label="Aumentar tamaño de texto" title="Aumentar letra">A+</button>
+                <button class="btn-accesibilidad" aria-label="Cambiar contraste" title="Modo oscuro">🌓</button>
+            </div>
+        </div>
+        
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+            <ul>
+                <li><a href="../../../index.html" class="activo" aria-current="page">Inicio</a></li>
+                <li><a href="../../../index.html#materias">Materias</a></li>
+                <li><a href="../../../sobre.html">Sobre el Proyecto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido-principal" class="contenedor-pagina">
+        
+        <nav class="migas-de-pan" aria-label="Migas de pan">
+            <ol>
+                <li><a href="../../../index.html">Inicio</a></li>
+                <li><a href="../../../Mat/mat-OC.html">Organización de Computadoras</a></li>
+                <li><a href="../introOC.html">Introducción</a></li>
+                <li aria-current="page">Hardware, Software y Sistema Operativo</li>
+            </ol>
+        </nav>
+
+        <div class="cabecera-materia">
+            <div class="titulo-materia-icono">
+                <span class="icono-grande" aria-hidden="true">📺</span>
+                <div>
+                    <h1>Hardware, Software y Sistema Operativo</h1>
+                    <p>Video explicativo introductorio.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="contenedor-recurso">
+            
+            <div class="recurso-principal">
+                <div class="contenedor-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/W-9ketTJoI4" 
+                        title="Video: Hardware, Software y Sistema Operativo por Marcos Bertoldi" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <a href="../introOC.html" class="btn btn-secundario btn-volver">← Volver a recursos</a>
+            </div>
+
+            <aside class="recurso-sidebar">
+                
+                <div class="tarjeta-info">
+                    <h3>Descripción</h3>
+                    <p>En este video vamos a conocer entre los conceptos de Arquitectura y Organización de las computadora.</p>
+                    <p>Hardware: conjunto de componentes físicos de la computadora (lo que se puede tocar).</p>
+                    <p>Software: conjunto de programas e instrucciones que permiten realizar tareas.</p>
+                    <p>Sistema operativo: software principal que administra el hardware y permite ejecutar aplicaciones.</p>
+                    <p>El hardware proporciona los recursos físicos, el sistema operativo los administra y actúa como intermediario, y el software utiliza esos recursos para que el usuario pueda realizar distintas tareas.</p>
+                </div>
+
+                <div class="tarjeta-info">
+                    <h3>Material complementario</h3>
+                    <div class="material-descarga">
+                        <span class="icono-pdf" aria-hidden="true">📄</span>
+                        <div class="info-pdf">
+                            <strong>Resumen del video</strong>
+                            <span>PDF • 2.06 MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primario btn-chico">Descargar</a>
+                    </div>
+                </div>
+
+            </aside>
+        </section>
+<!-- SECCIÓN DE COMENTARIOS PROPIA (FIREBASE FIRESTORE & AUTH) -->
+    <section class="seccion-comentarios" style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #eee;">
+        <h2>Dudas y Comentarios</h2>
+        <p>Dejá tu duda acá abajo. ¡Nos ayudamos entre todos!</p>
+
+        <!-- Mensaje para usuarios no logueados -->
+        <div id="aviso-login" style="margin: 20px 0; padding: 15px; background: #fff3cd; color: #856404; border-radius: 6px; border: 1px solid #ffeeba; display: none;">
+            Para dejar un comentario, tenés que <strong>iniciar sesión</strong> primero.
+        </div>
+
+        <!-- Formulario para publicar -->
+        <form id="form-comentario" style="display: none; margin-top: 20px; margin-bottom: 30px; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+            <div style="margin-bottom: 12px;">
+                <label for="texto-comentario" style="display: block; font-weight: bold; margin-bottom: 5px;">Tu Comentario o Consulta:</label>
+                <textarea id="texto-comentario" placeholder="Escribí tu consulta sobre HSSO aquí..." rows="4" required style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; resize: vertical;"></textarea>
+            </div>
+            <button type="submit" id="btn-enviar-comentario" style="padding: 10px 20px; font-weight: bold; cursor: pointer; background: #0056b3; color: white; border: none; border-radius: 4px;">Publicar Comentario</button>
+        </form>
+
+        <!-- Lista de comentarios -->
+        <div id="contenedor-comentarios">
+            <p style="color: #666; font-style: italic;">Cargando comentarios...</p>
+        </div>
+    </section>
+
+    <!-- SCRIPT ESPECÍFICO PARA LOS COMENTARIOS DE ESTA PÁGINA -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp, limit } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB5XqLifX-qKZSGsTdyRCAvUfEg6_rEwFc",
+        authDomain: "tpt-2026.firebaseapp.com",
+        projectId: "tpt-2026",
+        storageBucket: "tpt-2026.firebasestorage.app",
+        messagingSenderId: "118270392527",
+        appId: "1:118270392527:web:722ae06e66cfad8ae29fba",
+        measurementId: "G-02RFXMNWVN"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth(app); 
+
+      // ¡NUEVO ID PARA LA PÁGINA DE HSSO!
+      const ID_PAGINA = "hsso"; // Identificador único para esta página
+      
+      const formComentario = document.getElementById('form-comentario');
+      const avisoLogin = document.getElementById('aviso-login');
+      const contenedorComentarios = document.getElementById('contenedor-comentarios');
+
+      let usuarioLogueado = null;
+
+      // Verificar Auth
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          usuarioLogueado = user;
+          formComentario.style.display = "block";
+          avisoLogin.style.display = "none";
+        } else {
+          usuarioLogueado = null;
+          formComentario.style.display = "none";
+          avisoLogin.style.display = "block";
+        }
+      });
+
+      // Guardar comentario
+      formComentario.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!usuarioLogueado) return;
+
+        const texto = document.getElementById('texto-comentario').value.trim();
+        const btnEnviar = document.getElementById('btn-enviar-comentario');
+        if (!texto) return;
+
+        btnEnviar.disabled = true;
+        btnEnviar.textContent = "Publicando...";
+
+        const nombreMostrar = usuarioLogueado.displayName || usuarioLogueado.email.split('@')[0];
+
+        try {
+          await addDoc(collection(db, "comentarios_leyes"), { // Se mantiene la misma colección maestra
+            paginaId: ID_PAGINA,
+            autor: nombreMostrar,
+            uid: usuarioLogueado.uid,
+            comentario: texto,
+            fecha: serverTimestamp()
+          });
+          formComentario.reset();
+        } catch (error) {
+          console.error("Error al publicar:", error);
+          alert("Hubo un error al publicar.");
+        } finally {
+          btnEnviar.disabled = false;
+          btnEnviar.textContent = "Publicar Comentario";
+        }
+      });
+
+      // Escuchar comentarios con limit(20) para mantenerte en el plan gratuito
+      const q = query(
+        collection(db, "comentarios_leyes"),
+        where("paginaId", "==", ID_PAGINA),
+        orderBy("fecha", "desc"),
+        limit(20) 
+      );
+
+      onSnapshot(q, (snapshot) => {
+        contenedorComentarios.innerHTML = "";
+        
+        if (snapshot.empty) {
+          contenedorComentarios.innerHTML = "<p style='color: #666;'>Aún no hay comentarios. ¡Sé el primero en preguntar!</p>";
+          return;
+        }
+
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          const div = document.createElement('div');
+          div.style.cssText = "background: #fff; padding: 15px; border-radius: 6px; border: 1px solid #e0e0e0; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);";
+          const fechaFormateada = data.fecha ? new Date(data.fecha.seconds * 1000).toLocaleString('es-AR') : 'Recién publicado';
+          
+          div.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <strong style="color: #0056b3; font-size: 1.05em;">${data.autor}</strong>
+              <small style="color: #888; font-size: 0.85em;">${fechaFormateada}</small>
+            </div>
+            <p style="margin: 0; color: #333; line-height: 1.4;">${data.comentario}</p>
+          `;
+          contenedorComentarios.appendChild(div);
+        });
+      });
+    </script>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
+    </footer>
+
+    <script src="../../../js/header.js"></script>
+
+    <script type="module">
+        import { db } from '../../../js/firebase-config.js';
+        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        window.guardarFeedbackRapido = async function(respuesta) {
+            try {
+                await addDoc(collection(db, "feedback_estadisticas"), {
+                    video: "Hardware, Software y SO",
+                    respuesta: respuesta,
+                    fecha: serverTimestamp()
+                });
+                alert("¡Gracias! Tu respuesta estadística se guardó.");
+            } catch (error) {
+                console.error("Error al guardar en Firebase:", error);
+                alert("Hubo un error al guardar. Mirá la consola (F12).");
+            }
+        };
+
+        window.enviarDudaProfe = async function() {
+            const texto = document.getElementById('texto-duda').value;
+            if (!texto.trim()) return alert("Por favor, escribí algo antes de enviar.");
+
+            try {
+                await addDoc(collection(db, "dudas_alumnos"), {
+                    video: "Hardware, Software y SO",
+                    duda: texto,
+                    estado: "pendiente",
+                    fecha: serverTimestamp()
+                });
+                alert("¡Duda enviada correctamente al panel!");
+                document.getElementById('caja-dudas-hsso').style.display = 'none';
+                document.getElementById('texto-duda').value = '';
+            } catch (error) {
+console.error("Error al guardar en Firebase:", error);
+        alert("Hubo un error al enviar tu duda. Mirá la consola (F12).");
+    }
+};
+</script>
+
+<script src="../../../js/header.js"></script>
+<script type="module" src="../../../js/js-materiales.js"></script>
+
+</body>
+</html>

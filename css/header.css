@@ -1,0 +1,303 @@
+/* ==========================================================================
+   ESTILOS BASE: OPTIMIZADO PARA MÓVILES (Pantallas chicas)
+   ========================================================================== */
+
+.encabezado-principal {
+    background-color: var(--color-fondo-header, #eaf3fc);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.contenedor-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.logo-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+}
+
+.logo-img-banner {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: height 0.3s ease;
+}
+
+.logo-texto-lineal {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-texto-lineal h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-texto-header, #0b3469);
+    margin: 0;
+    line-height: 1.1;
+    transition: font-size 0.3s ease;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    padding-bottom: 6px;
+}
+
+.navegacion-principal {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 1rem;
+    overflow-x: auto; 
+    white-space: nowrap;
+}
+
+/* Contenedor flex para separar el menú del avatar de usuario */
+.nav-contenedor-interno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 1.5rem; /* Margen para evitar pisar la barra de scroll */
+}
+
+.navegacion-principal ul.nav-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    width: auto;
+}
+
+.navegacion-principal a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.8rem 0;
+    display: inline-block;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.navegacion-principal a:hover,
+.navegacion-principal a.activo {
+    color: var(--color-texto-header, #0b3469);
+    border-bottom: 3px solid var(--color-texto-header, #0b3469);
+}
+
+/* ==========================================================================
+   MEDIA QUERY: PANTALLAS GRANDES
+   ========================================================================== */
+@media (min-width: 768px) {
+    .contenedor-header {
+        position: relative;
+        justify-content: center; 
+        padding: 1rem 2rem 1.2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo-img-banner {
+        height: 65px; 
+    }
+
+    .logo-texto-lineal h1 {
+        font-size: 2.2rem;
+    }
+
+    .navegacion-principal {
+        padding: 0 4rem;
+    }
+
+    .navegacion-principal a {
+        font-size: 1.05rem;
+        padding: 0.6rem 0;
+    }
+} /* Cierre de Media Query corregido */
+
+/* ==========================================================================
+   ESTILOS DEL MENÚ DESPLEGABLE DE USUARIO
+   ========================================================================== */
+.menu-usuario-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.btn-avatar-nav {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #5c6bc0; 
+    color: white;
+    font-size: 1.1rem;
+    border: 2px solid #e2e8f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.dropdown-perfil {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 260px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.dropdown-perfil::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 12px;
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    border-left: 1px solid #e2e8f0;
+    transform: rotate(45deg);
+}
+
+.dropdown-perfil.abierto {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cabecera-perfil {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+}
+
+.avatar-grande {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #5c6bc0;
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-perfil h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.info-perfil p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.divisor-perfil {
+    border: 0;
+    border-top: 1px solid #f1f5f9;
+    margin: 0;
+}
+
+.seccion-acciones {
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.titulo-menu {
+    font-size: 0.95rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.item-perfil-centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.badge-azul {
+    background-color: #eaf2ff;
+    color: #0d6efd;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.seccion-salir {
+    padding: 12px 0;
+}
+
+.btn-salir {
+    color: #475569;
+}
+
+/* Toggle Switch estilo iOS */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #cbd5e1;
+    border-radius: 20px;
+    transition: .3s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .3s;
+}
+input:checked + .slider { background-color: #0d6efd; }
+input:checked + .slider:before { transform: translateX(16px); }

@@ -1,0 +1,71 @@
+<header class="encabezado-principal">
+    <div class="contenedor-header">
+        <a href="/index.html" class="logo-banner">
+            <img src="/img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="36" height="36">
+            <div class="logo-texto-lineal">
+                <h1>Tecnología para todos</h1>
+            </div>
+        </a>
+    </div>
+    
+    <nav class="navegacion-principal">
+        <div class="nav-contenedor-interno">
+            <ul class="nav-lista">
+                <li><a href="/index.html" class="link-nav">Inicio</a></li>
+                <li><a href="/materiales.html" class="link-nav">Materiales</a></li>
+                <li><a href="/sobre.html" class="link-nav">Sobre el Proyecto</a></li>
+            </ul>
+
+            <!-- ZONA DERECHA: Botón de Login o Menú Desplegable -->
+            <div class="nav-derecha">
+                
+                <!-- 1. BOTÓN DE INICIAR SESIÓN (Se muestra si NO hay sesión) -->
+                <!-- Le agregué unos estilos en línea básicos, podés llevarlos a tu CSS luego -->
+                <a href="/login.html" id="btn-login-header" style="font-weight: bold; background: #1a73e8; color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none;">
+                    Iniciar sesión
+                </a>
+
+                <!-- 2. MENÚ DESPLEGABLE (Se muestra si SÍ hay sesión. Arranca oculto con display:none) -->
+                <div class="menu-usuario-wrapper" id="wrapper-usuario" style="display: none;">
+                    <button class="btn-avatar-nav" id="btnMenuUsuario" type="button">?</button>
+                    
+                    <div class="dropdown-perfil" id="dropdownUsuario">
+                        <div class="cabecera-perfil">
+                            <div class="avatar-grande" id="avatar-letra">?</div>
+                            <div class="info-perfil">
+                                <h4>Usuario</h4>
+                                <p>Rol</p>
+                            </div>
+                        </div>
+                        
+                        <hr class="divisor-perfil">
+                        
+                        <div class="seccion-acciones">
+                            <span class="titulo-menu">Perfil de estudiante</span>
+                            
+                            <button class="item-perfil-centro" id="btnAumentarLetra" type="button">
+                                Tamaño de letra <span class="badge-azul">A+</span>
+                            </button>
+                            
+                            <div class="item-perfil-centro">
+                                Tema oscuro
+                                <label class="switch">
+                                    <input type="checkbox" id="toggleTemaMenu">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <hr class="divisor-perfil">
+                        
+                        <div class="seccion-salir">
+                            <button class="item-perfil-centro btn-salir" id="btnCerrarSesion" type="button">
+                                Cerrar sesión <span class="icono-salir">🚪</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
