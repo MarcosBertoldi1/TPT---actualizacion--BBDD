@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Docente | TPT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <!-- Estilos exclusivos para el panel docente -->
+    <link rel="stylesheet" href="css/panel-prof.css">
+</head>
+<body>
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            <a href="index.html" class="logo-banner">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                </div>
+            </a>
+        </div>
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li id="nav-materiales" style="display: none;"><a href="materiales.html">Materiales</a></li>
+                <li id="nav-panel-profesor"><a href="panel-profesor.html" class="activo">Panel Profesor</a></li>
+                <li><a href="sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login" style="display: none;"><a href="login.html">Iniciar Sesión</a></li>
+                <li id="item-logout"><a href="#" id="btn-cerrar-sesion">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <h2>Gestión Docente</h2>
+            <p>Administra los recursos educativos y evalúa los aportes de los estudiantes.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- SECCIÓN 1: SUBIDA DIRECTA DEL PROFESOR -->
+            <section class="dashboard-card upload-section">
+                <div class="card-header">
+                    <h3>📤 Publicar Material Oficial</h3>
+                    <p>El contenido publicado aquí aparecerá automáticamente como aprobado.</p>
+                </div>
+                <form id="form-subir-profesor" class="modern-form">
+                    <div class="form-group">
+                        <label for="titulo">Título del material</label>
+                        <input type="text" id="titulo" placeholder="Ej: Introducción a la Lógica" required>
+                    </div>
+                    
+                    <!-- Selección dinámica de Materia y Módulo -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="materia">Materia / Taller</label>
+                            <select id="materia" required>
+                                <option value="">-- Seleccionar Materia --</option>
+                                <option value="Lógica Computacional">Lógica Computacional</option>
+                                <option value="Organización de las Computadoras">Organización de las Computadoras</option>
+                                <option value="Laboratorio de Algoritmos">Laboratorio de Algoritmos y Estructuras</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="modulo-profesor">Asignar a Módulo</label>
+                            <select id="modulo-profesor" required disabled>
+                                <option value="">-- Primero elige una materia --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-youtube">URL del Video de YouTube</label>
+                        <input type="url" id="input-youtube" placeholder="https://www.youtube.com/watch?v=..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción / Indicaciones</label>
+                        <textarea id="descripcion" rows="3" placeholder="Instrucciones para los alumnos..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Publicar Material</button>
+                    <div id="mensaje-estado" class="form-message"></div>
+                </form>
+            </section>
+
+            <!-- SECCIÓN 2: MODERACIÓN DE ALUMNOS -->
+            <section class="dashboard-card review-section">
+                <div class="card-header warning-header">
+                    <h3>⚠️ Evaluaciones Pendientes</h3>
+                    <p>Revisa los videos enviados por los alumnos antes de publicarlos.</p>
+                </div>
+                <div id="contenedor-pendientes" class="pending-grid">
+                    <div class="loader-text">Buscando entregas pendientes...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECCIÓN 3: GESTIONAR Y ELIMINAR MATERIALES PUBLICADOS -->
+        <section class="dashboard-card" style="margin-top: 30px; padding: 20px;">
+            <div class="card-header" style="background: #f1f5f9; border-bottom: 1px solid #cbd5e1; margin: -20px -20px 20px -20px; padding: 20px;">
+                <h3 style="color: #0f172a; margin: 0 0 5px 0;">📚 Materiales Publicados (Gestionar / Eliminar)</h3>
+                <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Aquí puedes revisar todos los materiales aprobados y eliminar los que ya no sean necesarios.</p>
+            </div>
+            <div id="contenedor-publicados" style="margin-top: 15px;">
+                <div class="loader-text">Cargando materiales publicados...</div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/js-panel-profesor.js"></script>
+</body>
+</html>

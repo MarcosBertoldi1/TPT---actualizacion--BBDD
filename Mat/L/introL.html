@@ -122,7 +122,23 @@
             </ul>
         </section>
 
-        <aside class="banner-proximamente">
+        <!-- SECCIÓN DE VIDEOS APROBADOS DE FIREBASE -->
+        <section style="margin-top: 40px; padding: 25px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <span style="font-size: 1.5rem; margin-right: 10px;">🌟</span>
+                <div>
+                    <h2 style="margin: 0; color: #0f172a; font-size: 1.4rem;">Material Adicional Aprobado</h2>
+                    <p style="margin: 5px 0 0 0; color: #64748b; font-size: 0.95rem;">
+                        Videos de la comunidad aprobados por los profesores para el módulo de <strong>Introducción</strong>.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Contenedor dinámico de Firebase -->
+            <div id="recursos-firebase-introduccion" style="display: flex; flex-direction: column; gap: 15px;"></div>
+        </section>
+
+        <aside class="banner-proximamente" style="margin-top: 30px;">
             <span class="icono-banner" aria-hidden="true">🔒</span>
             <p><strong>Próximamente podrás registrarte</strong> para guardar favoritos, subir material y ser parte de la comunidad.</p>
         </aside>
@@ -135,6 +151,7 @@
     </footer>
 
     <script src="../../js/header.js"></script>
+    <script type="module" src="../../js/cargar-videos-modulos.js"></script>
 
 </body>
 </html>

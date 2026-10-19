@@ -3,108 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materiales Didácticos - Tecnología para Todos</title>
+    <title>Aportar Material | TPT</title>
+    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/materias.css">
 </head>
 <body>
+
     <header class="encabezado-principal">
         <div class="contenedor-header">
-            <a href="index.html" class="logo-banner">
+            <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
                 <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
                     <h1>Tecnología para todos</h1>
+                    <span class="tagline">Hacer simple lo que parece difícil.</span>
                 </div>
             </a>
+            <div class="controles-accesibilidad">
+                <button class="btn-accesibilidad" title="Aumentar letra">A+</button>
+                <button class="btn-accesibilidad" title="Modo oscuro">🌓</button>
+            </div>
         </div>
+        
         <nav class="navegacion-principal">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="materiales.html" class="activo">Materiales</a></li>
+                <li id="nav-materiales"><a href="materiales.html" class="activo">Materiales</a></li>
                 <li><a href="sobre.html">Sobre el Proyecto</a></li>
                 <li id="item-login"><a href="login.html">Iniciar Sesión</a></li>
-                <li id="item-logout" style="display: none;"><a href="#" id="btn-cerrar-sesion">Cerrar Sesión</a></li>
+                <li id="item-logout" style="display:none;"><a href="#" id="btn-cerrar-sesion">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
 
-    <main style="max-width: 900px; margin: 40px auto; padding: 20px;">
-        <h2>Materiales Didácticos</h2>
-        <p>Compartí recursos y aprendé de los aportes de tus compañeros.</p>
+    <main class="contenedor-pagina upload-page-container">
+        
+        <!-- HERO / HEADER SECTION -->
+        <div class="upload-hero">
+            <span class="upload-badge">🚀 Comunidad TPT</span>
+            <h2>Aportá Material Educativo</h2>
+            <p>Compartí explicaciones, ejercicios o videos de YouTube para ayudar a tus compañeros. Todos los aportes son validados por docentes antes de publicarse.</p>
+        </div>
 
-        <!-- PANEL DE SUBIDA (Visible para TODOS) -->
-        <section id="seccion-subida" style="background: #f4f6f8; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #ddd;">
-            <h3>Aportar Nuevo Material</h3>
-            <form id="form-subir-material" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
-                <div>
-                    <label for="titulo" style="display:block; font-weight: bold; margin-bottom: 5px;">Título del material:</label>
-                    <input type="text" id="titulo" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+        <!-- MAIN FORM CARD -->
+        <div class="upload-card">
+            <form id="form-aportar-material" class="upload-form">
+                
+                <div class="form-group">
+                    <label for="titulo-material">
+                        <span>Título del Material</span>
+                        <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="titulo-material" placeholder="Ej: Explicación de Tablas de Verdad con Ejemplos" required>
                 </div>
 
-                <div>
-                    <label for="materia" style="display:block; font-weight: bold; margin-bottom: 5px;">Materia / Taller:</label>
-                    <select id="materia" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-                        <option value="">-- Seleccionar Materia --</option>
-                        <option value="Computación">Organización de las Computadoras</option>
-                        <option value="Computación">Logica Computacional</option>
-                        <option value="Computación">Laboratorio de Algoritmos y Estructuras</option>
-                        <option value="Computación">Administración de Base de Datos
-                        <option value="Computación">Redes</option>
-                        <option value="Computación">Admistracion y gestion de BBDD</option>
-                        <option value="Computación">Laboratorio de POO</option>
-                        <option value="Computación">Analisis de Sistemas</option>
-                        <option value="Computación">Programacion Sobre Redes</option>
-                        <option value="Computación">Administración y Gestión de Redes</option>
-                        <option value="Computación">Desarrollo de Sistemas</option>
+                <!-- DYNAMIC SELECTORS GRID -->
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="select-materia">
+                            <span>Materia / Taller</span>
+                            <span class="required-star">*</span>
+                        </label>
+                        <select id="select-materia" required>
+                            <option value="">-- Seleccionar Materia --</option>
+                            <option value="Lógica Computacional">Lógica Computacional</option>
+                            <option value="Organización de las Computadoras">Organización de las Computadoras</option>
+                            <option value="Laboratorio de Algoritmos">Laboratorio de Algoritmos y Estructuras</option>
+                        </select>
+                    </div>
 
-
-                    </select>
+                    <div class="form-group">
+                        <label for="select-modulo">
+                            <span>Módulo Específico</span>
+                            <span class="required-star">*</span>
+                        </label>
+                        <select id="select-modulo" required disabled>
+                            <option value="">-- Primero selecciona materia --</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div>
-                    <label for="tipo-recurso" style="display:block; font-weight: bold; margin-bottom: 5px;">Tipo de Recurso:</label>
-                    <select id="tipo-recurso" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-                        <option value="youtube">Enlace de YouTube</option>
-                    </select>
+                <!-- YOUTUBE URL & LIVE PREVIEW -->
+                <div class="form-group">
+                    <label for="url-youtube">
+                        <span>URL del Video de YouTube</span>
+                        <span class="required-star">*</span>
+                    </label>
+                    <div class="input-with-icon">
+                        <span class="input-icon">📺</span>
+                        <input type="url" id="url-youtube" placeholder="https://www.youtube.com/watch?v=..." required>
+                    </div>
                 </div>
 
-                <!-- Campo para Link de YouTube -->
-                <div id="campo-youtube" style="display: block;">
-                    <label for="input-youtube" style="display:block; font-weight: bold; margin-bottom: 5px;">URL del Video de YouTube:</label>
-                    <input type="url" id="input-youtube" placeholder="https://www.youtube.com/watch?v=..." required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+                <!-- LIVE PREVIEW CONTAINER -->
+                <div id="contenedor-preview-youtube" class="youtube-preview-box" style="display: none;">
+                    <div class="preview-header">
+                        <span>Vista previa del Video</span>
+                    </div>
+                    <div class="preview-iframe-wrapper">
+                        <iframe id="iframe-preview" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
 
-                <div>
-                    <label for="descripcion" style="display:block; font-weight: bold; margin-bottom: 5px;">Descripción breve (opcional):</label>
-                    <textarea id="descripcion" rows="3" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
+                <div class="form-group">
+                    <label for="descripcion-material">
+                        <span>Descripción breve o notas (Opcional)</span>
+                    </label>
+                    <textarea id="descripcion-material" rows="3" placeholder="Contanos brevemente qué se explica en este video o qué temas aborda..."></textarea>
                 </div>
 
-                <button type="submit" id="btn-guardar" style="padding: 10px 20px; background-color: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
-                    Enviar para Revisión
+                <button type="submit" id="btn-submit" class="btn-submit-upload">
+                    <span>Enviar para Revisión Docente</span>
+                    <span class="btn-icon">📩</span>
                 </button>
-                <div id="mensaje-estado" style="margin-top: 10px; font-weight: bold;"></div>
+
+                <div id="mensaje-estado-material" class="form-feedback-msg"></div>
             </form>
-        </section>
+        </div>
 
-        <!-- PANEL DE MODERACIÓN (Oculto, solo visible para Profesores y Admins a través de JS) -->
-        <section id="panel-moderacion" style="display: none; background: #fff3cd; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #ffe69c;">
-            <h3 style="color: #856404;">⚠️ Panel de Moderación (Materiales Pendientes)</h3>
-            <div id="contenedor-pendientes" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
-                <p>Cargando pendientes...</p>
-            </div>
-        </section>
-
-        <!-- SECCIÓN DE LISTADO DE MATERIALES APROBADOS -->
-        <section id="seccion-listado">
-            <h3>Materiales Aprobados</h3>
-            <div id="contenedor-materiales" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
-                <p>Cargando materiales...</p>
-            </div>
-        </section>
     </main>
 
     <footer class="pie-pagina">
-        <p><strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
     </footer>
 
     <script type="module" src="js/header.js"></script>

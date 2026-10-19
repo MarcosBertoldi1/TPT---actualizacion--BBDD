@@ -87,7 +87,7 @@
                     <p>Conceptos básicos y la importancia de esta disciplina como base para la programación y el funcionamiento de los sistemas informáticos.</p>
                 </div>
                 
-<div class="contenedor-feedback" style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; text-align: center;">
+                <div class="contenedor-feedback" style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; text-align: center;">
                     <div style="font-size: 1rem; font-weight: bold; margin-bottom: 15px;">📊 ¿Te sirvió este material?</div>
                     
                     <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
@@ -119,6 +119,21 @@
             </aside>
         </section>
 
+        <section style="margin-top: 40px; padding: 25px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <span style="font-size: 1.5rem; margin-right: 10px;">🌟</span>
+                <div>
+                    <h2 style="margin: 0; color: #0f172a; font-size: 1.4rem;">Material Adicional Aprobado</h2>
+                    <p style="margin: 5px 0 0 0; color: #64748b; font-size: 0.95rem;">Videos sugeridos por alumnos y publicados por los profesores para el módulo de <strong>Introducción</strong>.</p>
+                </div>
+            </div>
+            
+            <!-- EL CONTENEDOR MÁGICO: Aquí tu JS inyectará los videos -->
+            <div id="recursos-firebase-introduccion" style="display: flex; flex-direction: column; gap: 15px;">
+                <!-- Si no hay videos, se verá vacío hasta que el profe apruebe uno -->
+            </div>
+        </section>
+
     </main>
 
     <footer class="pie-pagina">
@@ -126,7 +141,8 @@
         <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
     </footer>
 
-<script src="../../../js/header.js"></script>
+    <script src="../../../js/header.js"></script>
     <script type="module" src="../../../js/js-materiales.js"></script>
+    <script type="module" src="../../../js/cargar-videos-modulos.js"></script>
 </body>
 </html>
