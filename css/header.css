@@ -46,7 +46,7 @@
 }
 
 .logo-texto-lineal h1 {
-    font-size: 2 rem; /* Título legible pero compacto */
+    font-size: 2rem; /* Título legible pero compacto */
     font-weight: 700;
     color: var(--color-texto-header, #0b3469);
     margin: 0;
@@ -181,7 +181,7 @@
 
     /* Achicamos la tipografía principal */
     .logo-texto-lineal h1 {
-        font-size: 2.2 rem; /* Antes era 3rem */
+        font-size: 2.2rem; /* Antes era 3rem */
     }
 
     .logo-texto-lineal .tagline {
@@ -219,29 +219,4 @@
     .navegacion-principal a {
         padding: 0.6rem 0; /* Hacemos que la franja blanca de los links sea más angosta */
     }
-
-
-/* ==========================================================================
-   EFECTO SCROLL EN MÓVIL (Se hace apenas más chato aún)
-   ========================================================================== */
-.encabezado-compacto .contenedor-header {
-    padding: 0.4rem 1rem;
-}
-.encabezado-compacto .logo-img-banner {
-    height: 40px;
-}
-.encabezado-compacto .logo-texto-lineal h1 {
-    font-size: 1.1rem;
-}
-
-/* NUEVO: Reduce el espacio entre botones en móviles al hacer scroll */
-.encabezado-compacto .controles-accesibilidad {
-    gap: 0.25rem; 
-}
-
-/* NUEVO: Achica los botones de accesibilidad (letra y relleno) en móviles */
-.encabezado-compacto .btn-accesibilidad {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.75rem;
-    border-radius: 4px; /* Un poquito menos redondeado para mantener la proporción */
 }

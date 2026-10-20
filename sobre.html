@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre el Proyecto | Tecnología para Todos</title>
 
-    <link rel="stylesheet" href="css/estilos-globales.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/sobre.css"> </head>
+    <link rel="stylesheet" href="css/sobre.css">
+</head>
 <body>
 
     <header class="encabezado-principal">
-        </header>
+        <div class="contenedor-header">
+            <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos</h1>
+                    <span class="tagline">Hacer simple lo que parece difícil.</span>
+                </div>
+            </a>
+            <div class="controles-accesibilidad">
+                <button class="btn-accesibilidad" title="Aumentar letra">A+</button>
+                <button class="btn-accesibilidad" title="Modo oscuro">🌓</button>
+            </div>
+        </div>
+
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li id="nav-materiales"><a href="materiales.html">Materiales</a></li>
+                <li><a href="sobre.html" class="activo">Sobre el Proyecto</a></li>
+                <li id="item-login"><a href="login.html">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main id="contenido-principal" class="pagina-sobre">
         
@@ -107,7 +130,7 @@
         </div>
     </main>
 
-    <footer class="pie-de-pagina">
+    <footer class="pie-pagina">
         <p>&copy; 2026 Tecnología para Todos - ET29. Validado por docentes.</p>
     </footer>
 
