@@ -30,6 +30,7 @@
     align-items: center;
     gap: 0.8rem;
     text-decoration: none;
+    min-width: 0; /* Permite que el texto se achique en vez de ensanchar la página */
 }
 
 .logo-img-banner {
@@ -43,10 +44,11 @@
 .logo-texto-lineal {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .logo-texto-lineal h1 {
-    font-size: 2rem; /* Título legible pero compacto */
+    font-size: clamp(1rem, 4.4vw, 2rem); /* Se adapta al ancho: legible pero sin desbordar en celulares */
     font-weight: 700;
     color: var(--color-texto-header, #0b3469);
     margin: 0;
