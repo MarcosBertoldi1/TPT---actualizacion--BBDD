@@ -613,3 +613,113 @@
 .saltar-contenido:focus {
     top: 0.5rem;
 }
+
+/* =============================================================
+   SECCIÓN DE COMENTARIOS (js/comentarios.js)
+   ============================================================= */
+.seccion-comentarios {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+}
+
+.seccion-comentarios [hidden] {
+    display: none !important;
+}
+
+.comentarios-aviso {
+    margin: 20px 0;
+    padding: 15px;
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+}
+
+.comentarios-form {
+    margin: 20px 0 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.comentarios-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.comentarios-texto {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: normal;
+    resize: vertical;
+}
+
+.comentarios-error {
+    margin: 0 0 10px;
+    color: #b91c1c;
+    font-size: 0.9rem;
+}
+
+.comentarios-btn {
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+.comentarios-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.comentario-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.comentario-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.comentario-autor {
+    color: #0056b3;
+    font-size: 1.05em;
+}
+
+.comentario-fecha {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.comentario-texto {
+    margin: 0;
+    color: #333;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.comentarios-vacio {
+    color: #666;
+    font-style: italic;
+}

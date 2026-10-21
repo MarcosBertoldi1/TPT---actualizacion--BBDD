@@ -87,22 +87,6 @@
                     <p>Analizaremos las diferencias prácticas entre cómo nos expresamos en el lenguaje natural y cómo se representa formalmente en el ámbito matemático y computacional.</p>
                 </div>
                 
-<div class="contenedor-feedback" style="margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; text-align: center;">
-                    <div style="font-size: 1rem; font-weight: bold; margin-bottom: 15px;">📊 Feedback: ¿Te sirvió este material?</div>
-                    
-                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <button style="background: #d4edda; color: #155724; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Entendí todo')">🚀 Entendí todo</button>
-                        <button style="background: #fff3cd; color: #856404; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="guardarFeedbackRapido('Me ayudó algo')">👍 Me ayudó algo</button>
-                        <button style="background: #f8d7da; color: #721c24; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;" onclick="document.getElementById('caja-dudas-general').style.display='block'">🔴 Sigo dudando</button>
-                    </div>
-
-                    <!-- Caja de dudas oculta -->
-                    <div id="caja-dudas-general" style="display: none; margin-top: 15px; text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px;">
-                        <label style="font-size: 0.9rem; font-weight: bold;">¿Qué concepto no te quedó claro? Dejalo acá:</label>
-                        <textarea id="texto-duda" rows="3" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-top: 8px; resize: vertical;" placeholder="Escribí tu duda puntual para que los profes la revisen..."></textarea>
-                        <button style="background: #0056b3; color: white; padding: 8px 15px; border: none; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: bold;" onclick="enviarDudaProfe()">Enviar duda</button>
-                    </div>
-                </div>
                 <!-- 👆👆👆 FIN DEL BLOQUE DE FEEDBACK 👆👆👆 -->
 
                 <div class="tarjeta-info">
@@ -132,18 +116,12 @@
                 </div>
             </div>
             
-            <!-- CÓDIGO DE PADLET -->
-            <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
-                <p style="padding:0;margin:0">
-                    <iframe src="https://padlet.com/embed/q906n47llp19svpy" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe>
-                </p>
-            </div>
-            <!-- FIN DEL CÓDIGO DE PADLET -->
             
         </section>
         <!-- FIN SECCIÓN COMUNIDAD -->
 
 
+    <section class="seccion-comentarios" data-pagina-id="comparacion"></section>
     </main>
 
     <footer class="pie-pagina">
@@ -153,5 +131,6 @@
 
 <script src="../../../js/header.js"></script>
     <script type="module" src="../../../js/js-materiales.js"></script>
+    <script type="module" src="../../../js/comentarios.js"></script>
 </body>
 </html>
