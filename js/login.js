@@ -11,10 +11,10 @@ async function verificarRolYRedirigir(user) {
 
     // AQUÍ COLOCAS LOS CORREOS QUE QUIERES QUE SEAN PROFESORES
     const correosProfesores = [
-        'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
-        'pepito@tecnica29de6.edu.ar',
-        'UPruebaDocente@gmail.com'
-    ];
+    'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
+    'pepito@tecnica29de6.edu.ar',
+    'upruebadocente@gmail.com' 
+];
 
     if (correosProfesores.includes(email)) {
         // ES PROFESOR
