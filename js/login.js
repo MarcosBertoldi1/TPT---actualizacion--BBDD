@@ -7,30 +7,32 @@ const mensajeError = document.getElementById('mensaje-error');
 
 // --- FUNCIÓN PARA VERIFICAR EL ROL Y REDIRIGIR ---
 async function verificarRolYRedirigir(user) {
-    // Aseguramos que el email del usuario esté en minúsculas y sin espacios ocultos
-    const email = user.email ? user.email.trim().toLowerCase() : ''; 
+    // Obtenemos el correo ingresado, quitándole los espacios extra por si acaso
+    const emailIngresado = user.email ? user.email.trim() : ''; 
 
-    // AQUÍ COLOCAS LOS CORREOS QUE QUIERES QUE SEAN PROFESORES
+    // AQUÍ COLOCAS LOS CORREOS EXACTAMENTE COMO LOS QUIERES (Con mayúsculas si quieres)
     const correosProfesores = [
         'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
         'pepito@tecnica29de6.edu.ar',
-        'upruebadocente@gmail.com'
+        'UPruebaDocente@gmail.com' // <-- Tu correo con mayúsculas
     ];
 
-    // Comprobación segura (ignora si escribiste mayúsculas o dejaste espacios en el arreglo)
-    const esProfesor = correosProfesores.some(correo => correo.trim().toLowerCase() === email);
+    // Esta línea compara el correo ingresado con tu lista (convirtiendo ambos a minúsculas solo temporalmente para evitar fallos técnicos)
+    const esProfesor = correosProfesores.some(correo => 
+        correo.toLowerCase() === emailIngresado.toLowerCase()
+    );
 
     if (esProfesor) {
         // ES PROFESOR
         localStorage.setItem('rolUsuario', 'profesor'); 
         alert(`¡Bienvenido/a Profesor/a!`);
     } else {
-        // ES ALUMNO (Cualquier otro correo que no esté en la lista)
+        // ES ALUMNO 
         localStorage.setItem('rolUsuario', 'alumno'); 
         alert(`¡Bienvenido/a Alumno/a!`);
     }
 
-    // Redirección dinámica según el entorno (GitHub Pages o Localhost)
+    // Redirección
     const esGitHub = window.location.hostname.includes('github.io');
     const repoNombre = 'TPT---actualizacion--BBDD'; 
     
