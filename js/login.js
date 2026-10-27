@@ -13,7 +13,7 @@ async function verificarRolYRedirigir(user) {
     const correosProfesores = [
         'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
         'pepito@tecnica29de6.edu.ar',
-        'upruebadocente@gmail.com'
+        'UPruebaDocente@gmail.com'
     ];
 
     if (correosProfesores.includes(email)) {
