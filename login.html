@@ -58,6 +58,35 @@
         .btn-registrar { background: #28a745; color: white; }
         .mensaje-error { color: #dc3545; font-weight: bold; margin-top: 10px; text-align: center; font-size: 0.9rem; min-height: 20px;}
         .texto-cambio { text-align: center; margin-top: 20px; font-size: 0.95rem; }
+        /* Campo de contraseña con botón "ojo" (funciona en celular y compu) */
+        .grupo-input .campo-password { position: relative; }
+        .grupo-input .campo-password input { padding-right: 48px; }
+        /* Oculta el ojito nativo de Edge para no mostrar dos */
+        .grupo-input .campo-password input::-ms-reveal,
+        .grupo-input .campo-password input::-ms-clear { display: none; }
+        .btn-ver-password {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 44px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: none;
+            background: none;
+            color: #555;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            -webkit-tap-highlight-color: transparent; /* sin recuadro celeste al tocar en celular */
+        }
+        .btn-ver-password:hover { color: #0056b3; }
+        .btn-ver-password:focus-visible { outline: 2px solid #0056b3; outline-offset: -2px; }
+        .btn-ver-password svg { width: 22px; height: 22px; display: block; }
+        .btn-ver-password .ojo-tachado { display: none; }
+        .btn-ver-password[aria-pressed="true"] .ojo-normal { display: none; }
+        .btn-ver-password[aria-pressed="true"] .ojo-tachado { display: block; }
         .btn-enlace { background: none; border: none; color: #0056b3; font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; font-size: 0.95rem; }
     </style>
 </head>
@@ -95,7 +124,13 @@
                     </div>
                     <div class="grupo-input">
                         <label for="password">Contraseña</label>
-                        <input type="password" id="password" required>
+                        <div class="campo-password">
+                            <input type="password" id="password" required>
+                            <button type="button" class="btn-ver-password" data-target="password" aria-label="Mostrar contraseña" aria-pressed="false">
+                            <svg class="ojo-normal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg class="ojo-tachado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94"></path><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19"></path><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                     <button type="submit" class="btn-full btn-ingresar">Ingresar</button>
                     <div id="mensaje-error" class="mensaje-error"></div>
@@ -118,7 +153,13 @@
                     </div>
                     <div class="grupo-input">
                         <label for="password-registro">Contraseña (Mín. 6 caracteres)</label>
-                        <input type="password" id="password-registro" required>
+                        <div class="campo-password">
+                            <input type="password" id="password-registro" required>
+                            <button type="button" class="btn-ver-password" data-target="password-registro" aria-label="Mostrar contraseña" aria-pressed="false">
+                            <svg class="ojo-normal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <svg class="ojo-tachado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 19c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94"></path><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19"></path><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                            </button>
+                        </div>
                     </div>
                     <button type="submit" class="btn-full btn-registrar">Registrarme</button>
                     <div id="mensaje-error-registro" class="mensaje-error"></div>
@@ -136,6 +177,21 @@
     <footer class="pie-pagina" style="margin-top: 50px;">
         <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
     </footer>
+
+    <!-- MOSTRAR / OCULTAR CONTRASEÑA -->
+    <script>
+        document.querySelectorAll('.btn-ver-password').forEach(function (btn) {
+            // Evita que el celular cierre el teclado al tocar el ojo
+            btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+            btn.addEventListener('click', function () {
+                var input = document.getElementById(btn.getAttribute('data-target'));
+                var mostrar = input.type === 'password';
+                input.type = mostrar ? 'text' : 'password';
+                btn.setAttribute('aria-pressed', mostrar ? 'true' : 'false');
+                btn.setAttribute('aria-label', mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña');
+            });
+        });
+    </script>
 
     <!-- SCRIPT DE AUTENTICACIÓN -->
     <script type="module">
