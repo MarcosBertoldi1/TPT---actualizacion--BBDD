@@ -18,7 +18,7 @@ async function verificarRolYRedirigir(user) {
         // ES ADMINISTRADOR
         localStorage.setItem('rolUsuario', 'admin'); 
         alert(`¡Bienvenido/a Administrador/a!`);
-    } else if (email.endsWith('@tecnica29de6.edu.ar')) {
+    } else if (email.endsWith('@tecnica29de6.edu.ar') || email === 'upruebadocente@gmail.com') {
         // ES PROFESOR
         localStorage.setItem('rolUsuario', 'profesor'); 
         alert(`¡Bienvenido/a Profesor/a!`);
