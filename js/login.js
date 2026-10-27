@@ -7,21 +7,25 @@ const mensajeError = document.getElementById('mensaje-error');
 
 // --- FUNCIÓN PARA VERIFICAR EL ROL Y REDIRIGIR ---
 async function verificarRolYRedirigir(user) {
-    const email = user.email.toLowerCase(); 
+    // Aseguramos que el email del usuario esté en minúsculas y sin espacios ocultos
+    const email = user.email ? user.email.trim().toLowerCase() : ''; 
 
     // AQUÍ COLOCAS LOS CORREOS QUE QUIERES QUE SEAN PROFESORES
     const correosProfesores = [
-    'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
-    'pepito@tecnica29de6.edu.ar',
-    'upruebadocente@gmail.com' 
-];
+        'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
+        'pepito@tecnica29de6.edu.ar',
+        'upruebadocente@gmail.com'
+    ];
 
-    if (correosProfesores.includes(email)) {
+    // Comprobación segura (ignora si escribiste mayúsculas o dejaste espacios en el arreglo)
+    const esProfesor = correosProfesores.some(correo => correo.trim().toLowerCase() === email);
+
+    if (esProfesor) {
         // ES PROFESOR
         localStorage.setItem('rolUsuario', 'profesor'); 
         alert(`¡Bienvenido/a Profesor/a!`);
     } else {
-        // ES ALUMNO (Cualquier otro correo que no esté en la lista de arriba)
+        // ES ALUMNO (Cualquier otro correo que no esté en la lista)
         localStorage.setItem('rolUsuario', 'alumno'); 
         alert(`¡Bienvenido/a Alumno/a!`);
     }
