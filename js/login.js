@@ -9,28 +9,26 @@ const mensajeError = document.getElementById('mensaje-error');
 async function verificarRolYRedirigir(user) {
     const email = user.email.toLowerCase(); 
 
-    const correosAdmin = [
-        'marcos.bertoldi.945@alutecnica29de6.edu.ar', 
-        'agustin.meza.779@alutecnica29de6.edu.ar'
+    // AQUÍ COLOCAS LOS CORREOS QUE QUIERES QUE SEAN PROFESORES
+    const correosProfesores = [
+        'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
+        'pepito@tecnica29de6.edu.ar',
+        'upruebadocente@gmail.com'
     ];
 
-    if (correosAdmin.includes(email)) {
-        // ES ADMINISTRADOR
-        localStorage.setItem('rolUsuario', 'admin'); 
-        alert(`¡Bienvenido/a Administrador/a!`);
-    } else if (email.endsWith('@tecnica29de6.edu.ar') || email === 'upruebadocente@gmail.com') {
+    if (correosProfesores.includes(email)) {
         // ES PROFESOR
         localStorage.setItem('rolUsuario', 'profesor'); 
         alert(`¡Bienvenido/a Profesor/a!`);
     } else {
-        // ES ALUMNO
+        // ES ALUMNO (Cualquier otro correo que no esté en la lista de arriba)
         localStorage.setItem('rolUsuario', 'alumno'); 
         alert(`¡Bienvenido/a Alumno/a!`);
     }
 
     // Redirección dinámica según el entorno (GitHub Pages o Localhost)
     const esGitHub = window.location.hostname.includes('github.io');
-    const repoNombre = 'TPT---actualizacion--BBDD';
+    const repoNombre = 'TPT---actualizacion--BBDD'; 
     
     window.location.href = esGitHub 
         ? `/${repoNombre}/index.html` 
