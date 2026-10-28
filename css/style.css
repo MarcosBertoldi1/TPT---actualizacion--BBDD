@@ -1,49 +1,57 @@
 /* ==========================================================================
    VARIABLES GLOBALES Y TEMAS (Día / Noche)
    ========================================================================== */
+/* ==========================================================================
+   PALETA: #c0e6fd  #80aad3  #5b86b6  #3f6593  #1b3554  #000f22
+   ========================================================================== */
 :root {
-    /* Paleta base principal */
-    --color-primario: #0056b3; 
-    --color-primario-oscuro: #004085;
-    --color-primario-hover: #003d82;
-    
-    /* Variables para el fondo general (TEMA CLARO - DEFECTO) */
-    --color-fondo: white; /* Celeste muy suave para toda la página */
-    --color-texto: #333333;
-    --color-texto-suave: #666666;
-    
-    /* Grises para fondos y bordes */
-    --color-gris-claro: #ffffff; /* Tarjetas blancas sobre el fondo celeste */
-    --color-borde: #e0e4e8;
-    
-    /* Variables ESPECÍFICAS para el Banner/Header */
-    --color-fondo-header: #e6f2ff; /* Celeste clarito del banner */
-    --color-texto-header: #0c2340; /* Azul marino oscuro para contrastar */
-    --color-texto-sub-header: #4a5568; 
-    --color-acento-header: #0056b3;
-    --color-borde-menu: #d2e6ff;
-    
+    /* Color principal (texto blanco encima: contraste 6:1) */
+    --color-primario: #3f6593;
+    --color-primario-oscuro: #1b3554;
+    --color-primario-hover: #1b3554;
+    --color-texto-sobre-primario: #ffffff;
+
+    /* Fondo y textos (TEMA CLARO - DEFECTO) */
+    --color-fondo: #ffffff;
+    --color-texto: #000f22;
+    --color-texto-suave: #3f6593;
+
+    /* Tarjetas y bordes */
+    --color-gris-claro: #ffffff;
+    --color-borde: #80aad3;
+
+    /* Banner / Header */
+    --color-fondo-header: #e6f5fe;      /* #c0e6fd al 40% sobre blanco */
+    --color-texto-header: #1b3554;
+    --color-texto-sub-header: #3f6593;
+    --color-acento-header: #3f6593;
+    --color-borde-menu: #c0e6fd;
+
     --fuente-base: 16px;
     --fuente-principal: 'Segoe UI', system-ui, sans-serif;
 }
 
 /* ==========================================================================
-   TEMA OSCURO (Se activa con JavaScript)
+   TEMA OSCURO (se activa desde js/header.js: <html data-tema="oscuro">)
    ========================================================================== */
 [data-tema="oscuro"] {
-    --color-fondo: #121212; 
-    --color-texto: #f0f0f0;
-    --color-texto-suave: #a0a0a0;
-    
-    --color-gris-claro: #1e1e1e; /* Tarjetas en gris oscuro */
-    --color-borde: #333333;
-    
-    /* Colores oscuros para el Banner */
-    --color-fondo-header: #1e293b; /* Azul pizarra oscuro */
-    --color-texto-header: #93c5fd; /* Celeste brillante */
-    --color-texto-sub-header: #cbd5e1;
-    --color-acento-header: #60a5fa;
-    --color-borde-menu: #334155;
+    --color-primario: #80aad3;
+    --color-primario-oscuro: #c0e6fd;
+    --color-primario-hover: #c0e6fd;
+    --color-texto-sobre-primario: #000f22;   /* texto oscuro sobre el primario claro */
+
+    --color-fondo: #000f22;
+    --color-texto: #c0e6fd;
+    --color-texto-suave: #80aad3;
+
+    --color-gris-claro: #1b3554;
+    --color-borde: #3f6593;
+
+    --color-fondo-header: #1b3554;
+    --color-texto-header: #c0e6fd;
+    --color-texto-sub-header: #80aad3;
+    --color-acento-header: #80aad3;
+    --color-borde-menu: #3f6593;
 }
 
 /* ==========================================================================
@@ -272,7 +280,7 @@ body {
 
 .btn-primario {
     background-color: var(--color-primario);
-    color: white;
+    color: var(--color-texto-sobre-primario);
 }
 
 .btn-primario:hover {
@@ -321,7 +329,7 @@ body {
 .pildora-atajo:hover, 
 .pildora-atajo:active {
     background-color: var(--color-primario);
-    color: white;
+    color: var(--color-texto-sobre-primario);
     border-color: var(--color-primario);
 }
 
@@ -392,7 +400,7 @@ body {
    FOOTER
    ========================================================================== */
 .pie-pagina {
-    background-color: var(--color-gris-claro);
+    background-color: var(--color-fondo-header);
     padding: 2rem 1rem;
     text-align: center;
     font-size: 0.9rem;
@@ -452,14 +460,14 @@ body {
 .contenedor-feedback {
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed var(--color-borde);
     text-align: center;
 }
 
 .titulo-feedback {
     font-size: 0.9rem;
     font-weight: bold;
-    color: #333;
+    color: var(--color-texto);
     margin-bottom: 10px;
 }
 
@@ -494,15 +502,15 @@ body {
 .caja-dudas textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-borde);
     border-radius: 4px;
     font-family: inherit;
     resize: vertical;
 }
 
 .btn-enviar-duda {
-    background: #0056b3;
-    color: white;
+    background: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
     padding: 6px 12px;
     border: none;
     border-radius: 4px;
@@ -510,4 +518,41 @@ body {
     cursor: pointer;
     font-size: 0.85rem;
 }
+}
+
+
+/* ==========================================================================
+   PIE DE PÁGINA SIEMPRE ABAJO (aunque la página tenga poco contenido)
+   ========================================================================== */
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+body > main {
+    flex: 1 0 auto;
+}
+
+
+/* ==========================================================================
+   ÍCONOS VECTORIALES (reemplazan a los emojis)
+   Se dibujan con el tamaño y el color del texto que los rodea.
+   ========================================================================== */
+.ico {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    vertical-align: -0.15em;
+    flex-shrink: 0;
+}
+
+.icono .ico {
+    color: var(--color-primario);
+}
+
+.tarjeta-materia.bloqueada .ico {
+    color: var(--color-texto-suave);
 }

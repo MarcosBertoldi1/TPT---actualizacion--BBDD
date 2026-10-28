@@ -1,3 +1,7 @@
+/* Color de la "mancha" detrás de las ilustraciones */
+:root { --ilus-fondo: #c0e6fd; }
+[data-tema="oscuro"] { --ilus-fondo: #2b5078; }
+
 /* ==========================================================================
    BOTÓN VOLVER
    ========================================================================== */
@@ -12,11 +16,11 @@
     align-items: center;
     gap: 0.5rem; /* Espacio entre la flecha y el texto */
     text-decoration: none;
-    color: var(--color-texto-header, #0b3469);
+    color: var(--color-texto-header);
     font-weight: 600;
     font-size: 0.95rem;
     padding: 0.5rem 1rem;
-    border: 2px solid var(--color-texto-header, #0b3469);
+    border: 2px solid var(--color-texto-header);
     border-radius: 6px;
     background-color: transparent;
     transition: all 0.2s ease-in-out;
@@ -26,24 +30,23 @@
     transition: transform 0.2s ease-in-out;
 }
 
-/* Efecto Hover: Al pasar el mouse, se pinta de azul y la flecha se mueve a la izquierda */
+/* Hover: se rellena y la flecha se mueve a la izquierda */
 .btn-volver:hover {
-    background-color: var(--color-texto-header, #0b3469);
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(11, 52, 105, 0.15);
+    background-color: var(--color-texto-header);
+    color: var(--color-fondo-header);
+    box-shadow: 0 4px 12px rgba(27, 53, 84, 0.15);
 }
 
 .btn-volver:hover svg {
-    transform: translateX(-3px); /* Desplaza la flechita levemente imitando el sentido de volver */
+    transform: translateX(-3px);
 }
 
 /* ==========================================================================
    ESTILOS DE LA PÁGINA "SOBRE EL PROYECTO"
    ========================================================================== */
-
 .pagina-sobre {
     padding: 3rem 1.5rem;
-    color: var(--color-texto, #333);
+    color: var(--color-texto);
 }
 
 .contenedor-ancho {
@@ -59,23 +62,25 @@
 
 .encabezado-seccion h2 {
     font-size: 2.5rem;
-    color: var(--color-texto-header, #0b3469);
+    color: var(--color-texto-header);
     margin-bottom: 0.5rem;
 }
 
 .subtitulo {
     font-size: 1.2rem;
-    color: #555;
+    color: var(--color-texto-suave);
     font-weight: 500;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* =========================================
-   CONTENEDOR DE VIDEO RESPONSIVE
+   VIDEO RESPONSIVE
 ========================================= */
 .seccion-video {
     margin-bottom: 4rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 15, 34, 0.15);
+    border-radius: 16px;
     overflow: hidden;
     background: #000;
 }
@@ -98,28 +103,69 @@
 }
 
 /* =========================================
-   HISTORIA
+   HISTORIA: ilustración + línea de tiempo con íconos
 ========================================= */
 .seccion-historia {
-    background-color: #f9fbfd;
+    background-color: var(--color-gris-claro);
     padding: 2.5rem;
-    border-radius: 12px;
-    border-left: 5px solid var(--color-texto-header, #0b3469);
+    border: 1px solid var(--color-borde);
+    border-radius: 16px;
     margin-bottom: 4rem;
+}
+
+.historia-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.3fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.historia-ilustracion {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .seccion-historia h3, .seccion-equipo h3 {
     font-size: 1.8rem;
-    color: var(--color-texto-header, #0b3469);
+    color: var(--color-texto-header);
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid #e0e0e0;
+    border-bottom: 2px solid var(--color-borde);
     padding-bottom: 0.5rem;
 }
 
-.seccion-historia p {
-    font-size: 1.1rem;
+.historia-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.historia-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.historia-icono {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--color-fondo-header);
+    border: 1px solid var(--color-borde);
+    color: var(--color-primario);
+}
+
+.historia-icono svg { width: 24px; height: 24px; }
+
+.historia-item p {
+    font-size: 1.05rem;
     line-height: 1.7;
-    margin-bottom: 1rem;
+    margin: 0.35rem 0 0;
+    max-width: none;
 }
 
 /* =========================================
@@ -139,34 +185,49 @@
 }
 
 .tarjeta-equipo {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    background: var(--color-gris-claro);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
     padding: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tarjeta-equipo:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 20px rgba(0, 15, 34, 0.12);
 }
 
+.equipo-icono {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1rem;
+    border-radius: 14px;
+    background-color: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
+}
+
+.equipo-icono svg { width: 28px; height: 28px; }
+
 .tarjeta-equipo h4 {
-    color: #333;
+    color: var(--color-texto);
     font-size: 1.2rem;
     margin: 0 0 0.5rem 0;
 }
 
 .etiqueta {
     display: inline-block;
-    background-color: #eaf3fc;
-    color: var(--color-texto-header, #0b3469);
+    background-color: var(--color-fondo-header);
+    color: var(--color-texto-header);
     font-size: 0.85rem;
     font-weight: 600;
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
     margin-bottom: 1rem;
 }
+
+.historia-item .etiqueta { margin-bottom: 0; }
 
 .tarjeta-equipo ul {
     list-style-type: none;
@@ -178,19 +239,25 @@
     font-size: 1.05rem;
     font-weight: 500;
     margin-bottom: 0.4rem;
-    color: #444;
+    color: var(--color-texto);
 }
 
 .tarjeta-equipo small {
-    color: #777;
+    color: var(--color-texto-suave);
     font-weight: normal;
 }
 
 .descripcion-rol {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--color-texto-suave);
     line-height: 1.5;
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed var(--color-borde);
     padding-top: 1rem;
     margin: 0;
+}
+
+@media (max-width: 800px) {
+    .historia-grid { grid-template-columns: 1fr; }
+    .historia-visual { max-width: 380px; margin: 0 auto; }
+    .seccion-historia { padding: 1.5rem; }
 }

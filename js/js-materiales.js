@@ -131,7 +131,7 @@ if (form) {
             selectModulo.disabled = true;
             selectModulo.innerHTML = '<option value="">-- Primero selecciona materia --</option>';
 
-            mensajeEstado.textContent = '🎉 ¡Gracias por tu aporte! Tu contenido fue enviado y será revisado por un profesor antes de publicarse.';
+            mensajeEstado.textContent = '¡Gracias por tu aporte! Tu contenido fue enviado y será revisado por un profesor antes de publicarse.';
             mensajeEstado.style.color = '#10b981';
 
             setTimeout(() => {

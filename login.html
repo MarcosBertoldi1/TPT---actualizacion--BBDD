@@ -15,10 +15,10 @@
             margin-top: 40px;
         }
         .caja-form {
-            background: #f8f9fa;
+            background: var(--color-gris-claro);
             padding: 30px;
             border-radius: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--color-borde);
             width: 100%;
             max-width: 400px;
         }
@@ -39,7 +39,7 @@
         .grupo-input input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-borde);
             border-radius: 4px;
             box-sizing: border-box;
         }
@@ -53,7 +53,7 @@
             border: none;
             font-weight: bold;
         }
-        .btn-ingresar { background: #0056b3; color: white; }
+        .btn-ingresar { background: var(--color-primario); color: var(--color-texto-sobre-primario); }
         .btn-google-style { background: #db4437; color: white; margin-top: 15px; }
         .btn-registrar { background: #28a745; color: white; }
         .mensaje-error { color: #dc3545; font-weight: bold; margin-top: 10px; text-align: center; font-size: 0.9rem; min-height: 20px;}
@@ -76,18 +76,20 @@
             padding: 0;
             border: none;
             background: none;
-            color: #555;
+            color: var(--color-texto-suave);
             cursor: pointer;
             border-radius: 0 4px 4px 0;
             -webkit-tap-highlight-color: transparent; /* sin recuadro celeste al tocar en celular */
         }
-        .btn-ver-password:hover { color: #0056b3; }
-        .btn-ver-password:focus-visible { outline: 2px solid #0056b3; outline-offset: -2px; }
+        .btn-ver-password:hover { color: var(--color-primario); }
+        .btn-ver-password:focus-visible { outline: 2px solid var(--color-primario); outline-offset: -2px; }
         .btn-ver-password svg { width: 22px; height: 22px; display: block; }
         .btn-ver-password .ojo-tachado { display: none; }
         .btn-ver-password[aria-pressed="true"] .ojo-normal { display: none; }
         .btn-ver-password[aria-pressed="true"] .ojo-tachado { display: block; }
-        .btn-enlace { background: none; border: none; color: #0056b3; font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; font-size: 0.95rem; }
+        .btn-enlace { background: none; border: none; color: var(--color-primario); font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; font-size: 0.95rem; }
+        .caja-form label { color: var(--color-texto); }
+        .grupo-input input { background: var(--color-fondo); color: var(--color-texto); }
     </style>
 </head>
 <body>
@@ -97,15 +99,20 @@
             <a href="index.html" class="logo-banner">
                 <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
-                    <h1>Tecnología para todos</h1>
-                    <span class="tagline">Hacer simple lo que parece difícil.</span>
+                    <h1>Tecnología para todos<span class="h1-sep"> - </span><span class="h1-escuela">ET N° 29 D.E. 6</span></h1>
                 </div>
             </a>
+            <div class="controles-accesibilidad">
+                <button class="btn-accesibilidad" id="btnLetra" type="button" aria-label="Cambiar tamaño de letra" title="Cambiar tamaño de letra">A+</button>
+                <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Modo oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
+            </div>
         </div>
-        <nav class="navegacion-principal">
+        <nav class="navegacion-principal" aria-label="Navegación principal">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
+                <li id="nav-materiales"><a href="materiales.html">Materiales</a></li>
                 <li><a href="sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login"><a href="login.html" class="activo" aria-current="page">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -211,5 +218,6 @@
 
     <!-- AUTENTICACIÓN Y ROLES (toda la lógica está en js/login.js) -->
     <script type="module" src="js/login.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>

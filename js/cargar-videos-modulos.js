@@ -43,7 +43,7 @@ async function cargarVideosDelModulo(nombreMateria, nombreModulo) {
                     <p style="margin: 0; color: #64748b; font-size: 0.9rem;">${data.descripcion}</p>
                     <small style="color: #94a3b8; display: block; margin-top: 5px;">Aportado por: ${data.subidoPor}</small>
                 </div>
-                <div style="color: #cbd5e1;">❯</div>
+                <div style="color: #cbd5e1;"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
             `;
             
             // Efecto Hover simple por JS (si ya tienes una clase CSS en tu proyecto para esto, úsala en vez de style)

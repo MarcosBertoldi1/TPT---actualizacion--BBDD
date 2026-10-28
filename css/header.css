@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .encabezado-principal {
-    background-color: var(--color-fondo-header, #eaf3fc);
+    background-color: var(--color-fondo-header, #e6f5fe);
     width: 100%;
     margin: 0;
     padding: 0;
@@ -50,7 +50,7 @@
 .logo-texto-lineal h1 {
     font-size: clamp(1rem, 4.4vw, 2rem); /* Se adapta al ancho: legible pero sin desbordar en celulares */
     font-weight: 700;
-    color: var(--color-texto-header, #0b3469);
+    color: var(--color-texto-header, #1b3554);
     margin: 0;
     line-height: 1.1;
     transition: font-size 0.3s ease;
@@ -69,19 +69,19 @@
 }
 
 .btn-accesibilidad {
-    background: var(--color-gris-claro, #f0f0f0);
-    border: 1px solid var(--color-borde, #ccc);
+    background: var(--color-gris-claro, #ffffff);
+    border: 1px solid var(--color-borde, #80aad3);
     border-radius: 6px;
     padding: 0.3rem 0.5rem;
     cursor: pointer;
     font-size: 0.9rem;
-    color: var(--color-texto, #333);
+    color: var(--color-texto, #000f22);
 }
 
 /* Menú de navegación en móvil (Scroll horizontal si no entran los links) */
 .navegacion-principal {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: var(--color-fondo);
+    border-bottom: 1px solid var(--color-borde-menu);
     padding: 0 1rem;
     overflow-x: auto; 
     white-space: nowrap;
@@ -97,7 +97,7 @@
 
 .navegacion-principal a {
     text-decoration: none;
-    color: #666;
+    color: var(--color-texto-suave);
     font-size: 0.95rem;
     font-weight: 600;
     padding: 0.8rem 0; /* Relleno original en móvil */
@@ -108,8 +108,8 @@
 
 .navegacion-principal a:hover,
 .navegacion-principal a.activo {
-    color: var(--color-texto-header, #0b3469);
-    border-bottom: 3px solid var(--color-texto-header, #0b3469);
+    color: var(--color-texto-header, #1b3554);
+    border-bottom: 3px solid var(--color-texto-header, #1b3554);
 }
 
 .logo-texto-lineal h1,
@@ -172,18 +172,18 @@
     /* Ajustamos el contenedor para que tenga menos relleno (padding) arriba y abajo */
     .contenedor-header {
         position: relative;
-        justify-content: center; 
-        padding: 1rem 2rem 1.2rem; /* Antes era 1.8rem, ahora es más finito */
+        justify-content: space-between;   /* logo a la izquierda, controles a la derecha */
+        padding: 0.8rem 2rem;
     }
 
     /* Achicamos un poco el logo base */
     .logo-img-banner {
-        height: 85px; /* Antes era 120px */
+        height: 72px;
     }
 
     /* Achicamos la tipografía principal */
     .logo-texto-lineal h1 {
-        font-size: 2.2rem; /* Antes era 3rem */
+        font-size: 1.9rem;
     }
 
     .logo-texto-lineal .tagline {
@@ -204,7 +204,7 @@
     }
 
     .navegacion-principal {
-        padding: 0 4rem;
+        padding: 0 2rem;
     }
 
     .navegacion-principal a {
@@ -214,11 +214,117 @@
 
     .contenedor-header {
         /* Agregá estas dos líneas a tu .contenedor-header */
-        max-width: 1200px; /* O el ancho que estés usando en tu contenedor-ancho principal */
-        margin: 0 auto;    /* Centra el contenedor si la pantalla es más grande que 1200px */
+        max-width: none;   /* el header ocupa todo el ancho, como en el mockup */
+        margin: 0;
     }
 
     .navegacion-principal a {
         padding: 0.6rem 0; /* Hacemos que la franja blanca de los links sea más angosta */
     }
+}
+
+
+/* ==========================================================================
+   CABECERA: nombre completo y controles
+   ========================================================================== */
+/* Los controles ya no flotan (antes eran "absolute" desde style.css): quedan a la derecha del flex */
+.controles-accesibilidad {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+/* El título puede partirse en dos líneas en lugar de cortarse con "..." */
+.logo-texto-lineal h1 {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+.h1-escuela { font-weight: 600; }
+
+/* Celulares: "Tecnología para todos" arriba y "ET N° 29 D.E. 6" abajo, más chico */
+@media (max-width: 600px) {
+    .h1-sep { display: none; }
+    .h1-escuela { display: block; font-size: 0.72em; line-height: 1.2; }
+    .encabezado-compacto .h1-escuela { display: none; }
+}
+
+/* ==========================================================================
+   BOTÓN A+ (tamaño de letra)
+   ========================================================================== */
+.btn-accesibilidad {
+    font-weight: 700;
+    line-height: 1;
+    min-width: 40px;
+    height: 34px;
+}
+.btn-accesibilidad:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+}
+/* Se resalta cuando la letra está agrandada */
+.btn-accesibilidad[data-nivel]:not([data-nivel="0"]) {
+    background: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
+    border-color: var(--color-primario);
+}
+
+/* ==========================================================================
+   INTERRUPTOR DE MODO OSCURO (luna / sol vectoriales)
+   ========================================================================== */
+.interruptor-tema {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 68px;
+    height: 34px;
+    padding: 0 5px;
+    cursor: pointer;
+    background: transparent;
+    border: 1.5px solid var(--color-texto-header);
+    border-radius: 999px;
+}
+
+.interruptor-icono {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+}
+.interruptor-icono svg { width: 15px; height: 15px; }
+
+.interruptor-perilla {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    border-radius: 50%;
+    background: #fdf3c9;                 /* modo claro: perilla crema sobre el sol */
+    transition: transform 0.25s ease, background-color 0.25s ease;
+    transform: translateX(31px);
+}
+
+.interruptor-luna { color: var(--color-texto-header); }
+.interruptor-sol  { color: #b45309; }
+
+[data-tema="oscuro"] .interruptor-perilla { transform: translateX(0); background: #3f6593; }
+[data-tema="oscuro"] .interruptor-luna { color: #c0e6fd; }
+[data-tema="oscuro"] .interruptor-sol  { color: #80aad3; }
+
+.interruptor-tema:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 3px;
+}
+
+/* Header compacto en celular al hacer scroll */
+.encabezado-compacto .interruptor-tema {
+    transform: scale(0.85);
+    transform-origin: right center;
 }

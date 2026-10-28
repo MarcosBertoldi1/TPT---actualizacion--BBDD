@@ -11,18 +11,18 @@
 
 .dashboard-header {
     margin-bottom: 30px;
-    border-bottom: 2px solid #eaeaea;
+    border-bottom: 2px solid var(--color-borde);
     padding-bottom: 15px;
 }
 
 .dashboard-header h2 {
     font-size: 2rem;
-    color: #2c3e50;
+    color: var(--color-texto);
     margin-bottom: 5px;
 }
 
 .dashboard-header p {
-    color: #666;
+    color: var(--color-texto-suave);
     font-size: 1.1rem;
 }
 
@@ -34,29 +34,29 @@
 
 /* Tarjetas Base */
 .dashboard-card {
-    background: #ffffff;
+    background: var(--color-gris-claro);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid #eef2f5;
+    border: 1px solid var(--color-borde);
     overflow: hidden;
 }
 
 .card-header {
-    background: #f8fafc;
+    background: var(--color-fondo-header);
     padding: 20px;
-    border-bottom: 1px solid #eef2f5;
+    border-bottom: 1px solid var(--color-borde);
 }
 
 .card-header h3 {
     margin: 0 0 5px 0;
     font-size: 1.25rem;
-    color: #0056b3;
+    color: var(--color-primario);
 }
 
 .card-header p {
     margin: 0;
     font-size: 0.9rem;
-    color: #64748b;
+    color: var(--color-texto-suave);
 }
 
 .warning-header {
@@ -75,7 +75,7 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #334155;
+    color: var(--color-texto);
     font-size: 0.95rem;
 }
 
@@ -84,7 +84,7 @@
 .modern-form textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--color-borde);
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -94,15 +94,15 @@
 .modern-form select:focus,
 .modern-form textarea:focus {
     outline: none;
-    border-color: #0056b3;
-    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(63, 101, 147, 0.2);
 }
 
 /* Botones */
 .btn-primary {
     width: 100%;
-    background: #0056b3;
-    color: white;
+    background: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
     border: none;
     padding: 12px;
     font-size: 1rem;
@@ -112,7 +112,7 @@
     transition: background 0.3s, transform 0.1s;
 }
 
-.btn-primary:hover { background: #004494; }
+.btn-primary:hover { background: var(--color-primario-hover); }
 .btn-primary:active { transform: scale(0.98); }
 
 .form-message {
@@ -130,8 +130,8 @@
 }
 
 .video-review-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: var(--color-gris-claro);
+    border: 1px solid var(--color-borde);
     border-radius: 10px;
     padding: 20px;
 }
@@ -146,12 +146,12 @@
 .video-review-info h4 {
     margin: 0 0 5px 0;
     font-size: 1.1rem;
-    color: #1e293b;
+    color: var(--color-texto);
 }
 
 .badge-materia {
-    background: #e2e8f0;
-    color: #475569;
+    background: var(--color-fondo-header);
+    color: var(--color-texto-suave);
     padding: 4px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -160,7 +160,7 @@
 
 .autor-text {
     font-size: 0.85rem;
-    color: #64748b;
+    color: var(--color-texto-suave);
     margin-top: 8px;
 }
 
@@ -176,7 +176,7 @@
 .review-actions textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--color-borde);
     border-radius: 6px;
     margin-bottom: 10px;
     font-family: inherit;
@@ -205,4 +205,10 @@
 /* Responsive (Celulares) */
 @media (max-width: 900px) {
     .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* Formularios del panel con el tema activo */
+.dashboard-container input, .dashboard-container select, .dashboard-container textarea {
+    background: var(--color-fondo);
+    color: var(--color-texto);
 }

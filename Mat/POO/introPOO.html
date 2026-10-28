@@ -19,20 +19,20 @@
             <a href="../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
                 <img src="../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
-                    <h1>Tecnología para todos</h1>
-                    <span class="brand-block">Plataforma Colaborativa • Validado por Docentes • Estudiantes para Estudiantes</span>
+                    <h1>Tecnología para todos<span class="h1-sep"> - </span><span class="h1-escuela">ET N° 29 D.E. 6</span></h1>
                 </div>
             </a>
             <div class="controles-accesibilidad">
-                <button class="btn-accesibilidad" aria-label="Aumentar tamaño de texto" title="Aumentar letra">A+</button>
-                <button class="btn-accesibilidad" aria-label="Cambiar contraste" title="Modo oscuro">🌓</button>
+                <button class="btn-accesibilidad" id="btnLetra" type="button" aria-label="Cambiar tamaño de letra" title="Cambiar tamaño de letra">A+</button>
+                <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Modo oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
             </div>
         </div>
         <nav class="navegacion-principal" aria-label="Navegación principal">
             <ul>
                 <li><a href="../../index.html" class="activo" aria-current="page">Inicio</a></li>
-                <li><a href="../../index.html#materias">Materias</a></li>
+                <li id="nav-materiales"><a href="../../materiales.html">Materiales</a></li>
                 <li><a href="../../sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login"><a href="../../login.html">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -49,7 +49,7 @@
 
         <div class="cabecera-materia">
             <div class="titulo-materia-icono">
-                <span class="icono-grande" aria-hidden="true">💻</span>
+                <span class="icono-grande" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></span>
                 <div>
                     <h1>Introducción a POO</h1>
                     <p>Conceptos iniciales: paradigma orientado a objetos, clases y atributos.</p>

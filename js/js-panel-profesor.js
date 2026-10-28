@@ -176,8 +176,8 @@ async function cargarPendientes() {
 
                         <textarea id="comentario-${documento.id}" rows="2" placeholder="Escribe tu corrección o feedback para el alumno..."></textarea>
                         <div class="action-buttons">
-                            <button class="btn-success btn-aprobar" data-id="${documento.id}">Aprobar Video ✅</button>
-                            <button class="btn-danger btn-rechazar" data-id="${documento.id}">Rechazar ❌</button>
+                            <button class="btn-success btn-aprobar" data-id="${documento.id}">Aprobar Video <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></button>
+                            <button class="btn-danger btn-rechazar" data-id="${documento.id}">Rechazar <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></button>
                         </div>
                     </div>
                 `;
@@ -195,7 +195,7 @@ async function cargarPendientes() {
         });
 
         if (!hayPendientes) {
-            contenedorPendientes.innerHTML = '<div style="text-align: center; color: #64748b; padding: 20px;">🎉 ¡Todo al día! No hay videos pendientes de revisión.</div>';
+            contenedorPendientes.innerHTML = '<div style="text-align: center; color: #64748b; padding: 20px;"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> ¡Todo al día! No hay videos pendientes de revisión.</div>';
         }
 
         // Aprobar
@@ -271,7 +271,7 @@ async function cargarPublicados() {
                         <div class="autor-text" style="margin-top: 5px;">Subido por: <strong>${data.subidoPor}</strong></div>
                     </div>
                     <button class="btn-danger btn-eliminar" data-id="${documento.id}" style="padding: 8px 14px; font-size: 0.85rem; border-radius: 6px;">
-                        Eliminar 🗑️
+                        Eliminar <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                     </button>
                 </div>
             `;

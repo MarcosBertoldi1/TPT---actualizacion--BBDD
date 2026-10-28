@@ -15,8 +15,8 @@
 }
 
 .upload-badge {
-    background: #e0f2fe;
-    color: #0369a1;
+    background: var(--color-fondo-header);
+    color: var(--color-primario);
     font-size: 0.85rem;
     font-weight: 700;
     padding: 6px 14px;
@@ -27,14 +27,14 @@
 
 .upload-hero h2 {
     font-size: 2.2rem;
-    color: #0f172a;
+    color: var(--color-texto);
     margin: 0 0 10px 0;
     font-weight: 800;
     letter-spacing: -0.5px;
 }
 
 .upload-hero p {
-    color: #64748b;
+    color: var(--color-texto-suave);
     font-size: 1.05rem;
     line-height: 1.6;
     margin: 0 auto;
@@ -43,7 +43,7 @@
 
 /* Form Card Container */
 .upload-card {
-    background: #ffffff;
+    background: var(--color-gris-claro);
     border-radius: 16px;
     padding: 35px;
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.8);
@@ -65,7 +65,7 @@
 .form-group label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--color-texto);
     display: flex;
     align-items: center;
     gap: 4px;
@@ -95,11 +95,11 @@
 .upload-form textarea {
     width: 100%;
     padding: 12px 16px;
-    border: 1.5px solid #cbd5e1;
+    border: 1.5px solid var(--color-borde);
     border-radius: 10px;
     font-size: 0.98rem;
-    color: #0f172a;
-    background-color: #f8fafc;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
     transition: all 0.2s ease-in-out;
     box-sizing: border-box;
 }
@@ -107,17 +107,17 @@
 .upload-form input:hover,
 .upload-form select:hover,
 .upload-form textarea:hover {
-    border-color: #94a3b8;
-    background-color: #ffffff;
+    border-color: var(--color-texto-suave);
+    background-color: var(--color-gris-claro);
 }
 
 .upload-form input:focus,
 .upload-form select:focus,
 .upload-form textarea:focus {
     outline: none;
-    border-color: #0056b3;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.12);
+    border-color: var(--color-primario);
+    background-color: var(--color-gris-claro);
+    box-shadow: 0 0 0 4px rgba(63, 101, 147, 0.2);
 }
 
 .input-with-icon {
@@ -127,6 +127,7 @@
 }
 
 .input-icon {
+    color: var(--color-texto-suave);
     position: absolute;
     left: 14px;
     font-size: 1.1rem;
@@ -173,8 +174,8 @@
 
 /* Submit Button */
 .btn-submit-upload {
-    background: #0056b3;
-    color: #ffffff;
+    background: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
     border: none;
     padding: 14px 24px;
     font-size: 1.05rem;
@@ -186,14 +187,14 @@
     justify-content: center;
     gap: 10px;
     transition: all 0.2s ease-in-out;
-    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.25);
+    box-shadow: 0 4px 12px rgba(27, 53, 84, 0.25);
     margin-top: 10px;
 }
 
 .btn-submit-upload:hover {
-    background: #004494;
+    background: var(--color-primario-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 86, 179, 0.35);
+    box-shadow: 0 6px 18px rgba(27, 53, 84, 0.35);
 }
 
 .btn-submit-upload:active {
@@ -421,7 +422,7 @@
 .recurso-texto p {
     margin: 0;
     font-size: 0.95rem;
-    color: #555;
+    color: var(--color-texto-suave);
 }
 
 .recurso-flecha {
@@ -620,7 +621,7 @@
 .seccion-comentarios {
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 2px solid #eee;
+    border-top: 2px solid var(--color-borde);
 }
 
 .seccion-comentarios [hidden] {
@@ -639,8 +640,8 @@
 .comentarios-form {
     margin: 20px 0 30px;
     padding: 20px;
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    background: var(--color-gris-claro);
+    border: 1px solid var(--color-borde);
     border-radius: 8px;
 }
 
@@ -655,7 +656,7 @@
     width: 100%;
     margin-top: 5px;
     padding: 8px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-borde);
     border-radius: 4px;
     font-size: 14px;
     font-family: inherit;
@@ -673,8 +674,8 @@
     padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
-    background: #0056b3;
-    color: #fff;
+    background: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
     border: none;
     border-radius: 4px;
 }
@@ -687,8 +688,8 @@
 .comentario-item {
     margin-bottom: 15px;
     padding: 15px;
-    background: #fff;
-    border: 1px solid #e0e0e0;
+    background: var(--color-gris-claro);
+    border: 1px solid var(--color-borde);
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -702,24 +703,24 @@
 }
 
 .comentario-autor {
-    color: #0056b3;
+    color: var(--color-primario);
     font-size: 1.05em;
 }
 
 .comentario-fecha {
-    color: #888;
+    color: var(--color-texto-suave);
     font-size: 0.85em;
 }
 
 .comentario-texto {
     margin: 0;
-    color: #333;
+    color: var(--color-texto);
     line-height: 1.4;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
 
 .comentarios-vacio {
-    color: #666;
+    color: var(--color-texto-suave);
     font-style: italic;
 }

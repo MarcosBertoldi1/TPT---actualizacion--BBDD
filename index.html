@@ -4,282 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecnología para Todos - ET29</title>
-    
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/materias.css">
-    
     <meta name="description" content="Plataforma de aprendizaje técnico interactivo de la ET29. De estudiantes para estudiantes.">
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* --- ENCABEZADO UNIFICADO Y FIJO --- */
-        .encabezado-principal {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Banner del Logo */
-        .contenedor-header {
-            background-color: #eaf2ff;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Barra de Navegación */
-        .navegacion-principal {
-            background-color: #ffffff;
-            overflow: visible !important;
-        }
-
-        .navegacion-principal ul {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            padding: 0.6rem 2rem;
-            margin: 0;
-            gap: 1.8rem;
-            position: relative;
-        }
-
-        /* Estilo base para los enlaces normales */
-        .navegacion-principal a.link-nav {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.5rem 0;
-            transition: color 0.2s ease;
-        }
-
-        .navegacion-principal a.link-nav:hover {
-            color: #0d6efd;
-        }
-
-        /* Empuja 'Sobre el Proyecto' e 'Iniciar Sesión' al extremo derecho */
-        .navegacion-principal li.push-derecha {
-            margin-left: auto;
-        }
-
-        /* --- BOTÓN DE ESPECIALIDAD --- */
-        .item-desplegable {
-            position: relative;
-        }
-
-        .btn-desplegable-nav {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background-color: transparent; 
-            color: #2c3e50; 
-            border: none;
-            border-radius: 8px; 
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-        }
-
-        .btn-desplegable-nav:hover,
-        .btn-desplegable-nav.activo {
-            background-color: #f0f4ff;
-            color: #0d6efd;
-        }
-
-        .btn-desplegable-nav .icono-btn {
-            font-size: 1.1rem;
-        }
-
-        .btn-desplegable-nav .flecha-desplegable {
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-            margin-left: 0.2rem;
-        }
-
-        .desplegable-especialidad.abierto .flecha-desplegable {
-            transform: rotate(180deg);
-        }
-
-        /* --- MENÚ DESPLEGABLE (HORIZONTAL) --- */
-        .menu-desplegable {
-            position: absolute;
-            top: calc(100% + 10px);
-            left: 0;
-            display: flex;
-            flex-direction: row; 
-            gap: 1rem; 
-            min-width: max-content; 
-            
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-            padding: 1.2rem;
-            z-index: 2000;
-            
-            /* Animación */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px) scale(0.98);
-            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-        }
-
-        .desplegable-especialidad.abierto .menu-desplegable {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        /* --- FICHAS PLANAS Y ALARGADAS --- */
-        .opcion-desplegable {
-            display: flex;
-            flex-direction: row; /* Ícono a la izquierda, texto a la derecha */
-            align-items: center;
-            justify-content: flex-start;
-            gap: 1rem;
-            padding: 1rem 1.5rem;
-            min-width: 220px; /* Fichas más largas/anchas */
-            
-            /* Estilo "Plano" */
-            background-color: #f8fafc;
-            border: none;
-            border-radius: 12px;
-            text-decoration: none;
-            color: #475569;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .opcion-desplegable:hover {
-            background-color: #f1f5f9;
-            transform: translateY(-3px);
-        }
-
-        /* Contenedor del ícono */
-        .contenedor-icono-opcion {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            transition: transform 0.2s ease;
-            flex-shrink: 0; /* Evita que el ícono se achique si el texto es largo */
-        }
-
-        .opcion-desplegable:hover .contenedor-icono-opcion {
-            transform: scale(1.05);
-        }
-
-        /* --- COLORES PERSONALIZADOS PARA CADA ESPECIALIDAD --- */
-        
-        /* 1. Computación (Azul sobre Celeste) */
-        .opcion-comp .contenedor-icono-opcion {
-            background-color: #e0f2fe; 
-            color: #0284c7; 
-        }
-        .opcion-comp:hover, .opcion-comp.activa { color: #0284c7; }
-
-        /* 2. Electricidad (Amarillo sobre Amarillo Claro) */
-        .opcion-elec .contenedor-icono-opcion {
-            background-color: #fef3c7; 
-            color: #d97706; 
-        }
-        .opcion-elec:hover, .opcion-elec.activa { color: #d97706; }
-
-        /* 3. Mecánica (Rojo sobre Rojo Claro) */
-        .opcion-mec .contenedor-icono-opcion {
-            background-color: #fee2e2; 
-            color: #dc2626; 
-        }
-        .opcion-mec:hover, .opcion-mec.activa { color: #dc2626; }
-
-
-        /* --- Ajustes del cuerpo de materias --- */
-        .seccion-materias {
-            padding: 2rem;
-        }
-
-        .titulo-seccion {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-        }
-
-        .atajos-anios {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-            margin-top: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .pildora-atajo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 1.5rem;
-            border-radius: 30px;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            color: #0056b3;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.15rem;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-
-        .pildora-atajo:hover {
-            border-color: #0d6efd;
-            background-color: #f8faff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .tarjeta-materia.activa {
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-
-        .tarjeta-materia.activa:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-            border-color: #0d6efd;
-        }
-            
-        @media (max-width: 768px) {
-            .navegacion-principal ul {
-                flex-wrap: wrap;
-                gap: 0.8rem;
-            }
-            .navegacion-principal li.push-derecha {
-                margin-left: 0;
-            }
-            .atajos-anios {
-                grid-template-columns: 1fr;
-            }
-            .menu-desplegable {
-                flex-direction: column; /* En celular vuelve a ser vertical */
-                min-width: 100%;
-            }
-            .opcion-desplegable {
-                width: 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/especialidades.css">
 </head>
 <body>
 
@@ -288,185 +17,89 @@
             <a href="index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
                 <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
-                    <h1>Tecnología para todos</h1>
+                    <h1>Tecnología para todos<span class="h1-sep"> - </span><span class="h1-escuela">ET N° 29 D.E. 6</span></h1>
                 </div>
             </a>
 
             <div class="controles-accesibilidad">
-                <button class="btn-accesibilidad" aria-label="Aumentar tamaño de texto" title="Aumentar letra">A+</button>
-                <button class="btn-accesibilidad" aria-label="Cambiar contraste" title="Modo oscuro">🌓</button>
+                <button class="btn-accesibilidad" id="btnLetra" type="button" aria-label="Cambiar tamaño de letra" title="Cambiar tamaño de letra">A+</button>
+                <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Modo oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
             </div>
         </div>
         
         <nav class="navegacion-principal" aria-label="Navegación principal">
             <ul>
-                <li><a href="index.html" class="link-nav">Inicio</a></li>
-                <li><a href="materiales.html" class="link-nav">Materiales</a></li>
-                
-                <li class="item-desplegable">
-                    <div class="desplegable-especialidad" id="dropdownEspecialidad">
-                        <button class="btn-desplegable-nav" id="btnEspecialidad" aria-expanded="false" type="button">
-                            <span class="icono-btn">🎓</span>
-                            <span>Especialidad</span>
-                            <span class="flecha-desplegable">▼</span>
-                        </button>
-                        
-                        <div class="menu-desplegable" id="menuEspecialidad">
-                            
-                            <a href="#computacion" class="opcion-desplegable opcion-comp activa">
-                                <div class="contenedor-icono-opcion">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                        <path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
-                                    </svg>
-                                </div>
-                                <span class="texto-opcion">Computación</span>
-                            </a>
-
-                            <a href="#electricidad" class="opcion-desplegable opcion-elec">
-                                <div class="contenedor-icono-opcion">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                        <path d="M7 21h4v-7h4l-5-11h-4v7H2l5 11z"/>
-                                    </svg>
-                                </div>
-                                <span class="texto-opcion">Electricidad</span>
-                            </a>
-
-                            <a href="#mecanica" class="opcion-desplegable opcion-mec">
-                                <div class="contenedor-icono-opcion">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
-                                    </svg>
-                                </div>
-                                <span class="texto-opcion">Mecánica</span>
-                            </a>
-
-                        </div>
-                    </div>
-                </li>
-
-                <li class="push-derecha"><a href="sobre.html" class="link-nav">Sobre el Proyecto</a></li>
-                <li><a href="login.html" id="enlace-auth" class="link-nav">Iniciar Sesión</a></li>
+                <li><a href="index.html" class="activo" aria-current="page">Inicio</a></li>
+                <li id="nav-materiales"><a href="materiales.html">Materiales</a></li>
+                <li><a href="sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login"><a href="login.html" id="enlace-auth">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
 
     <main id="contenido-principal">
-        <section id="materias" class="seccion-materias">
-            <div class="cabecera-materias">
-                <h2 class="titulo-seccion">Materias disponibles</h2>
-                
-                <div class="atajos-anios" aria-label="Atajos rápidos por año">
-                    <a href="#anio-4" class="pildora-atajo">4º Año</a>
-                    <a href="#anio-5" class="pildora-atajo">5º Año</a>
-                    <a href="#anio-6" class="pildora-atajo">6º Año</a>
-                </div>
+        <section class="hero-inicio" aria-labelledby="titulo-hero">
+            <div class="hero-texto">
+                <h2 id="titulo-hero">Tecnología para todos</h2>
+                <p>Recursos educativos accesibles en Lengua de Señas Argentina para estudiantes de la escuela técnica.</p>
+                <a href="#materias" class="btn btn-primario">Explorar especialidades</a>
             </div>
-            
-            <div id="anio-4" class="contenedor-anio">
-                <h2 class="titulo-anio">4º Año - Computación</h2>
-                <div class="grilla-materias">
-                    <article class="tarjeta-materia activa">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🖥️</span>
-                            <h3>Organización de las Computadoras</h3>
-                        </div>
-                        <p>Arquitectura básica y funcionamiento interno.</p>
-                        <a href="Mat/mat-OC.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
-                    </article>
-
-                    <article class="tarjeta-materia activa">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">💡</span>
-                            <h3>Lógica Computacional</h3>
-                        </div>
-                        <p>Sistemas numéricos, álgebra de Boole y compuertas lógicas.</p>
-                        <a href="Mat/mat-L.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
-                    </article>
-
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Base de Datos</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
-
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Lab. de Algoritmos y Estructuras</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
-                </div>
+            <div class="hero-imagen">
+                <svg class="hero-ilustracion" viewBox="0 0 520 340" role="img" aria-label="Ilustración: un estudiante que habla en lengua de señas frente a una computadora que reproduce un video">
+  <path d="M58 196C34 112 118 42 232 38c112-3 214 22 240 102 26 78-32 144-124 164-112 24-262 28-290-108z" style="fill:var(--ilus-fondo)"/>
+  <circle cx="64" cy="64" r="6" fill="#80aad3"/><circle cx="92" cy="40" r="4" fill="#5b86b6"/><circle cx="462" cy="70" r="5" fill="#80aad3"/>
+  <circle cx="486" cy="112" r="3.5" fill="#5b86b6"/><circle cx="40" cy="150" r="3.5" fill="#5b86b6"/><circle cx="440" cy="40" r="3" fill="#80aad3"/>
+  <!-- computadora -->
+  <rect x="44" y="92" width="244" height="158" rx="10" fill="#aebbcc"/>
+  <rect x="55" y="103" width="222" height="136" rx="4" fill="#ffffff"/>
+  <circle cx="166" cy="171" r="31" fill="#3f6593"/>
+  <path d="M157 154l32 17-32 17z" fill="#ffffff"/>
+  <path d="M22 250h288l-11 19c-2 4-6 6-10 6H43c-4 0-8-2-10-6z" fill="#8c9bb0"/>
+  <rect x="138" y="250" width="56" height="7" rx="3.5" fill="#6f8099"/>
+  <!-- estudiante -->
+  <path d="M300 340c0-54 30-84 76-84s76 30 76 84z" fill="#1b3554"/>
+  <rect x="361" y="228" width="30" height="36" rx="13" fill="#e3ad86"/>
+  <circle cx="338" cy="206" r="7" fill="#e3ad86"/><circle cx="414" cy="206" r="7" fill="#e3ad86"/>
+  <circle cx="376" cy="203" r="37" fill="#f2c9a4"/>
+  <path d="M338 198c-5-36 22-58 46-56 27 2 44 25 36 56-7-15-16-24-29-27-17 11-35 21-53 27z" fill="#17202e"/>
+  <circle cx="364" cy="206" r="3.2" fill="#17202e"/><circle cx="389" cy="206" r="3.2" fill="#17202e"/>
+  <path d="M365 222q11 9 23 0" fill="none" stroke="#17202e" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M356 195q8-5 15-1M382 194q8-4 15 1" fill="none" stroke="#17202e" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M340 284L322 244" stroke="#1b3554" stroke-width="22" stroke-linecap="round"/>
+  <path d="M412 284L430 250" stroke="#1b3554" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="320" cy="236" r="12" fill="#f2c9a4"/><circle cx="432" cy="242" r="12" fill="#f2c9a4"/>
+  <path d="M312 226l-3-10M320 223l0-12M328 226l3-10" stroke="#f2c9a4" stroke-width="5" stroke-linecap="round"/>
+  <path d="M424 232l-2-11M433 230l2-12M441 234l5-9" stroke="#f2c9a4" stroke-width="5" stroke-linecap="round"/>
+</svg>
             </div>
+        </section>
 
-            <div id="anio-5" class="contenedor-anio">
-                <h2 class="titulo-anio">5º Año - Computación</h2>
-                <div class="grilla-materias">
-                    <article class="tarjeta-materia activa">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🌐</span>
-                            <h3>Redes</h3>
-                        </div>
-                        <p>Fundamentos de conectividad y protocolos.</p>
-                        <a href="Mat/mat-R.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
-                    </article>
+        <section id="materias" class="seccion-especialidades" aria-labelledby="titulo-esp">
+            <h2 id="titulo-esp" class="titulo-seccion">Especialidades</h2>
+            <p class="subtitulo-seccion">Contenido disponible y en crecimiento.</p>
 
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Admin. y Gestión de Base de Datos</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
+            <div class="grilla-especialidades">
 
-                    <article class="tarjeta-materia activa">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">💻</span>
-                            <h3>Laboratorio de POO</h3>
-                        </div>
-                        <p>Programación Orientada a Objetos, clases y métodos.</p>
-                        <a href="Mat/mat-POO.html" class="btn btn-primario btn-bloque">Entrar a la materia</a>
-                    </article>
+                <a href="computacion.html" class="tarjeta-esp">
+                    <span class="tarjeta-esp-icono"><svg viewBox="0 0 64 64" fill="currentColor" fill-rule="evenodd" aria-hidden="true" focusable="false"><path d="M16 12h32a2.5 2.5 0 0 1 2.5 2.5V38H13.5V14.5A2.5 2.5 0 0 1 16 12z M18 16v18h28V16z M12.5 40h39l4.4 9.2c.6 1.3-.3 2.8-1.8 2.8H9.9c-1.5 0-2.4-1.5-1.8-2.8z M15 42.3h3.6v1.8H15z M20.6 42.3h3.6v1.8h-3.6z M26.2 42.3h3.6v1.8h-3.6z M31.8 42.3h3.6v1.8h-3.6z M37.4 42.3h3.6v1.8h-3.6z M43 42.3h3.6v1.8H43z M13.4 45.4H17v1.8h-3.6z M19 45.4h3.6v1.8H19z M24.6 45.4h3.6v1.8h-3.6z M30.2 45.4h3.6v1.8h-3.6z M35.8 45.4h3.6v1.8h-3.6z M41.4 45.4h3.6v1.8h-3.6z M47 45.4h3.6v1.8H47z M22 48.5h20v1.8H22z"/></svg></span>
+                    <span class="tarjeta-esp-nombre">Computación</span>
+                    <span class="tarjeta-esp-cta">Ver contenido <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></span>
+                </a>
 
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Análisis de Sistemas</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
+                <!-- Sin contenido todavía: no es un enlace.
+                     Cuando haya materias, cambiá este <div> por <a href="..."> y sacá la clase "tarjeta-esp--pronto" -->
+                <div class="tarjeta-esp tarjeta-esp--pronto" aria-disabled="true">
+                    <span class="tarjeta-esp-icono"><svg viewBox="0 0 64 64" fill="currentColor" fill-rule="evenodd" aria-hidden="true" focusable="false"><path d="M35.30 37.85 L38.42 38.45 L38.42 41.55 L35.30 42.15 L34.41 44.90 L36.57 47.22 L34.76 49.72 L31.87 48.38 L29.54 50.08 L29.93 53.23 L26.99 54.19 L25.44 51.41 L22.56 51.41 L21.01 54.19 L18.07 53.23 L18.46 50.08 L16.13 48.38 L13.24 49.72 L11.43 47.22 L13.59 44.90 L12.70 42.15 L9.58 41.55 L9.58 38.45 L12.70 37.85 L13.59 35.10 L11.43 32.78 L13.24 30.28 L16.13 31.62 L18.46 29.92 L18.07 26.77 L21.01 25.81 L22.56 28.59 L25.44 28.59 L26.99 25.81 L29.93 26.77 L29.54 29.92 L31.87 31.62 L34.76 30.28 L36.57 32.78 L34.41 35.10Z M30.20 40.00a6.2 6.2 0 1 0 -12.4 0a6.2 6.2 0 1 0 12.4 0Z M26.60 40.00a2.6 2.6 0 1 0 -5.2 0a2.6 2.6 0 1 0 5.2 0Z M50.20 19.27 L52.42 19.74 L52.42 22.26 L50.20 22.73 L49.31 24.87 L50.55 26.76 L48.76 28.55 L46.87 27.31 L44.73 28.20 L44.26 30.42 L41.74 30.42 L41.27 28.20 L39.13 27.31 L37.24 28.55 L35.45 26.76 L36.69 24.87 L35.80 22.73 L33.58 22.26 L33.58 19.74 L35.80 19.27 L36.69 17.13 L35.45 15.24 L37.24 13.45 L39.13 14.69 L41.27 13.80 L41.74 11.58 L44.26 11.58 L44.73 13.80 L46.87 14.69 L48.76 13.45 L50.55 15.24 L49.31 17.13Z M46.90 21.00a3.9 3.9 0 1 0 -7.8 0a3.9 3.9 0 1 0 7.8 0Z M44.60 21.00a1.6 1.6 0 1 0 -3.2 0a1.6 1.6 0 1 0 3.2 0Z M55.75 42.24 L57.44 42.57 L57.44 44.43 L55.75 44.76 L55.10 46.32 L56.06 47.75 L54.75 49.06 L53.32 48.10 L51.76 48.75 L51.43 50.44 L49.57 50.44 L49.24 48.75 L47.68 48.10 L46.25 49.06 L44.94 47.75 L45.90 46.32 L45.25 44.76 L43.56 44.43 L43.56 42.57 L45.25 42.24 L45.90 40.68 L44.94 39.25 L46.25 37.94 L47.68 38.90 L49.24 38.25 L49.57 36.56 L51.43 36.56 L51.76 38.25 L53.32 38.90 L54.75 37.94 L56.06 39.25 L55.10 40.68Z M53.40 43.50a2.9 2.9 0 1 0 -5.8 0a2.9 2.9 0 1 0 5.8 0Z M51.60 43.50a1.1 1.1 0 1 0 -2.2 0a1.1 1.1 0 1 0 2.2 0Z"/></svg></span>
+                    <span class="tarjeta-esp-nombre">Mecánica</span>
+                    <span class="tarjeta-esp-cta">Próximamente</span>
                 </div>
-            </div>
 
-            <div id="anio-6" class="contenedor-anio">
-                <h2 class="titulo-anio">6º Año - Computación</h2>
-                <div class="grilla-materias">
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Programación sobre Redes</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
-
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Admin. y Gestión de Redes</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
-
-                    <article class="tarjeta-materia bloqueada">
-                        <div class="tarjeta-cabecera">
-                            <span class="icono" aria-hidden="true">🔒</span>
-                            <h3>Desarrollo de Sistemas</h3>
-                        </div>
-                        <p>Próximamente</p>
-                    </article>
+                <div class="tarjeta-esp tarjeta-esp--pronto" aria-disabled="true">
+                    <span class="tarjeta-esp-icono"><svg viewBox="0 0 64 64" fill="currentColor" fill-rule="evenodd" aria-hidden="true" focusable="false"><path d="M27.5 25.5h9a2 2 0 0 1 2 2V35a6.5 6.5 0 0 1-4.6 6.2V45h-3.8v-3.8A6.5 6.5 0 0 1 25.5 35v-7.5a2 2 0 0 1 2-2z M31 28.5l-2.6 4.6h2.3l-.7 3.6 3.2-5h-2.4z M28.5 17h2.6v8.5h-2.6z M33.9 17h2.6v8.5h-2.6z"/><path d="M20.2 48.2A19 19 0 1 1 41 49.5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span>
+                    <span class="tarjeta-esp-nombre">Electricidad</span>
+                    <span class="tarjeta-esp-cta">Próximamente</span>
                 </div>
+
             </div>
         </section>
     </main>
@@ -477,37 +110,6 @@
     </footer>
 
     <script src="js/header.js"></script>
-    
-    <script>
-        const desplegable = document.getElementById('dropdownEspecialidad');
-        const btnEspecialidad = document.getElementById('btnEspecialidad');
-        const opciones = document.querySelectorAll('.opcion-desplegable');
-
-        btnEspecialidad.addEventListener('click', (e) => {
-            e.stopPropagation();
-            desplegable.classList.toggle('abierto');
-            btnEspecialidad.classList.toggle('activo');
-            btnEspecialidad.setAttribute('aria-expanded', desplegable.classList.contains('abierto'));
-        });
-
-        opciones.forEach(opcion => {
-            opcion.addEventListener('click', (e) => {
-                opciones.forEach(o => o.classList.remove('activa'));
-                opcion.classList.add('activa');
-                
-                desplegable.classList.remove('abierto');
-                btnEspecialidad.classList.remove('activo');
-                btnEspecialidad.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        document.addEventListener('click', () => {
-            desplegable.classList.remove('abierto');
-            btnEspecialidad.classList.remove('activo');
-            btnEspecialidad.setAttribute('aria-expanded', 'false');
-        });
-    </script>
-
     <script type="module">
         import { auth } from './js/firebase-config.js';
         import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";

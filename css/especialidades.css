@@ -1,0 +1,183 @@
+/* ==========================================================================
+   LANDING: TARJETAS DE ESPECIALIDAD
+   ========================================================================== */
+.seccion-especialidades {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+}
+
+.seccion-especialidades .titulo-seccion {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-texto);
+    text-align: center;
+}
+
+/* Se centra con 1 o 2 tarjetas y baja de fila cuando hay 4 o más */
+.grilla-especialidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 300px));
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+/* --- Tarjeta con contenido (enlace) --- */
+.tarjeta-esp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 300px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(160deg, #3f6593 0%, #1b3554 100%);
+    border: 1px solid #80aad3;
+    border-radius: 24px;
+    box-shadow: 0 8px 20px rgba(0, 15, 34, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tarjeta-esp:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0, 15, 34, 0.28);
+}
+
+.tarjeta-esp:focus-visible {
+    outline: 3px solid #80aad3;
+    outline-offset: 4px;
+}
+
+/* Círculo con el dibujo vectorial */
+.tarjeta-esp-icono {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #c0e6fd;
+    color: #1b3554;            /* color del dibujo */
+    display: grid;
+    place-items: center;
+}
+
+.tarjeta-esp-icono svg {
+    width: 96px;
+    height: 96px;
+}
+
+.tarjeta-esp-nombre {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.tarjeta-esp-cta {
+    font-weight: 700;
+}
+
+/* --- Próximamente: fondo claro + borde punteado (se distingue sin depender solo del color) --- */
+.tarjeta-esp--pronto {
+    background: #e6f5fe;
+    color: #1b3554;
+    border: 2px dashed #5b86b6;
+    box-shadow: none;
+    cursor: default;
+}
+
+.tarjeta-esp--pronto:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.tarjeta-esp--pronto .tarjeta-esp-icono {
+    background: #ffffff;
+}
+
+.tarjeta-esp--pronto .tarjeta-esp-cta {
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    background: #1b3554;
+    color: #ffffff;
+}
+
+/* --- Modo oscuro --- */
+[data-tema="oscuro"] .tarjeta-esp--pronto {
+    background: #1b3554;
+    color: #c0e6fd;
+    border-color: #80aad3;
+}
+[data-tema="oscuro"] .tarjeta-esp--pronto .tarjeta-esp-icono { background: #c0e6fd; }
+[data-tema="oscuro"] .tarjeta-esp--pronto .tarjeta-esp-cta { background: #c0e6fd; color: #000f22; }
+
+@media (max-width: 600px) {
+    .tarjeta-esp { min-height: 240px; }
+    .tarjeta-esp-icono { width: 96px; height: 96px; }
+    .tarjeta-esp-icono svg { width: 78px; height: 78px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tarjeta-esp { transition: none; }
+    .tarjeta-esp:hover { transform: none; }
+}
+
+
+/* ==========================================================================
+   PORTADA (hero) arriba de la elección de especialidades
+   ========================================================================== */
+:root { --ilus-fondo: #c0e6fd; }                     /* color de la "mancha" detrás de las ilustraciones */
+[data-tema="oscuro"] { --ilus-fondo: #2b5078; }
+
+.hero-inicio {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, var(--color-fondo-header) 0%, var(--color-fondo) 100%);
+    border: 1px solid var(--color-borde-menu);
+    border-radius: 24px;
+}
+
+.hero-texto h2 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    color: var(--color-texto-header);
+    margin-bottom: 1rem;
+}
+
+.hero-texto p {
+    font-size: 1.2rem;
+    color: var(--color-texto);
+    margin-bottom: 1.5rem;
+}
+
+.hero-ilustracion {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.seccion-especialidades { padding-top: 3rem; }
+
+.seccion-especialidades .subtitulo-seccion {
+    text-align: center;
+    color: var(--color-texto-suave);
+    margin: 0.3rem auto 0;
+}
+
+@media (max-width: 800px) {
+    .hero-inicio {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .hero-texto p { margin-left: auto; margin-right: auto; }
+    .hero-imagen { max-width: 420px; margin: 0 auto; }
+}

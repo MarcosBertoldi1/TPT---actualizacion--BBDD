@@ -15,9 +15,13 @@
             <a href="index.html" class="logo-banner">
                 <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
                 <div class="logo-texto-lineal">
-                    <h1>Tecnología para todos</h1>
+                    <h1>Tecnología para todos<span class="h1-sep"> - </span><span class="h1-escuela">ET N° 29 D.E. 6</span></h1>
                 </div>
             </a>
+            <div class="controles-accesibilidad">
+                <button class="btn-accesibilidad" id="btnLetra" type="button" aria-label="Cambiar tamaño de letra" title="Cambiar tamaño de letra">A+</button>
+                <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Modo oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
+            </div>
         </div>
         <nav class="navegacion-principal">
             <ul>
@@ -41,7 +45,7 @@
             <!-- SECCIÓN 1: SUBIDA DIRECTA DEL PROFESOR -->
             <section class="dashboard-card upload-section">
                 <div class="card-header">
-                    <h3>📤 Publicar Material Oficial</h3>
+                    <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg> Publicar Material Oficial</h3>
                     <p>El contenido publicado aquí aparecerá automáticamente como aprobado.</p>
                 </div>
                 <form id="form-subir-profesor" class="modern-form">
@@ -85,7 +89,7 @@
             <!-- SECCIÓN 2: MODERACIÓN DE ALUMNOS -->
             <section class="dashboard-card review-section">
                 <div class="card-header warning-header">
-                    <h3>⚠️ Evaluaciones Pendientes</h3>
+                    <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> Evaluaciones Pendientes</h3>
                     <p>Revisa los videos enviados por los alumnos antes de publicarlos.</p>
                 </div>
                 <div id="contenedor-pendientes" class="pending-grid">
@@ -96,9 +100,9 @@
 
         <!-- SECCIÓN 3: GESTIONAR Y ELIMINAR MATERIALES PUBLICADOS -->
         <section class="dashboard-card" style="margin-top: 30px; padding: 20px;">
-            <div class="card-header" style="background: #f1f5f9; border-bottom: 1px solid #cbd5e1; margin: -20px -20px 20px -20px; padding: 20px;">
-                <h3 style="color: #0f172a; margin: 0 0 5px 0;">📚 Materiales Publicados (Gestionar / Eliminar)</h3>
-                <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Aquí puedes revisar todos los materiales aprobados y eliminar los que ya no sean necesarios.</p>
+            <div class="card-header" style="background: var(--color-fondo-header); border-bottom: 1px solid var(--color-borde); margin: -20px -20px 20px -20px; padding: 20px;">
+                <h3 style="color: var(--color-texto); margin: 0 0 5px 0;"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg> Materiales Publicados (Gestionar / Eliminar)</h3>
+                <p style="margin: 0; color: var(--color-texto-suave); font-size: 0.9rem;">Aquí puedes revisar todos los materiales aprobados y eliminar los que ya no sean necesarios.</p>
             </div>
             <div id="contenedor-publicados" style="margin-top: 15px;">
                 <div class="loader-text">Cargando materiales publicados...</div>
@@ -106,7 +110,7 @@
         </section>
     </main>
 
-    <script type="module" src="js/header.js"></script>
+    <script src="js/header.js"></script>
     <script type="module" src="js/js-panel-profesor.js"></script>
 </body>
 </html>
