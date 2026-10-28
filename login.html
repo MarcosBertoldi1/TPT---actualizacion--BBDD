@@ -222,17 +222,17 @@
         const mensajeErrorRegistro = document.getElementById('mensaje-error-registro');
 
         async function verificarRolYRedirigir(user) {
-            const email = user.email.toLowerCase(); 
+    const email = (user.email || '').trim().toLowerCase(); 
 
-            const correosAdmin = [
-                'marcos.bertoldi.945@alutecnica29de6.edu.ar', 
-                'agustin.meza.779@alutecnica29de6.edu.ar'
+            // ÚNICOS correos con rol de profesor (se comparan en minúsculas).
+            // Cualquier otro usuario es alumno.
+            const correosProfesores = [
+                'upruebadocente@gmail.com',
+                'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
+                'pepito@tecnica29de6.edu.ar'
             ];
 
-            if (correosAdmin.includes(email)) {
-                localStorage.setItem('rolUsuario', 'admin'); 
-                alert(`¡Bienvenido/a Administrador/a!`);
-            } else if (email.endsWith('@tecnica29de6.edu.ar')) {
+            if (correosProfesores.includes(email)) {
                 localStorage.setItem('rolUsuario', 'profesor'); 
                 alert(`¡Bienvenido/a Profesor/a!`);
             } else {
