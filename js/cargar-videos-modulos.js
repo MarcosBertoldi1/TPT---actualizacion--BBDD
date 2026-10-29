@@ -36,7 +36,7 @@ async function cargarVideosDelModulo(nombreMateria, nombreModulo) {
             
             enlace.innerHTML = `
                 <div style="background: #eff6ff; color: #3b82f6; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 1.2rem;">
-                    ▶
+                    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
                 </div>
                 <div style="flex: 1;">
                     <h4 style="margin: 0 0 5px 0; color: #1e3a8a; font-size: 1.1rem;">${data.titulo}</h4>

@@ -328,3 +328,218 @@
     transform: scale(0.85);
     transform-origin: right center;
 }
+
+
+/* ==========================================================================
+   MENÚ DE USUARIO (círculo con la inicial del correo)
+   Solo se ve cuando hay una sesión iniciada: <html data-sesion="activa">
+   Sin sesión no aparecen ni el menú, ni el tamaño de letra, ni el tema oscuro.
+   ========================================================================== */
+/* El header queda por encima del menú de navegación para que el panel no se tape */
+.contenedor-header {
+    position: relative;
+    z-index: 5;
+}
+
+.usuario-menu {
+    display: none;
+    position: relative;
+    flex-shrink: 0;
+}
+
+html[data-sesion="activa"] .usuario-menu {
+    display: block;
+}
+
+/* Con sesión iniciada: se saca "Iniciar Sesión" y "Cerrar Sesión" del menú (queda en el círculo) */
+html[data-sesion="activa"] #item-login,
+html[data-sesion="activa"] #item-logout {
+    display: none !important;
+}
+
+.usuario-avatar {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 2px solid var(--color-fondo-header);
+    border-radius: 50%;
+    background-color: var(--color-primario);
+    color: var(--color-texto-sobre-primario);
+    font: inherit;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 0 0 1.5px var(--color-primario);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.usuario-avatar:hover {
+    transform: scale(1.06);
+}
+
+.usuario-avatar:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 3px;
+}
+
+.usuario-avatar .inicial::before {
+    content: var(--inicial, "?");
+}
+
+.usuario-avatar--grande {
+    width: 54px;
+    height: 54px;
+    font-size: 1.5rem;
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.usuario-avatar--grande:hover {
+    transform: none;
+}
+
+/* Panel desplegable */
+.usuario-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    width: 330px;
+    max-width: calc(100vw - 2rem);
+    padding: 0.4rem 0;
+    background-color: var(--color-gris-claro);
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
+    border-radius: 16px;
+    box-shadow: 0 14px 34px rgba(0, 15, 34, 0.2);
+    z-index: 2000;
+}
+
+.usuario-panel[hidden] {
+    display: none;
+}
+
+.usuario-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--color-borde-menu);
+}
+
+.usuario-email {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-texto-header);
+    overflow-wrap: anywhere;
+    line-height: 1.3;
+}
+
+.usuario-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.2rem;
+}
+
+.usuario-fila-texto {
+    font-weight: 600;
+}
+
+.usuario-fila-detalle {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--color-texto-suave);
+    text-transform: capitalize;
+}
+
+.letra-control {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-letra {
+    min-width: 42px;
+    height: 36px;
+    padding: 0 0.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font: inherit;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-letra:hover:not(:disabled) {
+    background-color: var(--color-fondo-header);
+    border-color: var(--color-primario);
+}
+
+.btn-letra:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-letra:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: 2px;
+}
+
+.btn-letra--menos {
+    font-size: 0.8rem;
+}
+
+.btn-letra--mas {
+    font-size: 1.15rem;
+}
+
+.usuario-separador {
+    margin: 0.4rem 0;
+    border: none;
+    border-top: 1px solid var(--color-borde-menu);
+}
+
+.usuario-salir {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: none;
+    background: none;
+    color: var(--color-texto);
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.usuario-salir:hover {
+    background-color: var(--color-fondo-header);
+}
+
+.usuario-salir:focus-visible {
+    outline: 3px solid var(--color-primario);
+    outline-offset: -3px;
+}
+
+.usuario-salir svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-texto-suave);
+}
+
+/* Celular y header compacto */
+.encabezado-compacto .usuario-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+}

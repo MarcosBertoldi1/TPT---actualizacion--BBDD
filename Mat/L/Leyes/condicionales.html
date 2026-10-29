@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Condicional y Bicondicional - Lógica | ET29</title>
     
+    <!-- Sesión, tema y tamaño de letra: se aplican antes de mostrar la página para que no parpadee -->
+    <script>(function(){try{var d=document.documentElement,u=localStorage.getItem('tptUsuario');if(!u)return;d.setAttribute('data-sesion','activa');var c=u.charAt(0).toUpperCase();d.style.setProperty('--inicial','"'+(/[A-Z0-9]/.test(c)?c:'?')+'"');var t=localStorage.getItem('tema');if(t?t==='oscuro':window.matchMedia('(prefers-color-scheme: dark)').matches){d.setAttribute('data-tema','oscuro')}var n=parseInt(localStorage.getItem('tamanoLetra'),10);if(n>0&&n<4){var px=[16,18,20,22][n]+'px';d.style.fontSize=px;d.style.setProperty('--fuente-base',px)}}catch(e){}})();</script>
+    <style>html[data-tema="oscuro"]{background:#000f22;color-scheme:dark}</style>
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/materias.css">
     <link rel="stylesheet" href="../../../css/header.css">
@@ -25,9 +28,30 @@
                 </div>
             </a>
 
-            <div class="controles-accesibilidad">
-                <button class="btn-accesibilidad" id="btnLetra" type="button" aria-label="Cambiar tamaño de letra" title="Cambiar tamaño de letra">A+</button>
-                <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro" title="Modo oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
+            <div class="usuario-menu" id="usuarioMenu">
+                <button class="usuario-avatar" id="btnUsuario" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="usuarioPanel" aria-label="Menú de usuario"><span class="inicial" aria-hidden="true"></span></button>
+                <div class="usuario-panel" id="usuarioPanel" hidden>
+                    <div class="usuario-cabecera">
+                        <span class="usuario-avatar usuario-avatar--grande" aria-hidden="true"><span class="inicial"></span></span>
+                        <strong class="usuario-email" id="usuarioEmail"></strong>
+                    </div>
+                    <div class="usuario-fila">
+                        <span class="usuario-fila-texto">Tamaño de letra<small class="usuario-fila-detalle" id="letraNivel">normal</small></span>
+                        <div class="letra-control">
+                            <button class="btn-letra btn-letra--menos" id="btnLetraMenos" type="button" aria-label="Achicar letra">A&minus;</button>
+                            <button class="btn-letra btn-letra--mas" id="btnLetraMas" type="button" aria-label="Agrandar letra">A+</button>
+                        </div>
+                    </div>
+                    <div class="usuario-fila">
+                        <span class="usuario-fila-texto">Tema oscuro</span>
+                        <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Tema oscuro" title="Tema oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
+                    </div>
+                    <hr class="usuario-separador">
+                    <button class="usuario-salir" id="btnSalir" type="button">
+                        <span>Cerrar sesión</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/></svg>
+                    </button>
+                </div>
             </div>
             
         </div>
@@ -47,6 +71,7 @@
         <nav class="migas-de-pan" aria-label="Migas de pan">
             <ol>
                 <li><a href="../../../index.html">Inicio</a></li>
+                <li><a href="../../../computacion.html">Materias</a></li>
                 <li><a href="../../mat-L.html">Lógica Computacional</a></li>
                 <li><a href="../leyesL.html">Leyes Lógicas</a></li>
                 <li aria-current="page">Condicional y Bicondicional</li>
@@ -68,91 +93,91 @@
             
             <ul class="lista-recursos">
                 <li>
-                    <a href="condicionales/implicacion.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/implicacion.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley del Condicional</h3>
                             <p>Transformación de una implicación (p → q) en una disyunción.</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
                 <li>
-                    <a href="condicionales/contrareciproca.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/contrareciproca.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley del Contrarecíproco del condicional</h3>
                             <p>Inversión y negación de las variables en una implicación.</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
 <li>
-                    <a href="condicionales/contrareciproca.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/contrareciproca.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley de la negación del condicional</h3>
                             <p>Transformación de la negación de una implicación en una conjunción.</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
                  <li>
-                    <a href="condicionales/implicacion.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/implicacion.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley de la disyunción exclusiva</h3>
                             <p>Transformación de la disyunción exclusiva en una conjunción.</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
                 <li>
-                    <a href="condicionales/implicacion.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/implicacion.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley de la negación de la disyunción exclusiva</h3>
                             <p>Transformación de la negación de la disyunción exclusiva en una conjunción.</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
 
                 
                 <li>
-                    <a href="condicionales/bicondicional.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/bicondicional.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley del Bicondicional </h3>
                             <p>Desglose de la doble implicación (p ↔ q) en dos condicionales simples.</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
                    
                 <li>
-                    <a href="condicionales/bicondicional.html" class="tarjeta-recurso">
+                    <div class="tarjeta-recurso tarjeta-recurso--pronto" aria-disabled="true" data-enlace="condicionales/bicondicional.html">
                         <div class="recurso-icono">
-                            <span aria-hidden="true">▶️</span>
+                            <span aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg></span>
                         </div>
                         <div class="recurso-texto">
                             <h3>Ley de la negación del Bicondicional </h3>
                             <p>cambiar</p>
                         </div>
-                        <div class="recurso-flecha" aria-hidden="true">›</div>
-                    </a>
+                        <span class="recurso-pronto">Próximamente</span>
+                    </div><!-- /tarjeta-pronto -->
                 </li>
             </ul>
         </section>
@@ -175,5 +200,6 @@
 
     <script src="../../../js/header.js"></script>
 
+    <script type="module" src="../../../js/sesion.js"></script>
 </body>
 </html>

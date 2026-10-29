@@ -1,7 +1,3 @@
-/* Color de la "mancha" detrás de las ilustraciones */
-:root { --ilus-fondo: #c0e6fd; }
-[data-tema="oscuro"] { --ilus-fondo: #2b5078; }
-
 /* ==========================================================================
    BOTÓN VOLVER
    ========================================================================== */
@@ -103,7 +99,7 @@
 }
 
 /* =========================================
-   HISTORIA: ilustración + línea de tiempo con íconos
+   HISTORIA: línea de tiempo con íconos
 ========================================= */
 .seccion-historia {
     background-color: var(--color-gris-claro);
@@ -113,18 +109,6 @@
     margin-bottom: 4rem;
 }
 
-.historia-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.3fr;
-    gap: 2.5rem;
-    align-items: center;
-}
-
-.historia-ilustracion {
-    display: block;
-    width: 100%;
-    height: auto;
-}
 
 .seccion-historia h3, .seccion-equipo h3 {
     font-size: 1.8rem;
@@ -257,7 +241,5 @@
 }
 
 @media (max-width: 800px) {
-    .historia-grid { grid-template-columns: 1fr; }
-    .historia-visual { max-width: 380px; margin: 0 auto; }
     .seccion-historia { padding: 1.5rem; }
 }

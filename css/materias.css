@@ -323,7 +323,7 @@
 
 .btn-secundario:hover {
     background-color: var(--color-primario);
-    color: white;
+    color: var(--color-texto-sobre-primario);
 }
 
 /* ========================================================
@@ -381,7 +381,7 @@
 .tarjeta-recurso {
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: var(--color-gris-claro);
     border: 2px solid var(--color-borde);
     border-radius: 12px;
     padding: 1.2rem;
@@ -564,7 +564,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    background-color: white;
+    background-color: var(--color-gris-claro);
     padding: 1rem;
     border-radius: 8px;
     border: 1px solid var(--color-borde);
@@ -605,7 +605,7 @@
     z-index: 2000;
     padding: 0.6rem 1rem;
     background-color: var(--color-primario);
-    color: #ffffff;
+    color: var(--color-texto-sobre-primario);
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
@@ -723,4 +723,51 @@
 .comentarios-vacio {
     color: var(--color-texto-suave);
     font-style: italic;
+}
+
+
+/* ========================================================
+   ÍCONO DE PLAY (vector) EN LOS RECURSOS
+   ======================================================== */
+.recurso-icono .ico {
+    color: var(--color-primario);
+}
+
+/* ========================================================
+   TEMAS QUE TODAVÍA NO ESTÁN DISPONIBLES ("Próximamente")
+   ======================================================== */
+.btn-secundario.btn-deshabilitado {
+    background-color: transparent;
+    color: var(--color-texto-suave);
+    border: 2px dashed var(--color-borde);
+    cursor: default;
+}
+
+.btn-secundario.btn-deshabilitado:hover {
+    background-color: transparent;
+    color: var(--color-texto-suave);
+}
+
+.tarjeta-recurso--pronto {
+    border-style: dashed;
+    opacity: 0.8;
+    cursor: default;
+}
+
+.tarjeta-recurso--pronto:hover {
+    border-color: var(--color-borde);
+    box-shadow: none;
+    transform: none;
+}
+
+.recurso-pronto {
+    flex-shrink: 0;
+    margin-left: 1rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-borde);
+    background-color: var(--color-fondo-header);
+    color: var(--color-texto-header);
+    font-size: 0.85rem;
+    font-weight: 700;
 }

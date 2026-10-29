@@ -129,24 +129,18 @@
 /* ==========================================================================
    PORTADA (hero) arriba de la elección de especialidades
    ========================================================================== */
-:root { --ilus-fondo: #c0e6fd; }                     /* color de la "mancha" detrás de las ilustraciones */
-[data-tema="oscuro"] { --ilus-fondo: #2b5078; }
-
 .hero-inicio {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: 2rem;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 2.5rem;
+    padding: 3rem 2.5rem;
+    text-align: center;
     background: linear-gradient(135deg, var(--color-fondo-header) 0%, var(--color-fondo) 100%);
     border: 1px solid var(--color-borde-menu);
     border-radius: 24px;
 }
 
 .hero-texto h2 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
     line-height: 1.1;
     color: var(--color-texto-header);
     margin-bottom: 1rem;
@@ -155,13 +149,7 @@
 .hero-texto p {
     font-size: 1.2rem;
     color: var(--color-texto);
-    margin-bottom: 1.5rem;
-}
-
-.hero-ilustracion {
-    display: block;
-    width: 100%;
-    height: auto;
+    margin: 0 auto 1.5rem;
 }
 
 .seccion-especialidades { padding-top: 3rem; }
@@ -173,11 +161,5 @@
 }
 
 @media (max-width: 800px) {
-    .hero-inicio {
-        grid-template-columns: 1fr;
-        padding: 1.5rem;
-        text-align: center;
-    }
-    .hero-texto p { margin-left: auto; margin-right: auto; }
-    .hero-imagen { max-width: 420px; margin: 0 auto; }
+    .hero-inicio { padding: 2rem 1.5rem; }
 }

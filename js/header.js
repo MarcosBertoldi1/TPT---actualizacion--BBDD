@@ -1,10 +1,13 @@
 // ==========================================
-// 0. MODO OSCURO Y TAMAÑO DE LETRA (NUEVO)
+// 0. MENÚ DE USUARIO, MODO OSCURO Y TAMAÑO DE LETRA (NUEVO)
+//    - Hay "sesión" cuando existe el correo guardado en localStorage ('tptUsuario'),
+//      que escribe js/sesion.js a partir de Firebase.
+//    - Sin sesión: la página se ve con el tema claro y la letra normal, y no hay controles.
+//    - Con sesión: se aplican (y se pueden cambiar) el tema y el tamaño de letra.
 // ==========================================
 (function () {
     const raiz = document.documentElement;
 
-    // --- Tamaño de letra: 4 niveles, se recuerda entre páginas ---
     const TAMANOS = [16, 18, 20, 22];
     const NOMBRES = ['normal', 'grande', 'muy grande', 'máximo'];
     let nivel = parseInt(localStorage.getItem('tamanoLetra'), 10);
@@ -15,52 +18,118 @@
         raiz.style.fontSize = px;                      // escala todo lo que usa rem
         raiz.style.setProperty('--fuente-base', px);   // escala el texto del <body>
     };
-
-    // --- Tema: solo se aplica en las páginas que ya tienen el interruptor (#btnTema).
-    //     Así las páginas que todavía no migramos no se ven "a medias" en oscuro.
-    //     Cuando estén todas migradas se puede sacar esa condición. ---
-    const aplicarTema = () => {
-        if (!document.getElementById('btnTema')) return;
-        const guardado = localStorage.getItem('tema');
-        const oscuro = guardado
-            ? guardado === 'oscuro'
-            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const quitarLetra = () => {
+        raiz.style.fontSize = '';
+        raiz.style.removeProperty('--fuente-base');
+    };
+    const temaGuardadoOscuro = () => {
+        const g = localStorage.getItem('tema');
+        return g ? g === 'oscuro' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    };
+    const ponerTema = (oscuro) => {
         if (oscuro) raiz.setAttribute('data-tema', 'oscuro');
         else raiz.removeAttribute('data-tema');
+        const sw = document.getElementById('btnTema');
+        if (sw) sw.setAttribute('aria-checked', oscuro ? 'true' : 'false');
     };
 
-    aplicarLetra();
-    aplicarTema();
+    // --- Panel del usuario ---
+    const panel = () => document.getElementById('usuarioPanel');
+    const botonAvatar = () => document.getElementById('btnUsuario');
+    const cerrarPanel = () => {
+        const p = panel(), b = botonAvatar();
+        if (p) p.hidden = true;
+        if (b) b.setAttribute('aria-expanded', 'false');
+    };
+
+    const actualizarBotonesLetra = () => {
+        const menos = document.getElementById('btnLetraMenos');
+        const mas = document.getElementById('btnLetraMas');
+        const txt = document.getElementById('letraNivel');
+        if (menos) menos.disabled = nivel === 0;
+        if (mas) mas.disabled = nivel === TAMANOS.length - 1;
+        if (txt) txt.textContent = NOMBRES[nivel];
+    };
+
+    // --- Mostrar u ocultar todo según haya sesión ---
+    function mostrarSesion(email) {
+        if (email) {
+            raiz.setAttribute('data-sesion', 'activa');
+            const c = email.trim().charAt(0).toUpperCase();
+            raiz.style.setProperty('--inicial', '"' + (/[A-Z0-9]/.test(c) ? c : '?') + '"');
+            const el = document.getElementById('usuarioEmail');
+            if (el) {
+                el.textContent = '';
+                const i = email.indexOf('@');
+                if (i > 0) el.append(email.slice(0, i + 1), document.createElement('wbr'), email.slice(i + 1));   // si no entra, se parte después de la arroba
+                else el.textContent = email;
+            }
+            aplicarLetra();
+            ponerTema(temaGuardadoOscuro());
+            actualizarBotonesLetra();
+        } else {
+            raiz.removeAttribute('data-sesion');
+            raiz.style.removeProperty('--inicial');
+            quitarLetra();
+            ponerTema(false);
+            cerrarPanel();
+        }
+    }
+    window.tptSesion = { mostrar: mostrarSesion };   // lo usa js/sesion.js cuando Firebase confirma la sesión
+
+    mostrarSesion(localStorage.getItem('tptUsuario'));
 
     document.addEventListener('DOMContentLoaded', () => {
-        aplicarTema();   // por si el script se cargó antes que el HTML
+        mostrarSesion(localStorage.getItem('tptUsuario'));   // por si el script se cargó antes que el HTML
 
-        const btnTema = document.getElementById('btnTema');
-        if (btnTema) {
-            btnTema.setAttribute('aria-checked', raiz.getAttribute('data-tema') === 'oscuro');
-            btnTema.addEventListener('click', () => {
-                const oscuro = raiz.getAttribute('data-tema') !== 'oscuro';
-                if (oscuro) raiz.setAttribute('data-tema', 'oscuro');
-                else raiz.removeAttribute('data-tema');
-                localStorage.setItem('tema', oscuro ? 'oscuro' : 'claro');
-                btnTema.setAttribute('aria-checked', oscuro);
+        const avatar = botonAvatar();
+        if (avatar) {
+            avatar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const abrir = panel().hidden;
+                panel().hidden = !abrir;
+                avatar.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            });
+            document.addEventListener('click', (e) => {
+                const menu = document.getElementById('usuarioMenu');
+                if (menu && !menu.contains(e.target)) cerrarPanel();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { cerrarPanel(); avatar.focus(); }
             });
         }
 
-        const btnLetra = document.getElementById('btnLetra');
-        if (btnLetra) {
-            const etiquetar = () => {
-                btnLetra.dataset.nivel = nivel;
-                const texto = `Tamaño de letra: ${NOMBRES[nivel]}. Tocá para pasar a ${NOMBRES[(nivel + 1) % NOMBRES.length]}`;
-                btnLetra.setAttribute('aria-label', texto);
-                btnLetra.title = texto;
-            };
-            etiquetar();
-            btnLetra.addEventListener('click', () => {
-                nivel = (nivel + 1) % TAMANOS.length;
-                localStorage.setItem('tamanoLetra', nivel);
-                aplicarLetra();
-                etiquetar();
+        const sw = document.getElementById('btnTema');
+        if (sw) {
+            sw.addEventListener('click', () => {
+                const oscuro = raiz.getAttribute('data-tema') !== 'oscuro';
+                localStorage.setItem('tema', oscuro ? 'oscuro' : 'claro');
+                ponerTema(oscuro);
+            });
+        }
+
+        const cambiarLetra = (delta) => {
+            nivel = Math.max(0, Math.min(TAMANOS.length - 1, nivel + delta));
+            localStorage.setItem('tamanoLetra', nivel);
+            aplicarLetra();
+            actualizarBotonesLetra();
+        };
+        const mas = document.getElementById('btnLetraMas');
+        const menos = document.getElementById('btnLetraMenos');
+        if (mas) mas.addEventListener('click', () => cambiarLetra(1));
+        if (menos) menos.addEventListener('click', () => cambiarLetra(-1));
+        actualizarBotonesLetra();
+
+        const salir = document.getElementById('btnSalir');
+        if (salir) {
+            salir.addEventListener('click', () => {
+                if (window.tptSesionListo) {
+                    window.dispatchEvent(new CustomEvent('tpt-salir'));   // js/sesion.js cierra la sesión en Firebase
+                } else {                                                  // sin Firebase (ej. archivo abierto con doble clic)
+                    localStorage.removeItem('tptUsuario');
+                    localStorage.removeItem('rolUsuario');
+                    location.reload();
+                }
             });
         }
     });
