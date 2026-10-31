@@ -178,6 +178,7 @@ async function cargarPendientes() {
                         <div class="action-buttons">
                             <button class="btn-success btn-aprobar" data-id="${documento.id}">Aprobar Video ✅</button>
                             <button class="btn-danger btn-rechazar" data-id="${documento.id}">Rechazar ❌</button>
+                            <button class="btn-danger btn-eliminar-pendiente" data-id="${documento.id}">Eliminar 🗑️</button>
                         </div>
                     </div>
                 `;
@@ -201,7 +202,7 @@ async function cargarPendientes() {
         // Aprobar
         document.querySelectorAll('.btn-aprobar').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                const id = e.target.getAttribute('data-id');
+                const id = e.currentTarget.getAttribute('data-id');
                 const comentario = document.getElementById(`comentario-${id}`).value;
                 const materiaElegida = document.getElementById(`materia-alumno-${id}`).value;
                 const moduloElegido = document.getElementById(`modulo-alumno-${id}`).value; 
@@ -225,13 +226,29 @@ async function cargarPendientes() {
         // Rechazar
         document.querySelectorAll('.btn-rechazar').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                const id = e.target.getAttribute('data-id');
+                const id = e.currentTarget.getAttribute('data-id');
                 const comentario = document.getElementById(`comentario-${id}`).value;
                 await updateDoc(doc(db, "materiales", id), { 
                     estado: 'rechazado',
                     comentarioProfesor: comentario || 'Material no cumple con los requisitos.'
                 });
                 cargarPendientes();
+            });
+        });
+
+        // Eliminar definitivamente un video pendiente
+        document.querySelectorAll('.btn-eliminar-pendiente').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const id = e.currentTarget.getAttribute('data-id');
+                if (!confirm("¿Estás seguro de que deseas eliminar este video pendiente? Se borrará definitivamente.")) return;
+
+                try {
+                    await deleteDoc(doc(db, "materiales", id));
+                    cargarPendientes();
+                } catch (error) {
+                    console.error("Error al eliminar el video pendiente:", error);
+                    alert("No se pudo eliminar el video: " + error.message);
+                }
             });
         });
 
@@ -281,12 +298,18 @@ async function cargarPublicados() {
         // Evento click para eliminar material
         document.querySelectorAll('.btn-eliminar').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                const id = e.target.getAttribute('data-id');
+                // currentTarget siempre es el botón, aunque el clic caiga sobre el ícono o el texto
+                const id = e.currentTarget.getAttribute('data-id');
                 const confirmar = confirm("¿Estás seguro de que deseas eliminar este material publicado? Dejará de aparecer en la vista de los alumnos.");
-                
+
                 if (confirmar) {
-                    await deleteDoc(doc(db, "materiales", id));
-                    cargarPublicados(); // Actualiza la lista automáticamente
+                    try {
+                        await deleteDoc(doc(db, "materiales", id));
+                        cargarPublicados(); // Actualiza la lista automáticamente
+                    } catch (error) {
+                        console.error("Error al eliminar el material:", error);
+                        alert("No se pudo eliminar el material: " + error.message);
+                    }
                 }
             });
         });

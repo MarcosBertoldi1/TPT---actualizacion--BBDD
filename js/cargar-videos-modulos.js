@@ -1,8 +1,12 @@
 import { db } from './firebase-config.js';
-import { collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { collection, getDocs, query, where, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // El ID del contenedor que pusimos en el HTML
 const contenedorVideos = document.getElementById('recursos-firebase-introduccion');
+
+// Solo profesores/admin ven el botón de eliminar (la seguridad real la dan las reglas de Firestore)
+const rolActual = localStorage.getItem('rolUsuario');
+const puedeEliminar = rolActual === 'profesor' || rolActual === 'admin';
 
 document.addEventListener('DOMContentLoaded', () => {
     if (contenedorVideos) {
@@ -45,7 +49,31 @@ async function cargarVideosDelModulo(nombreMateria, nombreModulo) {
                 </div>
                 <div style="color: #cbd5e1;">❯</div>
             `;
-            
+
+            // Botón de eliminar visible solo para profesores
+            if (puedeEliminar) {
+                const btnEliminar = document.createElement('button');
+                btnEliminar.type = 'button';
+                btnEliminar.textContent = 'Eliminar 🗑️';
+                btnEliminar.style = "margin-left: 15px; background: #ef4444; color: white; border: none; border-radius: 6px; padding: 8px 14px; font-size: 0.85rem; font-weight: 600; cursor: pointer;";
+                btnEliminar.addEventListener('click', async (e) => {
+                    // La tarjeta es un enlace: evitamos que se abra el video al eliminar
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (!confirm("¿Estás seguro de que deseas eliminar este video? Dejará de aparecer para todos los alumnos.")) return;
+
+                    try {
+                        await deleteDoc(doc(db, "materiales", documento.id));
+                        enlace.remove();
+                    } catch (error) {
+                        console.error("Error al eliminar el video:", error);
+                        alert("No se pudo eliminar el video: " + error.message);
+                    }
+                });
+                enlace.appendChild(btnEliminar);
+            }
+
             // Efecto Hover simple por JS (si ya tienes una clase CSS en tu proyecto para esto, úsala en vez de style)
             enlace.onmouseover = () => enlace.style.boxShadow = "0 4px 6px -1px rgba(0, 0, 0, 0.1)";
             enlace.onmouseout = () => enlace.style.boxShadow = "none";
