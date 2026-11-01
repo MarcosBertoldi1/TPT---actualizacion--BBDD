@@ -16,7 +16,8 @@ async function verificarRolYRedirigir(user) {
     const correosProfesores = [
         'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
         'pepito@tecnica29de6.edu.ar',
-        'UPruebaDocente@gmail.com'
+        'UPruebaDocente@gmail.com',
+        'jose.astesana@tecnica29de6.edu.ar'
     ];
 
     // Se compara en minúsculas solo temporalmente para evitar fallos por mayúsculas
