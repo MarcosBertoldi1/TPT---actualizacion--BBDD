@@ -237,3 +237,4 @@ async function cargarPublicados() {
         const e = el('div', null, 'Error al cargar la lista de publicados.'); e.style.color = '#ef4444'; contenedorPublicados.replaceChildren(e);
     }
 }
+
