@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Docente | TPT</title>
+    <!-- Sesión, tema y tamaño de letra: se aplican antes de mostrar la página para que no parpadee -->
+    <script>(function(){try{var d=document.documentElement,u=localStorage.getItem('tptUsuario');if(!u)return;d.setAttribute('data-sesion','activa');var c=u.charAt(0).toUpperCase();d.style.setProperty('--inicial','"'+(/[A-Z0-9]/.test(c)?c:'?')+'"');var t=localStorage.getItem('tema');if(t?t==='oscuro':window.matchMedia('(prefers-color-scheme: dark)').matches){d.setAttribute('data-tema','oscuro')}var n=parseInt(localStorage.getItem('tamanoLetra'),10);if(n>0&&n<4){var px=[16,18,20,22][n]+'px';d.style.fontSize=px;d.style.setProperty('--fuente-base',px)}}catch(e){}})();</script>
+    <style>html[data-tema="oscuro"]{background:#000f22;color-scheme:dark}</style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <!-- Estilos exclusivos para el panel docente -->
+    <link rel="stylesheet" href="css/panel-prof.css">
+</head>
+<body>
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            <a href="index.html" class="logo-banner">
+                <img src="img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos<span class="h1-sep"> - </span><span class="h1-escuela">ET N° 29 D.E. 6</span></h1>
+                </div>
+            </a>
+            <div class="usuario-menu" id="usuarioMenu">
+                <button class="usuario-avatar" id="btnUsuario" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="usuarioPanel" aria-label="Menú de usuario"><span class="inicial" aria-hidden="true"></span></button>
+                <div class="usuario-panel" id="usuarioPanel" hidden>
+                    <div class="usuario-cabecera">
+                        <span class="usuario-avatar usuario-avatar--grande" aria-hidden="true"><span class="inicial"></span></span>
+                        <strong class="usuario-email" id="usuarioEmail"></strong>
+                    </div>
+                    <div class="usuario-fila">
+                        <span class="usuario-fila-texto">Tamaño de letra<small class="usuario-fila-detalle" id="letraNivel">normal</small></span>
+                        <div class="letra-control">
+                            <button class="btn-letra btn-letra--menos" id="btnLetraMenos" type="button" aria-label="Achicar letra">A&minus;</button>
+                            <button class="btn-letra btn-letra--mas" id="btnLetraMas" type="button" aria-label="Agrandar letra">A+</button>
+                        </div>
+                    </div>
+                    <div class="usuario-fila">
+                        <span class="usuario-fila-texto">Tema oscuro</span>
+                        <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Tema oscuro" title="Tema oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
+                    </div>
+                    <hr class="usuario-separador">
+                    <button class="usuario-salir" id="btnSalir" type="button">
+                        <span>Cerrar sesión</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav class="navegacion-principal">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li id="nav-materiales" style="display: none;"><a href="materiales.html">Materiales</a></li>
+                <li id="nav-panel-profesor"><a href="panel-profesor.html" class="activo">Panel Profesor</a></li>
+                <li><a href="sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login" style="display: none;"><a href="login.html">Iniciar Sesión</a></li>
+                <li id="item-logout"><a href="#" id="btn-cerrar-sesion">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <h2>Gestión Docente</h2>
+            <p>Evalúa los aportes de los estudiantes y publicalos donde corresponda. El contenido propio se agrega con el botón "+" dentro de cada materia o tema.</p>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: 1fr;">
+            <!-- SECCIÓN 2: MODERACIÓN DE ALUMNOS -->
+            <section class="dashboard-card review-section">
+                <div class="card-header warning-header">
+                    <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> Evaluaciones Pendientes</h3>
+                    <p>Revisa los videos enviados por los alumnos. Al aprobarlos se crea su página con la misma estructura que el resto del sitio.</p>
+                </div>
+                <div id="contenedor-pendientes" class="pending-grid">
+                    <div class="loader-text">Buscando entregas pendientes...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECCIÓN 3: GESTIONAR Y ELIMINAR MATERIALES PUBLICADOS -->
+        <section class="dashboard-card" style="margin-top: 30px; padding: 20px;">
+            <div class="card-header" style="background: var(--color-fondo-header); border-bottom: 1px solid var(--color-borde); margin: -20px -20px 20px -20px; padding: 20px;">
+                <h3 style="color: var(--color-texto); margin: 0 0 5px 0;"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg> Materiales Publicados (Gestionar / Eliminar)</h3>
+                <p style="margin: 0; color: var(--color-texto-suave); font-size: 0.9rem;">Materiales aprobados antes de este cambio. Los videos nuevos se publican como páginas y se editan o eliminan desde su propia página.</p>
+            </div>
+            <div id="contenedor-publicados" style="margin-top: 15px;">
+                <div class="loader-text">Cargando materiales publicados...</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/header.js"></script>
+    <script type="module" src="js/js-panel-profesor.js"></script>
+    <script type="module" src="js/sesion.js"></script>
+</body>
+</html>
