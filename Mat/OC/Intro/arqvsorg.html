@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura vs Organización de las computadoras - ET29</title>
+    
+    <!-- Sesión, tema y tamaño de letra: se aplican antes de mostrar la página para que no parpadee -->
+    <script>(function(){try{var d=document.documentElement,u=localStorage.getItem('tptUsuario');if(!u)return;d.setAttribute('data-sesion','activa');var c=u.charAt(0).toUpperCase();d.style.setProperty('--inicial','"'+(/[A-Z0-9]/.test(c)?c:'?')+'"');var t=localStorage.getItem('tema');if(t?t==='oscuro':window.matchMedia('(prefers-color-scheme: dark)').matches){d.setAttribute('data-tema','oscuro')}var n=parseInt(localStorage.getItem('tamanoLetra'),10);if(n>0&&n<4){var px=[16,18,20,22][n]+'px';d.style.fontSize=px;d.style.setProperty('--fuente-base',px)}}catch(e){}})();</script>
+    <style>html[data-tema="oscuro"]{background:#000f22;color-scheme:dark}</style>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/materias.css">
+    <link rel="stylesheet" href="../../../css/header.css">
+    
+    <meta name="description" content="Video explicativo sobre la diferencia entre los conceptos de Arquitectura y Organización de las computadoras.">
+</head>
+<body>
+
+    <!--<a href="#contenido-principal" class="saltar-contenido">Saltar al contenido principal</a>-->
+
+    <header class="encabezado-principal">
+        <div class="contenedor-header">
+            
+            <a href="../../../index.html" class="logo-banner" aria-label="Inicio - Tecnología para Todos">
+                <img src="../../../img/logoTPT4.png" alt="Logo TPT" class="logo-img-banner" width="75" height="75">
+                
+                <div class="logo-texto-lineal">
+                    <h1>Tecnología para todos<span class="h1-sep"> - </span><span class="h1-escuela">ET N° 29 D.E. 6</span></h1>
+                </div>
+            </a>
+
+            <div class="usuario-menu" id="usuarioMenu">
+                <button class="usuario-avatar" id="btnUsuario" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="usuarioPanel" aria-label="Menú de usuario"><span class="inicial" aria-hidden="true"></span></button>
+                <div class="usuario-panel" id="usuarioPanel" hidden>
+                    <div class="usuario-cabecera">
+                        <span class="usuario-avatar usuario-avatar--grande" aria-hidden="true"><span class="inicial"></span></span>
+                        <strong class="usuario-email" id="usuarioEmail"></strong>
+                    </div>
+                    <div class="usuario-fila">
+                        <span class="usuario-fila-texto">Tamaño de letra<small class="usuario-fila-detalle" id="letraNivel">normal</small></span>
+                        <div class="letra-control">
+                            <button class="btn-letra btn-letra--menos" id="btnLetraMenos" type="button" aria-label="Achicar letra">A&minus;</button>
+                            <button class="btn-letra btn-letra--mas" id="btnLetraMas" type="button" aria-label="Agrandar letra">A+</button>
+                        </div>
+                    </div>
+                    <div class="usuario-fila">
+                        <span class="usuario-fila-texto">Tema oscuro</span>
+                        <button class="interruptor-tema" id="btnTema" type="button" role="switch" aria-checked="false" aria-label="Tema oscuro" title="Tema oscuro"><span class="interruptor-perilla"></span><span class="interruptor-icono interruptor-luna" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/></svg></span><span class="interruptor-icono interruptor-sol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span></button>
+                    </div>
+                    <hr class="usuario-separador">
+                    <button class="usuario-salir" id="btnSalir" type="button">
+                        <span>Cerrar sesión</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+        
+        <nav class="navegacion-principal" aria-label="Navegación principal">
+            <ul>
+                <li><a href="../../../index.html" class="activo" aria-current="page">Inicio</a></li>
+                <li id="nav-materiales"><a href="../../../materiales.html">Materiales</a></li>
+                <li><a href="../../../sobre.html">Sobre el Proyecto</a></li>
+                <li id="item-login"><a href="../../../login.html">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="contenido-principal" class="contenedor-pagina">
+        
+        <nav class="migas-de-pan" aria-label="Migas de pan">
+            <ol>
+                <li><a href="../../../index.html">Inicio</a></li>
+                <li><a href="../../../computacion.html">Materias</a></li>
+                <li><a href="../../../Mat/mat-OC.html">Organización de Computadoras</a></li>
+                <li><a href="../../OC/introOC.html">Introducción</a></li>
+                <li aria-current="page">Arquitectura vs Organización</li>
+            </ol>
+        </nav>
+
+        <div class="cabecera-materia">
+            <div class="titulo-materia-icono">
+                <span class="icono-grande" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg></span>
+                <div>
+                    <h1>Arquitectura vs Organización de las computadoras</h1>
+                    <p>Video explicativo introductorio.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="contenedor-recurso">
+            
+            <div class="recurso-principal">
+                <div class="contenedor-video">
+                    <iframe referrerpolicy="strict-origin-when-cross-origin" 
+                        src="https://www.youtube.com/embed/DAetKzOV1_o" 
+                        title="Video: Arquitectura vs Organización de las computadoras por Agustín Meza" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <a href="../introOC.html" class="btn btn-secundario btn-volver">← Volver a recursos</a>
+            </div>
+
+
+       <aside class="recurso-sidebar">
+                
+                <div class="tarjeta-info">
+                    <h3>Descripción</h3>
+                   <p>En este video vamos a conocer entre los conceptos de Arquitectura y Organización de las computadora.</p>
+                    <p>Arquitectura: Diseño lógico abstracto que define qué debe hacer el sistema para ejecutar los programas.</p>
+                    <p>Organización: Implementación física y conexión de componentes que define cómo funciona tecnológicamente la computadora.</p>
+                </div>
+                </div>
+                
+
+                <div class="tarjeta-info">
+                    <h3>Material complementario</h3>
+                    <div class="material-descarga">
+                        <span class="icono-pdf" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></span>
+                        <div class="info-pdf">
+                            <strong>Resumen del video</strong>
+                            <span>PDF • 1.2 MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primario btn-chico">Descargar</a>
+                    </div>
+                </div>
+
+            </aside>
+        </section>
+
+
+             
+
+
+    <section class="seccion-comentarios" data-pagina-id="arq_vs_org"></section>
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
+        <p>Desarrollado por estudiantes. Validado por Prof. Astesana y Prof. Etkin.</p>
+    </footer>
+
+   <script src="../../../js/header.js"></script>
+    <script type="module" src="../../../js/js-materiales.js"></script>
+    <script type="module" src="../../../js/comentarios.js"></script>
+    <script type="module" src="../../../js/sesion.js"></script>
+</body>
+</html>

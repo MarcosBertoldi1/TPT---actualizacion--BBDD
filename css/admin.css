@@ -1,0 +1,109 @@
+/* Panel de administración. Usa las variables de style.css para respetar el tema oscuro. */
+.adm-hd{display:flex;align-items:center;gap:1rem;padding:.8rem 1.5rem;border-bottom:1px solid var(--color-borde,#e0e4e8)}
+.adm-hd h1{font-size:1.3rem;flex:1;margin:0}
+.adm-modo{font-size:.75rem;font-weight:700;padding:.25rem .7rem;border-radius:99px;background:#16a34a;color:#fff}
+.adm-tabs{display:flex;gap:.25rem;padding:0 1.5rem;border-bottom:1px solid var(--color-borde,#e0e4e8)}
+.adm-tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:.8rem 1rem;font:inherit;font-weight:600;color:inherit;cursor:pointer}
+.adm-tabs button[aria-selected="true"]{border-bottom-color:var(--color-primario,#0056b3)}
+.adm-tabs button:disabled{opacity:.45;cursor:not-allowed}
+#vista{padding:0}
+.adm-titulo{display:flex;align-items:center;gap:1rem;margin:0 0 1.2rem}
+.adm-titulo h1{font-size:1.5rem;margin:0;flex:1}
+.adm-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:1.2rem}
+@media(max-width:900px){.adm-grid{grid-template-columns:1fr}}
+.adm-card{border:1px solid var(--color-borde,#e0e4e8);border-radius:12px;padding:1rem;background:var(--color-gris-claro,transparent)}
+.adm-card h2{font-size:1.05rem;margin:0 0 .8rem}
+.adm-btn{background:var(--color-primario,#0056b3);color:#fff;border:0;border-radius:8px;padding:.5rem .9rem;font:inherit;font-weight:700;cursor:pointer}
+.adm-btn.sec{background:none;color:inherit;border:1px solid var(--color-borde,#cbd5e1)}
+.adm-btn.rojo{background:none;color:#ef4444;border:1px solid #ef4444}
+.adm-btn:disabled{opacity:.4;cursor:not-allowed}
+.fila{display:flex;align-items:center;gap:.5rem;padding:.35rem .5rem;border-radius:8px;cursor:pointer}
+.fila:hover{background:rgba(127,127,127,.12)}
+.fila.sel{outline:2px solid var(--color-primario,#0056b3)}
+.flecha{width:1rem;text-align:center}
+.tit{flex:1;overflow-wrap:anywhere}
+.chip{font-size:.65rem;font-weight:700;opacity:.7;border:1px solid currentColor;border-radius:4px;padding:0 .4rem;white-space:nowrap}
+.punto{width:.6rem;height:.6rem;border-radius:50%;flex:none;background:#94a3b8}
+.punto.publicado{background:#16a34a}.punto.proximamente{background:#d97706}
+.adm-leyenda{display:flex;gap:1rem;font-size:.8rem;margin-top:.8rem;opacity:.8}
+.adm-campo{margin-bottom:.8rem}
+.adm-campo label{display:block;font-weight:700;font-size:.85rem;margin-bottom:.25rem}
+.adm-campo input,.adm-campo select,.adm-campo textarea{width:100%;padding:.5rem .7rem;border:1px solid var(--color-borde,#cbd5e1);border-radius:8px;font:inherit;background:var(--color-fondo,#fff);color:inherit}
+.adm-fila-btn{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;align-items:center}
+.adm-migas{font-size:.85rem;opacity:.75;margin:0 0 1rem}
+.adm-msg{font-size:.85rem;font-weight:700;min-height:1.2em}.adm-msg.err{color:#ef4444}.adm-msg.ok{color:#16a34a}
+.adm-vacio{opacity:.7}
+.pap-fila{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:.6rem 0;border-bottom:1px solid var(--color-borde,#e0e4e8)}
+
+/* Panel docente: contenido fijo (solo lectura) y zonas donde se agrega */
+.fila.fijo{opacity:.85}.fila.fijo .tit{font-weight:600}
+.cand{width:1rem;text-align:center;font-size:.8rem}
+.zona{display:flex;align-items:center;gap:.5rem;padding:.3rem .5rem;margin-top:.3rem;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;opacity:.8}
+.zona .adm-btn{margin-left:auto;padding:.2rem .6rem;font-size:.8rem;text-transform:none;letter-spacing:0}
+.adm-aviso{background:rgba(217,119,6,.12);border:1px solid #d97706;border-radius:8px;padding:.6rem .8rem;font-size:.9rem;margin-bottom:1rem}
+.adm-guia{opacity:.85;line-height:1.5}
+
+.adm-check{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.9rem;margin:.4rem 0 1rem;cursor:pointer}
+.adm-check input{width:auto}
+.adm-sub{font-size:1rem;margin:1.2rem 0 .6rem;padding-top:.8rem;border-top:1px solid var(--color-borde,#e0e4e8)}
+
+/* ==========================================================================
+   Árbol "Contenido del sitio" (parte izquierda del panel docente)
+   Puntos de estado, etiquetas de tipo, fila elegida con borde y botones "+" punteados.
+   Usa las variables del sitio, así que respeta el tema oscuro.
+   ========================================================================== */
+.adm-card { border-radius: 16px; padding: 1.2rem 1.3rem; box-shadow: 0 2px 8px rgba(0, 15, 34, .06); }
+.adm-card h2 { font-size: 1.15rem; }
+
+.fila {
+    gap: .55rem;
+    padding: .5rem .6rem;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: background-color .15s ease, border-color .15s ease;
+}
+.fila:hover { background: rgba(63, 101, 147, .09); }
+.fila.sel { outline: 0; border-color: var(--color-primario); background: rgba(63, 101, 147, .08); }
+.fila.fijo { opacity: 1; }
+
+.flecha { color: var(--color-texto-suave); font-size: .75rem; }
+
+/* El título queda pegado a su etiqueta (no se va al borde derecho) y lleva el punto de estado */
+.fila .tit { flex: 0 1 auto; font-weight: 600; }
+.fila .tit::before {
+    content: "";
+    display: inline-block;
+    width: .6rem;
+    height: .6rem;
+    margin-right: .6rem;
+    border-radius: 50%;
+    background: #16a34a;          /* publicado */
+    vertical-align: .05em;
+}
+
+.chip {
+    border: 0;
+    border-radius: 6px;
+    padding: .18rem .55rem;
+    background: rgba(127, 127, 127, .2);
+    color: var(--color-texto-suave);
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    opacity: 1;
+}
+
+/* Encabezado de zona (por ejemplo "MÓDULOS") con su botón "+" punteado */
+.zona { opacity: 1; margin-top: .5rem; color: var(--color-texto-suave); }
+.zona .adm-btn {
+    background: transparent;
+    color: var(--color-primario);
+    border: 1.5px dashed var(--color-primario);
+    border-radius: 8px;
+    padding: .25rem .7rem;
+    font-weight: 700;
+}
+.zona .adm-btn:hover { background: rgba(63, 101, 147, .12); }
+
+.adm-leyenda { font-size: .82rem; margin-top: 1rem; padding-top: .8rem; border-top: 1px solid var(--color-borde, #e0e4e8); }
