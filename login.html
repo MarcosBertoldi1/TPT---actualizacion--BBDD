@@ -93,10 +93,57 @@
         .btn-enlace { background: none; border: none; color: var(--color-primario); font-weight: bold; cursor: pointer; text-decoration: underline; padding: 0; font-size: 0.95rem; }
         .caja-form label { color: var(--color-texto); }
         .grupo-input input { background: var(--color-fondo); color: var(--color-texto); }
+ 
+        /* Banner de bienvenida (aparece arriba al iniciar sesión) */
+        .banner-bienvenida {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: calc(100% - 32px);
+            max-width: 420px;
+            box-sizing: border-box;
+            padding: 14px 18px;
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            border: 1px solid var(--color-borde);
+            border-left: 5px solid var(--color-primario);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 15, 34, 0.18);
+            animation: banner-entrada 0.35s ease-out both;
+        }
+        .banner-bienvenida__icono {
+            flex: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-primario);
+            color: var(--color-texto-sobre-primario);
+        }
+        .banner-bienvenida__icono svg { width: 20px; height: 20px; }
+        .banner-bienvenida__texto { display: flex; flex-direction: column; min-width: 0; }
+        .banner-bienvenida__texto strong { font-size: 1rem; }
+        .banner-bienvenida__texto span {
+            font-size: 0.875rem;
+            color: var(--color-texto-suave);
+            overflow-wrap: anywhere;
+        }
+        @keyframes banner-entrada {
+            from { opacity: 0; transform: translate(-50%, -12px); }
+            to   { opacity: 1; transform: translate(-50%, 0); }
+        }
+        @media (prefers-reduced-motion: reduce) { .banner-bienvenida { animation: none; } }
     </style>
 </head>
 <body>
-
+ 
     <header class="encabezado-principal">
         <div class="contenedor-header">
             <a href="index.html" class="logo-banner">
@@ -140,9 +187,9 @@
             </ul>
         </nav>
     </header>
-
+ 
     <main id="contenido-principal" class="contenedor-pagina">
-
+ 
         <div class="contenedor-formularios">
             
             <!-- CAJA 1: INICIAR SESIÓN -->
@@ -167,15 +214,15 @@
                     <button type="button" id="btn-olvide" style="background:none;border:none;color:var(--color-primario);text-decoration:underline;cursor:pointer;margin-top:10px;font-size:0.9rem;">¿Olvidaste tu contraseña?</button>
                     <div id="mensaje-error" class="mensaje-error"></div>
                 </form>
-
+ 
                 <button id="btn-google" class="btn-full btn-google-style">G Iniciar sesión con Google</button>
                 <button type="button" id="btn-vincular" style="background:none;border:none;color:var(--color-primario);text-decoration:underline;cursor:pointer;margin-top:10px;font-size:0.9rem;">Agregar contraseña a mi cuenta de Google</button>
-
+ 
                 <div class="texto-cambio">
                     ¿No tenés cuenta? <button type="button" id="btn-ir-registro" class="btn-enlace">Crear cuenta</button>
                 </div>
             </div>
-
+ 
             <!-- CAJA 2: CREAR CUENTA NUEVA -->
             <div id="caja-registro" class="caja-form" style="display: none;">
                 <h2>Crear Cuenta Nueva</h2>
@@ -197,20 +244,20 @@
                     <button type="submit" class="btn-full btn-registrar">Registrarme</button>
                     <div id="mensaje-error-registro" class="mensaje-error"></div>
                 </form>
-
+ 
                 <div class="texto-cambio">
                     ¿Ya tenés cuenta? <button type="button" id="btn-ir-login" class="btn-enlace">Iniciar sesión</button>
                 </div>
             </div>
-
+ 
         </div>
-
+ 
     </main>
-
+ 
     <footer class="pie-pagina" style="margin-top: 50px;">
         <p>Proyecto <strong>Tecnología para Todos</strong>. ET29 DE 6.</p>
     </footer>
-
+ 
     <!-- MOSTRAR / OCULTAR CONTRASEÑA -->
     <script>
         document.querySelectorAll('.btn-ver-password').forEach(function (btn) {
@@ -225,23 +272,23 @@
             });
         });
     </script>
-
+ 
     <!-- ALTERNAR ENTRE INICIAR SESIÓN Y CREAR CUENTA -->
     <script>
         const cajaLogin = document.getElementById('caja-login');
         const cajaRegistro = document.getElementById('caja-registro');
-
+ 
         document.getElementById('btn-ir-registro').addEventListener('click', () => {
             cajaLogin.style.display = 'none';
             cajaRegistro.style.display = 'block';
         });
-
+ 
         document.getElementById('btn-ir-login').addEventListener('click', () => {
             cajaRegistro.style.display = 'none';
             cajaLogin.style.display = 'block';
         });
     </script>
-
+ 
     <!-- AUTENTICACIÓN Y ROLES (toda la lógica está en js/login.js) -->
     <script type="module" src="js/login.js"></script>
     <script src="js/header.js"></script>
