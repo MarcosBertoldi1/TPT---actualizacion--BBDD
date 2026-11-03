@@ -7,6 +7,36 @@ const btnGoogle = document.getElementById('btn-google');
 const mensajeError = document.getElementById('mensaje-error');
 const mensajeErrorRegistro = document.getElementById('mensaje-error-registro');
 
+// --- BANNER DE BIENVENIDA (reemplaza al alert del navegador) ---
+function mostrarBienvenida(rol, email) {
+    const viejo = document.getElementById('banner-bienvenida');
+    if (viejo) viejo.remove();
+
+    const banner = document.createElement('div');
+    banner.id = 'banner-bienvenida';
+    banner.className = 'banner-bienvenida';
+    banner.setAttribute('role', 'status');
+    banner.setAttribute('aria-live', 'polite');
+
+    const icono = document.createElement('span');
+    icono.className = 'banner-bienvenida__icono';
+    icono.setAttribute('aria-hidden', 'true');
+    icono.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+
+    const texto = document.createElement('div');
+    texto.className = 'banner-bienvenida__texto';
+
+    const titulo = document.createElement('strong');
+    titulo.textContent = rol === 'profesor' ? 'Bienvenido/a, docente' : 'Bienvenido/a, estudiante';
+
+    const detalle = document.createElement('span');
+    detalle.textContent = email;   // textContent: el correo nunca se interpreta como HTML
+
+    texto.append(titulo, detalle);
+    banner.append(icono, texto);
+    document.body.appendChild(banner);
+}
+
 // --- FUNCIÓN PARA VERIFICAR EL ROL Y REDIRIGIR ---
 async function verificarRolYRedirigir(user) {
     const emailIngresado = user.email ? user.email.trim().toLowerCase() : '';
