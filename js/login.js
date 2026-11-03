@@ -14,10 +14,10 @@ async function verificarRolYRedirigir(user) {
 
     // ÚNICOS correos con rol de profesor. El resto de usuarios son alumnos.
     const correosProfesores = [
-        'marcos.bertoldi.945@alu.tecnica29de6.edu.ar',
+        'jose.astesana@tecnica29de6.edu.ar',
         'pepito@tecnica29de6.edu.ar',
         'UPruebaDocente@gmail.com',
-        'jose.astesana@tecnica29de6.edu.ar'
+        'marcos.bertoldi.945@alu.tecnica29de6.edu.ar'
     ];
 
     // Se compara en minúsculas solo temporalmente para evitar fallos por mayúsculas
