@@ -15,7 +15,7 @@ function mostrarBienvenida(esProfesor, email) {
         estilos.id = 'estilos-bienvenida';
         estilos.textContent = `
         .bienvenida { position: fixed; z-index: 10001; left: 50%; transform: translateX(-50%);
-            bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem); width: min(540px, calc(100% - 2rem));
+            top: calc(env(safe-area-inset-top, 0px) + 1rem); width: min(540px, calc(100% - 2rem));
             display: flex; align-items: flex-start; gap: .8rem; padding: .85rem 1rem;
             background: var(--color-fondo-header, #e8f6ed); color: var(--color-texto, #04180d);
             border: 1px solid var(--color-borde, #7fc49c); border-left: 6px solid #2f7a52; border-radius: 12px;
@@ -24,7 +24,7 @@ function mostrarBienvenida(esProfesor, email) {
             background: #2f7a52; color: #fff; font-weight: 700; line-height: 1; }
         .bienvenida-titulo { display: block; font-weight: 700; }
         .bienvenida-detalle { display: block; font-size: .92rem; opacity: .9; margin-top: .15rem; overflow-wrap: anywhere; }
-        @keyframes bienvenida-entra { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        @keyframes bienvenida-entra { from { opacity: 0; transform: translate(-50%, -10px); } to { opacity: 1; transform: translate(-50%, 0); } }
         @media (prefers-reduced-motion: reduce) { .bienvenida { animation: none; } }`;
         document.head.append(estilos);
     }
